@@ -9,19 +9,12 @@ jobs:
   notify-discord:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Validate webhook is configured
-        run: |
-          if [ -z "${{ secrets.DISCORD_WEBHOOK_URL }}" ]; then
-            echo "Missing DISCORD_WEBHOOK_URL secret."
-            exit 1
-          fi
-          # Basic sanity check (won't reveal the token)
-          if ! echo "${{ secrets.DISCORD_WEBHOOK_URL }}" | grep -Eq '^https://(ptb\\.)?discord(app)?\\.com/api/webhooks/[0-9]+/[A-Za-z0-9._-]+'; then
-            echo "DISCORD_WEBHOOK_URL doesn't look like a Discord webhook."
-            exit 1
-          fi
+    # Skip posting if:
+    # - The secret isn't set, or
+    # - The PR is from a fork (secrets are not available to 'pull_request' events)
+    if: ${{ secrets.DISCORD_WEBHOOK_URL != '' && github.event.pull_request.head.repo.full_name == github.repository }}
 
+    steps:
       - name: Build message content
         id: build
         uses: actions/github-script@v7
@@ -34,7 +27,6 @@ jobs:
             const title = pr.title;
             const author = pr.user.login;
 
-            // Mention requested reviewers + assignees (optional)
             const reviewers = (pr.requested_reviewers || []).map(u => u.login);
             const assignees = (pr.assignees || []).map(u => u.login);
             const ghUsers = [...new Set([...reviewers, ...assignees])];
@@ -51,43 +43,38 @@ jobs:
 
             core.setOutput('content', lines.join('\n'));
 
-      - name: Post to Discord (with error body + optional thread_id)
+      - name: Post to Discord
         env:
           WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          THREAD_ID: ${{ vars.DISCORD_THREAD_ID || secrets.DISCORD_THREAD_ID }}
           CONTENT: ${{ steps.build.outputs.content }}
         run: |
           python3 - << 'PY'
           import json, os, sys, urllib.request, urllib.error
-
           webhook = os.environ["WEBHOOK"].strip()
-          thread_id = (os.environ.get("THREAD_ID") or "").strip()
-          if thread_id:
-            sep = '&' if '?' in webhook else '?'
-            webhook = f"{webhook}{sep}thread_id={thread_id}"
-
-          payload = {
-            "content": os.environ["CONTENT"],
-            # Optional cosmetics:
-            # "username": "GitHub",
-            # "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
-          }
+          content = os.environ.get("CONTENT","").strip()
+          if not webhook or not content:
+              print("No webhook or empty content; skipping.")
+              sys.exit(0)
+          payload = {"content": content}
           data = json.dumps(payload).encode("utf-8")
-          req = urllib.request.Request(
-              webhook,
-              data=data,
-              headers={"Content-Type": "application/json"}
-          )
+          req = urllib.request.Request(webhook, data=data, headers={"Content-Type": "application/json"})
           try:
-            with urllib.request.urlopen(req) as resp:
-              print("Discord status:", resp.status)
-              print("OK")
+              with urllib.request.urlopen(req) as resp:
+                  print("Discord status:", resp.status)
           except urllib.error.HTTPError as e:
-            body = e.read().decode("utf-8", "ignore")
-            print("HTTPError:", e.code, e.reason)
-            print("Response body:", body)
-            sys.exit(1)
+              body = e.read().decode("utf-8", "ignore")
+              print("HTTPError:", e.code, e.reason)
+              print("Response body:", body)
+              sys.exit(1)
           except urllib.error.URLError as e:
-            print("URLError:", e.reason)
-            sys.exit(1)
+              print("URLError:", e.reason)
+              sys.exit(1)
           PY
+
+  # Optional: show a friendly note when the job was skipped (fork or missing secret)
+  explain-skip:
+    runs-on: ubuntu-latest
+    if: ${{ !(secrets.DISCORD_WEBHOOK_URL != '' && github.event.pull_request.head.repo.full_name == github.repository) }}
+    steps:
+      - run: |
+          echo "Skipping Discord notify (no webhook secret or PR from fork)."
