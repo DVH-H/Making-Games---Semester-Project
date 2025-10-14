@@ -1,49 +1,70 @@
-name: Notify Discord on PR review requests
+name: Notify Discord for PRs to main
 
 on:
   pull_request:
-    types: [opened, ready_for_review, review_requested, assigned, reopened]
+    branches: [ main ]
+    types: [opened, reopened, ready_for_review, review_requested, assigned]
 
 jobs:
-  notify:
+  notify-discord:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Build mentions/message
+      - name: Validate webhook is configured
+        run: |
+          if [ -z "${{ secrets.DISCORD_WEBHOOK_URL }}" ]; then
+            echo "DISCORD_WEBHOOK_URL is not set. Add it in Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+
+      - name: Build message content
         id: build
         uses: actions/github-script@v7
         env:
-          # Map GitHub usernames -> Discord user IDs (edit to your team)
-          DISCORD_MAP: >
-            {"alice-gh":"123456789012345678",
-             "bob-gh":"234567890123456789"}
-          # Optional: map GitHub teams -> Discord role IDs
-          ROLE_MAP: >
-            {"your-org/core":"345678901234567890"}
+          DISCORD_MAP_JSON: ${{ vars.DISCORD_MAP_JSON || secrets.DISCORD_MAP_JSON }}
         with:
           script: |
             const pr = context.payload.pull_request;
-            const map = JSON.parse(process.env.DISCORD_MAP || "{}");
-            const roleMap = JSON.parse(process.env.ROLE_MAP || "{}");
-
-            const reviewers = (pr.requested_reviewers || []).map(u => u.login);
-            const assignees = (pr.assignees || []).map(u => u.login);
-            const teams = (pr.requested_teams || []).map(t => `${context.payload.organization.login}/${t.slug}`);
-
-            const ghUsers = [...new Set([...reviewers, ...assignees])];
-            const userMentions = ghUsers.map(u => map[u] ? `<@${map[u]}>` : `@${u}`);
-
-            const roleMentions = teams.map(t => roleMap[t] ? `<@&${roleMap[t]}>` : `@${t}`);
-
-            const mentions = [...new Set([...userMentions, ...roleMentions])].join(' ');
-            const title = pr.title;
             const url = pr.html_url;
+            const title = pr.title;
             const author = pr.user.login;
 
-            const content = `${mentions || ''} Review needed: **${title}** by @${author}\n${url}`;
-            core.setOutput('content', content.trim());
+            // Who do we want to ping? (requested reviewers + assignees)
+            const reviewers = (pr.requested_reviewers || []).map(u => u.login);
+            const assignees = (pr.assignees || []).map(u => u.login);
+            const ghUsers = [...new Set([...reviewers, ...assignees])];
+
+            // Optional GitHub -> Discord ID map
+            let map = {};
+            try { map = JSON.parse(process.env.DISCORD_MAP_JSON || "{}"); } catch (e) {}
+
+            const mentions = ghUsers.map(u => map[u] ? `<@${map[u]}>` : `@${u}`);
+
+            const lines = [];
+            if (mentions.length) lines.push(mentions.join(' '));
+            lines.push(`**PR to \`main\`**: ${title} (by @${author})`);
+            lines.push(url);
+
+            const content = lines.join('\n');
+            core.setOutput('content', content);
+
       - name: Post to Discord
+        # Avoid empty payloads
         if: steps.build.outputs.content != ''
         run: |
-          jq -n --arg content "${{ steps.build.outputs.content }}" '{content:$content}' \
-          | curl -sS -H "Content-Type: application/json" -d @- \
-            "${{ secrets.DISCORD_WEBHOOK_URL }}"
+          # Build a JSON payload safely without worrying about quoting
+          python3 - << 'PY'
+          import json, os, sys, urllib.request
+          payload = {"content": os.environ["CONTENT"]}
+          data = json.dumps(payload).encode("utf-8")
+          req = urllib.request.Request(
+              os.environ["WEBHOOK"],
+              data=data,
+              headers={"Content-Type": "application/json"}
+          )
+          with urllib.request.urlopen(req) as resp:
+              print("Discord status:", resp.status)
+          PY
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          CONTENT: ${{ steps.build.outputs.content }}
