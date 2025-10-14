@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # --- Sanity check the trigger ---
       - name: Debug event info
         run: |
           echo "Event: ${{ github.event_name }}"
@@ -19,9 +18,9 @@ jobs:
           echo "Head branch: ${{ github.head_ref }}"
           echo "PR URL: ${{ github.event.pull_request.html_url }}"
           echo "Webhook secret set?: ${{ secrets.DISCORD_WEBHOOK_URL != '' }}"
-          echo "Assignees: ${{ toJson(github.event.pull_request.assignees) }}"
+          echo "Assignees JSON:"
+          echo '${{ toJson(github.event.pull_request.assignees) }}'
 
-      # --- Fail early if webhook secret is missing ---
       - name: Check webhook secret
         run: |
           if [ -z "${{ secrets.DISCORD_WEBHOOK_URL }}" ]; then
@@ -30,8 +29,7 @@ jobs:
           fi
           echo "✅ Webhook secret found."
 
-      # --- Build message with assignee mentions (using DISCORD_MAP_JSON) ---
-      - name: Build message content
+      - name: Build message + mentions
         id: build
         uses: actions/github-script@v7
         env:
@@ -43,36 +41,38 @@ jobs:
             const title = pr.title;
             const author = pr.user.login;
 
-            // Assignees only (as requested)
+            // Assignees to ping
             const assignees = (pr.assignees || []).map(u => u.login);
 
-            // Try to parse the GitHub->Discord ID map
+            // Parse GH->Discord ID map
             let map = {};
             try { map = JSON.parse(process.env.DISCORD_MAP_JSON || "{}"); }
-            catch (e) { console.log("Invalid DISCORD_MAP_JSON, proceeding without hard pings."); }
+            catch (e) { console.log("⚠️ DISCORD_MAP_JSON not valid JSON; continuing without hard pings."); }
 
-            // Build mention list: <@id> if mapped, else @username (non-pinging fallback)
-            const mentions = assignees.map(u => map[u] ? `<@${map[u]}>` : `@${u}`);
+            // Build <@id> mentions (ping) and collect IDs for allowed_mentions
+            const ids = [];
+            const display = assignees.map(u => {
+              const id = map[u];
+              if (id) { ids.push(id); return `<@${id}>`; }
+              return `@${u}`; // visible fallback (no ping)
+            });
 
-            if (mentions.length) {
-              console.log("Mentions to send:", mentions.join(' '));
-            } else {
-              console.log("No assignees to mention.");
-            }
+            console.log("Assignee GH users:", assignees);
+            console.log("Resolved Discord IDs:", ids);
 
-            const lines = [];
-            if (mentions.length) lines.push(mentions.join(' '));
-            lines.push(`**New PR to main:** ${title} (by @${author})`);
-            lines.push(url);
+            const header = display.length ? display.join(' ') + '\n' : '';
+            const content = `${header}**New PR to main:** ${title} (by @${author})\n${url}`;
 
-            core.setOutput('content', lines.join('\n'));
+            core.setOutput('content', content);
+            core.setOutput('users_json', JSON.stringify(ids));
 
-      # --- Post to Discord ---
-      - name: Post PR link to Discord
+      - name: Post to Discord
         env:
           WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
           CONTENT: ${{ steps.build.outputs.content }}
+          USERS_JSON: ${{ steps.build.outputs.users_json }}
         run: |
           echo "Posting to Discord..."
-          payload=$(jq -n --arg content "$CONTENT" '{content:$content}')
+          payload=$(jq -n --arg content "$CONTENT" --argjson users "$USERS_JSON" \
+                     '{content:$content, allowed_mentions:{users:$users}}')
           curl -v -H "Content-Type: application/json" -d "$payload" "$WEBHOOK"
