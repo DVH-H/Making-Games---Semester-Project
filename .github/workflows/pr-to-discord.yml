@@ -1,18 +1,14 @@
 name: Notify Discord for PRs to main
 
 on:
-  pull_request:
+  pull_request_target:
     branches: [ main ]
-    types: [opened, reopened, ready_for_review, review_requested, assigned]
+    types: [opened, reopened, ready_for_review, review_requested, synchronize, assigned]
 
 jobs:
   notify-discord:
     runs-on: ubuntu-latest
-
-    # Skip posting if:
-    # - The secret isn't set, or
-    # - The PR is from a fork (secrets are not available to 'pull_request' events)
-    if: ${{ secrets.DISCORD_WEBHOOK_URL != '' && github.event.pull_request.head.repo.full_name == github.repository }}
+    if: ${{ secrets.DISCORD_WEBHOOK_URL != '' }}
 
     steps:
       - name: Build message content
@@ -27,12 +23,16 @@ jobs:
             const title = pr.title;
             const author = pr.user.login;
 
+            // Collect reviewers + assignees
             const reviewers = (pr.requested_reviewers || []).map(u => u.login);
             const assignees = (pr.assignees || []).map(u => u.login);
             const ghUsers = [...new Set([...reviewers, ...assignees])];
 
+            // Parse mapping (GitHub → Discord IDs)
             let map = {};
-            try { map = JSON.parse(process.env.DISCORD_MAP_JSON || "{}"); } catch (e) {}
+            try { map = JSON.parse(process.env.DISCORD_MAP_JSON || "{}"); } catch (e) {
+              console.log("No valid DISCORD_MAP_JSON provided, skipping mapping.");
+            }
 
             const mentions = ghUsers.map(u => map[u] ? `<@${map[u]}>` : `@${u}`);
 
@@ -70,11 +70,3 @@ jobs:
               print("URLError:", e.reason)
               sys.exit(1)
           PY
-
-  # Optional: show a friendly note when the job was skipped (fork or missing secret)
-  explain-skip:
-    runs-on: ubuntu-latest
-    if: ${{ !(secrets.DISCORD_WEBHOOK_URL != '' && github.event.pull_request.head.repo.full_name == github.repository) }}
-    steps:
-      - run: |
-          echo "Skipping Discord notify (no webhook secret or PR from fork)."
