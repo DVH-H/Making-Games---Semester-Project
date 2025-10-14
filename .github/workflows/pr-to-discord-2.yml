@@ -1,0 +1,42 @@
+name: Notify Discord for PRs to main
+
+on:
+  pull_request:
+    branches: [ main ]
+    types: [opened, reopened]
+
+jobs:
+  notify-discord:
+    runs-on: ubuntu-latest
+
+    steps:
+      # --- Sanity check the trigger ---
+      - name: Debug event info
+        run: |
+          echo "Event: ${{ github.event_name }}"
+          echo "Action: ${{ github.event.action }}"
+          echo "Base branch: ${{ github.base_ref }}"
+          echo "Head branch: ${{ github.head_ref }}"
+          echo "PR URL: ${{ github.event.pull_request.html_url }}"
+          echo "Webhook secret set?: ${{ secrets.DISCORD_WEBHOOK_URL != '' }}"
+
+      # --- Fail early if webhook secret is missing ---
+      - name: Check webhook secret
+        run: |
+          if [ -z "${{ secrets.DISCORD_WEBHOOK_URL }}" ]; then
+            echo "❌ DISCORD_WEBHOOK_URL secret is missing!"
+            exit 1
+          fi
+          echo "✅ Webhook secret found."
+
+      # --- Post simple message to Discord ---
+      - name: Post PR link to Discord
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          AUTHOR: ${{ github.event.pull_request.user.login }}
+        run: |
+          echo "Posting to Discord: $PR_URL"
+          payload=$(jq -n --arg content "**New PR to main:** $PR_TITLE (by @$AUTHOR)\n$PR_URL" '{content:$content}')
+          curl -v -H "Content-Type: application/json" -d "$payload" "$WEBHOOK"
