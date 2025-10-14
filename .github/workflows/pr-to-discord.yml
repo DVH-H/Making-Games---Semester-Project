@@ -1,9 +1,9 @@
 name: Notify Discord for PRs to main
 
 on:
-  pull_request_target:
-    branches: [ main ]
+  pull_request:
     types: [opened, reopened, ready_for_review, review_requested, synchronize, assigned]
+    branches: [ main ]
 
 jobs:
   notify-discord:
