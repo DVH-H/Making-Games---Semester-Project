@@ -1,0 +1,49 @@
+name: Notify Discord on PR review requests
+
+on:
+  pull_request:
+    types: [opened, ready_for_review, review_requested, assigned, reopened]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build mentions/message
+        id: build
+        uses: actions/github-script@v7
+        env:
+          # Map GitHub usernames -> Discord user IDs (edit to your team)
+          DISCORD_MAP: >
+            {"alice-gh":"123456789012345678",
+             "bob-gh":"234567890123456789"}
+          # Optional: map GitHub teams -> Discord role IDs
+          ROLE_MAP: >
+            {"your-org/core":"345678901234567890"}
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const map = JSON.parse(process.env.DISCORD_MAP || "{}");
+            const roleMap = JSON.parse(process.env.ROLE_MAP || "{}");
+
+            const reviewers = (pr.requested_reviewers || []).map(u => u.login);
+            const assignees = (pr.assignees || []).map(u => u.login);
+            const teams = (pr.requested_teams || []).map(t => `${context.payload.organization.login}/${t.slug}`);
+
+            const ghUsers = [...new Set([...reviewers, ...assignees])];
+            const userMentions = ghUsers.map(u => map[u] ? `<@${map[u]}>` : `@${u}`);
+
+            const roleMentions = teams.map(t => roleMap[t] ? `<@&${roleMap[t]}>` : `@${t}`);
+
+            const mentions = [...new Set([...userMentions, ...roleMentions])].join(' ');
+            const title = pr.title;
+            const url = pr.html_url;
+            const author = pr.user.login;
+
+            const content = `${mentions || ''} Review needed: **${title}** by @${author}\n${url}`;
+            core.setOutput('content', content.trim());
+      - name: Post to Discord
+        if: steps.build.outputs.content != ''
+        run: |
+          jq -n --arg content "${{ steps.build.outputs.content }}" '{content:$content}' \
+          | curl -sS -H "Content-Type: application/json" -d @- \
+            "${{ secrets.DISCORD_WEBHOOK_URL }}"
