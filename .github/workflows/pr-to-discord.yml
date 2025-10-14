@@ -13,7 +13,12 @@ jobs:
       - name: Validate webhook is configured
         run: |
           if [ -z "${{ secrets.DISCORD_WEBHOOK_URL }}" ]; then
-            echo "DISCORD_WEBHOOK_URL is not set. Add it in Settings → Secrets and variables → Actions."
+            echo "Missing DISCORD_WEBHOOK_URL secret."
+            exit 1
+          fi
+          # Basic sanity check (won't reveal the token)
+          if ! echo "${{ secrets.DISCORD_WEBHOOK_URL }}" | grep -Eq '^https://(ptb\\.)?discord(app)?\\.com/api/webhooks/[0-9]+/[A-Za-z0-9._-]+'; then
+            echo "DISCORD_WEBHOOK_URL doesn't look like a Discord webhook."
             exit 1
           fi
 
@@ -29,12 +34,11 @@ jobs:
             const title = pr.title;
             const author = pr.user.login;
 
-            // Who do we want to ping? (requested reviewers + assignees)
+            // Mention requested reviewers + assignees (optional)
             const reviewers = (pr.requested_reviewers || []).map(u => u.login);
             const assignees = (pr.assignees || []).map(u => u.login);
             const ghUsers = [...new Set([...reviewers, ...assignees])];
 
-            // Optional GitHub -> Discord ID map
             let map = {};
             try { map = JSON.parse(process.env.DISCORD_MAP_JSON || "{}"); } catch (e) {}
 
@@ -45,26 +49,45 @@ jobs:
             lines.push(`**PR to \`main\`**: ${title} (by @${author})`);
             lines.push(url);
 
-            const content = lines.join('\n');
-            core.setOutput('content', content);
+            core.setOutput('content', lines.join('\n'));
 
-      - name: Post to Discord
-        # Avoid empty payloads
-        if: steps.build.outputs.content != ''
+      - name: Post to Discord (with error body + optional thread_id)
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          THREAD_ID: ${{ vars.DISCORD_THREAD_ID || secrets.DISCORD_THREAD_ID }}
+          CONTENT: ${{ steps.build.outputs.content }}
         run: |
-          # Build a JSON payload safely without worrying about quoting
           python3 - << 'PY'
-          import json, os, sys, urllib.request
-          payload = {"content": os.environ["CONTENT"]}
+          import json, os, sys, urllib.request, urllib.error
+
+          webhook = os.environ["WEBHOOK"].strip()
+          thread_id = (os.environ.get("THREAD_ID") or "").strip()
+          if thread_id:
+            sep = '&' if '?' in webhook else '?'
+            webhook = f"{webhook}{sep}thread_id={thread_id}"
+
+          payload = {
+            "content": os.environ["CONTENT"],
+            # Optional cosmetics:
+            # "username": "GitHub",
+            # "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+          }
           data = json.dumps(payload).encode("utf-8")
           req = urllib.request.Request(
-              os.environ["WEBHOOK"],
+              webhook,
               data=data,
               headers={"Content-Type": "application/json"}
           )
-          with urllib.request.urlopen(req) as resp:
+          try:
+            with urllib.request.urlopen(req) as resp:
               print("Discord status:", resp.status)
+              print("OK")
+          except urllib.error.HTTPError as e:
+            body = e.read().decode("utf-8", "ignore")
+            print("HTTPError:", e.code, e.reason)
+            print("Response body:", body)
+            sys.exit(1)
+          except urllib.error.URLError as e:
+            print("URLError:", e.reason)
+            sys.exit(1)
           PY
-        env:
-          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          CONTENT: ${{ steps.build.outputs.content }}
