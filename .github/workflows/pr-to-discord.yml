@@ -1,17 +1,35 @@
 name: Notify Discord for PRs to main
 
 on:
-  pull_request_target:
+  pull_request:
     branches: [ main ]
-    types: [opened, reopened, ready_for_review, review_requested, synchronize, assigned]
+    types: [opened, reopened]
 
 jobs:
   notify-discord:
     runs-on: ubuntu-latest
-    if: ${{ secrets.DISCORD_WEBHOOK_URL != '' }}
 
     steps:
-      - name: Build message content
+      - name: Debug event info
+        run: |
+          echo "Event: ${{ github.event_name }}"
+          echo "Action: ${{ github.event.action }}"
+          echo "Base branch: ${{ github.base_ref }}"
+          echo "Head branch: ${{ github.head_ref }}"
+          echo "PR URL: ${{ github.event.pull_request.html_url }}"
+          echo "Webhook secret set?: ${{ secrets.DISCORD_WEBHOOK_URL != '' }}"
+          echo "Assignees JSON:"
+          echo '${{ toJson(github.event.pull_request.assignees) }}'
+
+      - name: Check webhook secret
+        run: |
+          if [ -z "${{ secrets.DISCORD_WEBHOOK_URL }}" ]; then
+            echo "❌ DISCORD_WEBHOOK_URL secret is missing!"
+            exit 1
+          fi
+          echo "✅ Webhook secret found."
+
+      - name: Build message + mentions
         id: build
         uses: actions/github-script@v7
         env:
@@ -23,45 +41,38 @@ jobs:
             const title = pr.title;
             const author = pr.user.login;
 
-            const reviewers = (pr.requested_reviewers || []).map(u => u.login);
+            // Assignees to ping
             const assignees = (pr.assignees || []).map(u => u.login);
-            const ghUsers = [...new Set([...reviewers, ...assignees])];
 
+            // Parse GH->Discord ID map
             let map = {};
-            try { map = JSON.parse(process.env.DISCORD_MAP_JSON || "{}"); } catch (e) {}
+            try { map = JSON.parse(process.env.DISCORD_MAP_JSON || "{}"); }
+            catch (e) { console.log("⚠️ DISCORD_MAP_JSON not valid JSON; continuing without hard pings."); }
 
-            const mentions = ghUsers.map(u => map[u] ? `<@${map[u]}>` : `@${u}`);
-            const lines = [];
-            if (mentions.length) lines.push(mentions.join(' '));
-            lines.push(`**PR to \`main\`**: ${title} (by @${author})`);
-            lines.push(url);
+            // Build <@id> mentions (ping) and collect IDs for allowed_mentions
+            const ids = [];
+            const display = assignees.map(u => {
+              const id = map[u];
+              if (id) { ids.push(id); return `<@${id}>`; }
+              return `@${u}`; // visible fallback (no ping)
+            });
 
-            core.setOutput('content', lines.join('\n'));
+            console.log("Assignee GH users:", assignees);
+            console.log("Resolved Discord IDs:", ids);
+
+            const header = display.length ? display.join(' ') + '\n' : '';
+            const content = `${header}**New PR to main:** ${title} (by @${author})\n${url}`;
+
+            core.setOutput('content', content);
+            core.setOutput('users_json', JSON.stringify(ids));
 
       - name: Post to Discord
         env:
           WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
           CONTENT: ${{ steps.build.outputs.content }}
+          USERS_JSON: ${{ steps.build.outputs.users_json }}
         run: |
-          python3 - << 'PY'
-          import json, os, sys, urllib.request, urllib.error
-          webhook = os.environ["WEBHOOK"].strip()
-          content = os.environ.get("CONTENT","").strip()
-          if not webhook or not content:
-              print("No webhook or empty content; skipping.")
-              sys.exit(0)
-          payload = {"content": content}
-          data = json.dumps(payload).encode("utf-8")
-          req = urllib.request.Request(webhook, data=data, headers={"Content-Type": "application/json"})
-          try:
-              with urllib.request.urlopen(req) as resp:
-                  print("Discord status:", resp.status)
-          except urllib.error.HTTPError as e:
-              body = e.read().decode("utf-8", "ignore")
-              print("HTTPError:", e.code, e.reason)
-              print("Response body:", body)
-              sys.exit(1)
-          except urllib.error.URLError as e:
-              print("URLError:", e.reason)
-              sys.exit(1)
-          PY
+          echo "Posting to Discord..."
+          payload=$(jq -n --arg content "$CONTENT" --argjson users "$USERS_JSON" \
+                     '{content:$content, allowed_mentions:{users:$users}}')
+          curl -v -H "Content-Type: application/json" -d "$payload" "$WEBHOOK"
