@@ -10,3 +10,4 @@ func handle_horizontal_movement(body: CharacterBody2D, horizontal_direction: flo
 
 func handle_jump(body: CharacterBody2D) -> void:
 	body.velocity.y = jump_velocity * -1 # is negative, as negative y is up in godot
+	
