@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn5px6qyvj2ja"]
+
+[ext_resource type="Texture2D" uid="uid://bxejqij00ky5p" path="res://assets/sprites/gun_tileset.png" id="1_8uwdw"]
+[ext_resource type="Script" uid="uid://b5ysq20cxmhge" path="res://scripts/gun.gd" id="1_ybrg7"]
+
+[node name="Gun" type="Node2D"]
+script = ExtResource("1_ybrg7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7.000001, -2)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_8uwdw")
+region_enabled = true
+region_rect = Rect2(1056.0002, 268.00003, 113, 69.00003)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(20, -6)
