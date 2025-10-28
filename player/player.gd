@@ -1,6 +1,6 @@
 extends CharacterBody2D
 @export_subgroup("Nodes")
-@export var gravity_component: GravityComponent
+@onready var gravity_component: GravityComponent = $Gravity
 @export var input_controller: InputComponent
 @export var animation_controller: AnimationComponent
 @export var movement_component: MovementComponent

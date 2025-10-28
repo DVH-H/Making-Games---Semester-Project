@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="1_wtcfe"]
 [ext_resource type="Texture2D" uid="uid://bqjwrbgnbf5tn" path="res://icon.svg" id="2_0e48y"]
 [ext_resource type="Texture2D" uid="uid://d0q2g65ahgok" path="res://assets/sprites/world_tileset.png" id="3_feb5d"]
-[ext_resource type="PackedScene" uid="uid://dyfjarln2ph88" path="res://components/coin.tscn" id="4_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://dcl7rkjay76kw" path="res://components/killzone.tscn" id="5_7jktm"]
+[ext_resource type="PackedScene" uid="uid://dyfjarln2ph88" path="res://coin.tscn" id="4_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://dcl7rkjay76kw" path="res://killzone.tscn" id="5_7jktm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
 size = Vector2(337, 20)
