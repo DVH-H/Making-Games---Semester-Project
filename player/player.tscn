@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dve8hfghfvdfr"]
+[gd_scene load_steps=30 format=3 uid="uid://dve8hfghfvdfr"]
 
 [ext_resource type="Texture2D" uid="uid://ch2wmly8px268" path="res://player/satyr-Sheet.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://xqq4q7ftp7cv" path="res://player/player.gd" id="1_onrkg"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://buf8ciauf4d48" path="res://components/animation_component.tscn" id="5_sweqy"]
 [ext_resource type="PackedScene" uid="uid://dytqh10wawuk0" path="res://components/gravity_component.tscn" id="6_boad6"]
 [ext_resource type="PackedScene" uid="uid://dtuwo2b8qi1nh" path="res://components/movement_component.tscn" id="6_g6k8r"]
+[ext_resource type="PackedScene" uid="uid://bn5px6qyvj2ja" path="res://player/gun.tscn" id="7_boad6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
 radius = 4.0
@@ -175,8 +176,8 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "input_controller", "animation_controller", "movement_component")]
+collision_layer = 3
 script = ExtResource("1_onrkg")
-gravity_component = NodePath("Gravity")
 input_controller = NodePath("InputController")
 animation_controller = NodePath("AnimationController")
 movement_component = NodePath("MovementComponent")
@@ -201,3 +202,7 @@ position_smoothing_speed = 10.0
 [node name="MovementComponent" parent="." instance=ExtResource("6_g6k8r")]
 
 [node name="Gravity" parent="." instance=ExtResource("6_boad6")]
+
+[node name="Gun" parent="." node_paths=PackedStringArray("inputController") instance=ExtResource("7_boad6")]
+position = Vector2(5.9999995, 1.9999995)
+inputController = NodePath("../InputController")
