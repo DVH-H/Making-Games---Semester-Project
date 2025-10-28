@@ -1,11 +1,14 @@
 extends CharacterBody2D
 @export_subgroup("Nodes")
-@export var gravity_component: GravityComponent
+@onready var gravity_component: GravityComponent = $Gravity
 @export var input_controller: InputComponent
 @export var animation_controller: AnimationComponent
 @export var movement_component: MovementComponent
+@export var coyote_time = 0.2
 
-
+@export_subgroup("Movement")
+@export var speed: int = 100
+@export var jump_velocity: int = 350
 
 
 # state machine
@@ -17,12 +20,19 @@ enum {
 	WALLSLIDING
 }
 @onready var state = IDLE
+var coyote_time_counter = 0.0
+
+func _ready() -> void:
+	movement_component.set_speed(speed)
+	movement_component.set_jump_velocity(jump_velocity)
 
 func _physics_process(delta: float) -> void:
+	update_coyote_time_counter(delta)
 	gravity_component.handle_gravity(self, delta)
 	movement_component.handle_horizontal_movement(self, input_controller.get_horizontal_input())
-	if input_controller.get_jump_input() and is_on_floor():
+	if input_controller.get_jump_input() and (is_on_floor() or coyote_time_counter > 0.0):
 		movement_component.handle_jump(self)
+		coyote_time_counter = 0.0  # consume coyote time so it can't be reused mid-air
 		
 	# State machine. Also setting animations
 	if is_on_floor():
@@ -43,4 +53,10 @@ func _physics_process(delta: float) -> void:
 		animation_controller.flip_animation(velocity.x < 0)
 	
 	move_and_slide()
+	
+func update_coyote_time_counter(delta: float) -> void:
+	if is_on_floor():
+		coyote_time_counter = coyote_time
+	else:
+		coyote_time_counter -= delta 
 	
