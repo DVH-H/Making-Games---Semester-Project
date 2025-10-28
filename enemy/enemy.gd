@@ -9,8 +9,7 @@ var player_chase = false
 var player = null
 
 func _ready() -> void:
-	pass
-	#movement_component.set_speed(speed)
+	movement_component.set_speed(speed)
 
 func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(self, delta)
