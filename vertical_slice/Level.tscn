@@ -6,6 +6,7 @@
 [node name="Level" type="Node2D"]
 
 [node name="Tilemap" parent="." instance=ExtResource("1_s1o1j")]
+position = Vector2(2, 21)
 
 [node name="Player" parent="." instance=ExtResource("2_chqat")]
-position = Vector2(137, 25)
+position = Vector2(813, -221)
