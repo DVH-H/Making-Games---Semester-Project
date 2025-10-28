@@ -7,7 +7,13 @@ var _direction: Vector2 = Vector2(1,0)
 @onready var muzzle: Marker2D = $Marker2D
 
 func _process(delta: float) -> void:
-	var stick_dir = inputController.get_aim_input()
+	#Mostly for debugging
+	var stick_dir = Vector2.ZERO
+	if len(Input.get_connected_joypads()) < 0:
+		var mouse_pos: Vector2 = get_global_mouse_position()
+		stick_dir = (mouse_pos - global_position).normalized()
+	else:
+		stick_dir = inputController.get_aim_input()
 	if stick_dir != Vector2.ZERO:
 		_direction = stick_dir
 	look_at(global_position + _direction)
