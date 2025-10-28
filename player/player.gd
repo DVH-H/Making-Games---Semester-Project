@@ -5,7 +5,9 @@ extends CharacterBody2D
 @export var animation_controller: AnimationComponent
 @export var movement_component: MovementComponent
 
-
+@export_subgroup("Movement")
+@export var speed: int = 100
+@export var jump_velocity: int = 350
 
 
 # state machine
@@ -17,6 +19,10 @@ enum {
 	WALLSLIDING
 }
 @onready var state = IDLE
+
+func _ready() -> void:
+	movement_component.set_speed(speed)
+	movement_component.set_jump_velocity(jump_velocity)
 
 func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(self, delta)
