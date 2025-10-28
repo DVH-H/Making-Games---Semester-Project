@@ -175,8 +175,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("input_controller", "animation_controller", "movement_component")]
-collision_mask = 2
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "input_controller", "animation_controller", "movement_component")]
+collision_layer = 3
 script = ExtResource("1_onrkg")
 input_controller = NodePath("InputController")
 animation_controller = NodePath("AnimationController")

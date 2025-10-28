@@ -6,6 +6,9 @@ extends CharacterBody2D
 @export var movement_component: MovementComponent
 @export var coyote_time = 0.2
 
+@export_subgroup("Movement")
+@export var speed: int = 100
+@export var jump_velocity: int = 350
 
 
 # state machine
@@ -18,6 +21,10 @@ enum {
 }
 @onready var state = IDLE
 var coyote_time_counter = 0.0
+
+func _ready() -> void:
+	movement_component.set_speed(speed)
+	movement_component.set_jump_velocity(jump_velocity)
 
 func _physics_process(delta: float) -> void:
 	update_coyote_time_counter(delta)
