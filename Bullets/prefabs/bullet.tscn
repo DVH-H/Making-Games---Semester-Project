@@ -10,6 +10,7 @@ height = 6.0
 
 [node name="Bullet" type="CharacterBody2D"]
 script = ExtResource("1_olui7")
+knockback_force = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5707964
