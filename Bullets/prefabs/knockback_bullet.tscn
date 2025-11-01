@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpvv8aw64dych"]
+
+[ext_resource type="Script" uid="uid://pdrk2y1fy36t" path="res://Bullets/scripts/knockback_bullet.gd" id="1_xbsg4"]
+[ext_resource type="Texture2D" uid="uid://bxejqij00ky5p" path="res://assets/sprites/gun_tileset.png" id="2_rkhar"]
+[ext_resource type="PackedScene" uid="uid://dtuwo2b8qi1nh" path="res://components/movement_component.tscn" id="3_fg8r7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0j06l"]
+radius = 1.0
+height = 12.0
+
+[node name="KnockbackBullet" type="CharacterBody2D"]
+script = ExtResource("1_xbsg4")
+knockback_force = 350.0
+damage = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5707964
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_rkhar")
+region_enabled = true
+region_rect = Rect2(671.9092, 163.09094, 16.363647, 60.909103)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-3, -1, 6, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_0j06l")
+
+[node name="MovementComponent" parent="." instance=ExtResource("3_fg8r7")]
