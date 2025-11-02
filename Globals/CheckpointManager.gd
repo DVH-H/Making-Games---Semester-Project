@@ -2,7 +2,7 @@ extends Node
 
 
 # Checkpoint
-var _scene_path: String
+var _scene_path: String = "res://game.tscn"
 var _spawn_coords: Vector2
 
 func set_checkpoint(scene, coords):
