@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://dar8lycpacl2t"]
+[gd_scene load_steps=7 format=3 uid="uid://dar8lycpacl2t"]
 
 [ext_resource type="PackedScene" uid="uid://dcoh4t8t36nny" path="res://vertical_slice/tilemap.tscn" id="1_s1o1j"]
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="2_chqat"]
+[ext_resource type="PackedScene" uid="uid://dcl7rkjay76kw" path="res://killzone.tscn" id="3_chqat"]
+[ext_resource type="PackedScene" uid="uid://3ei6sbrmm6t4" path="res://interactable/Checkpoint.tscn" id="4_6n17u"]
+[ext_resource type="PackedScene" uid="uid://1g43dvmxf5hh" path="res://enemy/enemy.tscn" id="5_127qd"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_chqat"]
 
 [node name="Level" type="Node2D"]
 
@@ -9,3 +14,18 @@
 
 [node name="Player" parent="." instance=ExtResource("2_chqat")]
 position = Vector2(87, -262)
+
+[node name="KillZone" parent="." instance=ExtResource("3_chqat")]
+position = Vector2(-90, 430)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+shape = SubResource("WorldBoundaryShape2D_chqat")
+
+[node name="Checkpoint" parent="KillZone" instance=ExtResource("4_6n17u")]
+position = Vector2(627, -933)
+
+[node name="Enemy" parent="." instance=ExtResource("5_127qd")]
+position = Vector2(-118, 157)
+
+[node name="Enemy2" parent="." instance=ExtResource("5_127qd")]
+position = Vector2(876, 289)
