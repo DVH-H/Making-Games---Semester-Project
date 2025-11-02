@@ -45,7 +45,8 @@ func _physics_process(delta: float) -> void:
 	gun.aim(_aim_direction)
 	if Input.is_action_just_pressed("shoot"):
 		velocity += (_aim_direction * -1) * gun.shoot(_aim_direction)
-		
+	if Input.is_action_just_pressed("reload"):
+		gun.reload_all_to_loadout()
 	# State machine. Also setting animations
 	if is_on_floor():
 		if velocity.x != 0:

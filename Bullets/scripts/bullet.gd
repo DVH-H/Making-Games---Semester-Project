@@ -6,6 +6,7 @@ class_name Bullet
 @export var knockback_force: float = 200
 @export var damage: float = 5
 @export var SPEED: int = 300
+@export var load_time: float = 0.2
 
 @onready var movementComponent: MovementComponent = $MovementComponent
 var _direction: Vector2
