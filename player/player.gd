@@ -12,6 +12,8 @@ extends CharacterBody2D
 @export var coyote_time = 0.2
 var _aim_direction: Vector2 = Vector2(1,0)
 
+var _interactable = null
+
 # state machine
 enum {
 	IDLE,
@@ -26,6 +28,7 @@ var coyote_time_counter = 0.0
 func _ready() -> void:
 	movement_component.set_speed(speed)
 	movement_component.set_jump_velocity(jump_velocity)
+	CheckpointManager.spawn_player_at_checkpoint(self)
 
 func _physics_process(delta: float) -> void:
 	update_coyote_time_counter(delta)
@@ -60,6 +63,8 @@ func _physics_process(delta: float) -> void:
 			state = JUMPING
 			animation_controller.play_animation("jump")
 		animation_controller.flip_animation(velocity.x < 0)
+	if _interactable != null and input_controller.get_interact_input():
+		_interactable.interact()
 	move_and_slide()
 	
 func update_coyote_time_counter(delta: float) -> void:
@@ -67,4 +72,10 @@ func update_coyote_time_counter(delta: float) -> void:
 		coyote_time_counter = coyote_time
 	else:
 		coyote_time_counter -= delta 
+		
+func set_interactable(node: Interactable):
+	_interactable = node
+
+func remove_interactable():
+	_interactable = null
 	

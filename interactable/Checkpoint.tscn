@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://3ei6sbrmm6t4"]
+
+[ext_resource type="Texture2D" uid="uid://c33d4hp60bw4r" path="res://assets/Flag.png" id="1_ir6d7"]
+[ext_resource type="Script" uid="uid://bxmi030axdqwy" path="res://interactable/checkpoint.gd" id="1_yt2a0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_861ed"]
+size = Vector2(46.5, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yt2a0"]
+atlas = ExtResource("1_ir6d7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5qqt"]
+atlas = ExtResource("1_ir6d7")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6gyp"]
+atlas = ExtResource("1_ir6d7")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrtbj"]
+atlas = ExtResource("1_ir6d7")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7h2d7"]
+atlas = ExtResource("1_ir6d7")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88cbg"]
+atlas = ExtResource("1_ir6d7")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ie6u5"]
+atlas = ExtResource("1_ir6d7")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2kbmt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yt2a0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5qqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6gyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrtbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7h2d7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88cbg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ie6u5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Checkpoint" type="Node2D"]
+script = ExtResource("1_yt2a0")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_861ed")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(23, -5)
+sprite_frames = SubResource("SpriteFrames_2kbmt")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
