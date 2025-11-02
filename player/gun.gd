@@ -35,6 +35,7 @@ var _is_reloading: bool = false
 func _ready() -> void:
 	_resize_arrays()
 	_set_default_alternating_loadout()
+	_fill_all_from_loadout()  # start full; remove if you want to start empty
 	current_index = posmod(current_index, capacity)
 	_emit_all()
 
@@ -102,7 +103,10 @@ func reload_all_to_loadout() -> void:
 func _set_default_alternating_loadout() -> void:
 	for i in capacity:
 		loadout_scenes[i] = (normal_round if (i % 2) == 0 else knockback_round)
-
+		
+func _fill_all_from_loadout() -> void:
+	for i in capacity:
+		chambers[i] = loadout_scenes[i]
 # ── Notify HUD ───────────────────────────────────────────────────────────────
 func _emit_all() -> void:
 	emit_signal("ammo_changed", get_ammo_count())
