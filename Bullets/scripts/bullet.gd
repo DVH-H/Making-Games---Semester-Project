@@ -2,8 +2,12 @@ extends CharacterBody2D
 
 class_name Bullet
 
+@export_subgroup("Settings")
+@export var knockback_force: float = 200
+@export var damage: float = 5
+@export var SPEED: int = 300
+
 @onready var movementComponent: MovementComponent = $MovementComponent
-const SPEED: int = 300
 var _direction: Vector2
 
 func initialize(dir: Vector2):
@@ -12,6 +16,7 @@ func initialize(dir: Vector2):
 	
 func _ready() -> void:
 	movementComponent.set_speed(SPEED)
+	
  
 func _physics_process(delta: float) -> void:
 	movementComponent.handle_movement(self, _direction)
