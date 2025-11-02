@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 @export_subgroup("Movement")
 @export var speed = 60
+@export var stop_at_edge: bool = true
 var player_chase = false
 var player = null
 
@@ -28,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	gravity_component.handle_gravity(self, delta)
 	if player_chase and player:
 		var direction = sign(player.position.x - position.x)
-		if is_on_floor() and is_at_edge(direction):		
+		if is_on_floor() and is_at_edge(direction) and stop_at_edge:		
 			direction = 0
 		
 		movement_component.handle_horizontal_movement(self, direction)
