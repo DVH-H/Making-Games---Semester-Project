@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name enemy
 @export_subgroup("Nodes")
 @export var gravity_component: GravityComponent
 @export var movement_component: MovementComponent
@@ -11,6 +12,16 @@ extends CharacterBody2D
 var player_chase = false
 var player = null
 
+enum {
+	STANDBY,
+	AGGRO,
+	SEARCH,
+	ATTACK,
+	DAMAGED
+}
+
+var state = STANDBY
+
 @onready var left_ray = $LeftRayCast2D
 @onready var right_ray = $RightRayCast2D
 var health = 30
@@ -22,17 +33,22 @@ func _ready() -> void:
 	death_timer.timeout.connect(_on_death_timer_timeout)
 
 func _physics_process(delta: float) -> void:
+	var direction = 0
+	if state == STANDBY:
+		direction = STANDBY_behaviour()
+	if state == AGGRO:
+		direction = AGGRO_behaviour()
+	gravity_component.handle_gravity(self, delta)
+	movement_component.handle_horizontal_movement(self, direction)
 	if is_dying:
 		$AnimatedSprite2D.play("death")
 		return
 
-	gravity_component.handle_gravity(self, delta)
 	if player_chase and player:
-		var direction = sign(player.position.x - position.x)
 		if is_on_floor() and is_at_edge(direction) and stop_at_edge:		
 			direction = 0
 		
-		movement_component.handle_horizontal_movement(self, direction)
+		
 		
 		if (direction < 0):
 			$AnimatedSprite2D.flip_h = true
@@ -53,6 +69,7 @@ func is_at_edge(direction: float) -> bool:
 	return false
 	
 func _on_detection_area_body_entered(body: Node2D) -> void:
+	# switch state to aggro
 	player = body
 	player_chase =  true 
 	chase_timer.stop()
@@ -87,3 +104,22 @@ func _on_death_timer_timeout() -> void:
 	$AnimatedSprite2D.play("death")
 	print("play dead")
 	queue_free()
+	
+	
+
+func STANDBY_behaviour():
+	# wait 5 seconds in patrol
+	patrol()
+	# then stand guard at point1
+	
+func patrol():
+	var point1: Vector2
+	var point2: Vector2
+	# go between the points
+	
+func stand_guard():
+	pass
+
+func AGGRO_behaviour():
+	return sign(player.position.x - position.x)
+	
