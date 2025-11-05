@@ -6,10 +6,13 @@ extends CharacterBody2D
 @onready var movement_component: MovementComponent = $MovementComponent
 @onready var gun = $Gun
 
-@export_subgroup("Movement")
-@export var speed: int = 100
-@export var jump_velocity: int = 350
-@export var coyote_time = 0.2
+@onready var max_health: int = PlayerVariables.default_max_health
+@onready var current_health: int = PlayerVariables.current_health
+
+
+var speed: int = 100
+var jump_velocity: int = 350
+var coyote_time = 0.2
 var _aim_direction: Vector2 = Vector2(1,0)
 
 var _interactable = null
@@ -33,7 +36,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	update_coyote_time_counter(delta)
 	gravity_component.handle_gravity(self, delta)
-	movement_component.horizontal_movement_with_acc(self, input_controller.get_horizontal_input())
 	if input_controller.get_jump_input() and (is_on_floor() or coyote_time_counter > 0.0):
 		movement_component.handle_jump(self)
 		coyote_time_counter = 0.0  # consume coyote time so it can't be reused mid-air
@@ -44,7 +46,10 @@ func _physics_process(delta: float) -> void:
 		_aim_direction = aim_dir
 	gun.aim(_aim_direction)
 	if Input.is_action_just_pressed("shoot"):
-		velocity += (_aim_direction * -1) * gun.shoot(_aim_direction)
+		var force = gun.shoot(_aim_direction)
+		#velocity += (_aim_direction * -1) * force
+		movement_component.handle_knockback(self, _aim_direction * -1, force)
+	movement_component.horizontal_movement_with_acc(self, input_controller.get_horizontal_input())
 	if Input.is_action_just_pressed("reload"):
 		gun.reload_all_to_loadout()
 	# State machine. Also setting animations
@@ -80,3 +85,10 @@ func set_interactable(node: Interactable):
 func remove_interactable():
 	_interactable = null
 	
+func take_damage(dmg: int):
+	current_health -= dmg
+	PlayerVariables.current_health = current_health
+	if current_health <= 0:
+		# play death animation then
+		GameController.reload_from_checkpoint()
+		
