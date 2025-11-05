@@ -6,13 +6,13 @@ extends CharacterBody2D
 @onready var movement_component: MovementComponent = $MovementComponent
 @onready var gun = $Gun
 
-@onready var max_health: int = PlayerVariables.default_max_health
+@onready var max_health: int = PlayerVariables.max_health
 @onready var current_health: int = PlayerVariables.current_health
 
 
-var speed: int = 100
-var jump_velocity: int = 350
-var coyote_time = 0.2
+@onready var speed: int = PlayerVariables.speed
+@onready var jump_velocity: int = PlayerVariables.jump_velocity
+@onready var coyote_time: float = PlayerVariables.coyote_time
 var _aim_direction: Vector2 = Vector2(1,0)
 
 var _interactable = null
@@ -47,7 +47,6 @@ func _physics_process(delta: float) -> void:
 	gun.aim(_aim_direction)
 	if Input.is_action_just_pressed("shoot"):
 		var force = gun.shoot(_aim_direction)
-		#velocity += (_aim_direction * -1) * force
 		movement_component.handle_knockback(self, _aim_direction * -1, force)
 	movement_component.horizontal_movement_with_acc(self, input_controller.get_horizontal_input())
 	if Input.is_action_just_pressed("reload"):
@@ -71,6 +70,16 @@ func _physics_process(delta: float) -> void:
 		animation_controller.flip_animation(velocity.x < 0)
 	if _interactable != null and input_controller.get_interact_input():
 		_interactable.interact()
+	if velocity.x > PlayerVariables.velocity_cap or velocity.x < PlayerVariables.velocity_cap * -1:
+		if velocity.x > 0:
+			velocity.x = PlayerVariables.velocity_cap
+		else:
+			velocity.x = PlayerVariables.velocity_cap * -1
+	if velocity.y > PlayerVariables.velocity_cap or velocity.y < PlayerVariables.velocity_cap * -1:
+		if velocity.y > 0:
+			velocity.y = PlayerVariables.velocity_cap
+		else:
+			velocity.y = PlayerVariables.velocity_cap * -1
 	move_and_slide()
 	
 func update_coyote_time_counter(delta: float) -> void:
