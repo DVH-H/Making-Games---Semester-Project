@@ -13,7 +13,7 @@ extends CharacterBody2D
 @onready var speed: int = PlayerVariables.speed
 @onready var jump_velocity: int = PlayerVariables.jump_velocity
 @onready var coyote_time: float = PlayerVariables.coyote_time
-var _aim_direction: Vector2 = Vector2(1,0)
+var _aim_direction: Vector2 = Vector2(-0.01,1)
 
 var _interactable = null
 

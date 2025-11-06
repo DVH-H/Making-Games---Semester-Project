@@ -13,7 +13,7 @@
 [node name="Tilemap" parent="." instance=ExtResource("1_s1o1j")]
 
 [node name="Player" parent="." instance=ExtResource("2_chqat")]
-position = Vector2(87, -262)
+position = Vector2(882, 227)
 
 [node name="KillZone" parent="." instance=ExtResource("3_chqat")]
 position = Vector2(-90, 430)
@@ -26,6 +26,3 @@ position = Vector2(627, -933)
 
 [node name="Enemy" parent="." instance=ExtResource("5_127qd")]
 position = Vector2(-118, 157)
-
-[node name="Enemy2" parent="." instance=ExtResource("5_127qd")]
-position = Vector2(876, 289)
