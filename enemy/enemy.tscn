@@ -422,11 +422,12 @@ height = 132.0
 radius = 20.0
 height = 50.0
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "movement_component", "chase_timer") groups=["Enemy"]]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "movement_component", "chase_timer", "attack_timer") groups=["Enemy"]]
 script = ExtResource("1_1wwld")
 gravity_component = NodePath("Gravity")
 movement_component = NodePath("MovementComponent")
-chase_timer = NodePath("detection_area/chase_tiimer")
+chase_timer = NodePath("detection_area/chase_timer")
+attack_timer = NodePath("attack_timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, 0)
@@ -455,27 +456,26 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
-visible = false
 position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_scxef")
 
-[node name="chase_tiimer" type="Timer" parent="detection_area"]
+[node name="chase_timer" type="Timer" parent="detection_area"]
 wait_time = 3.0
 
 [node name="MovementComponent" parent="." instance=ExtResource("4_p200p")]
 
 [node name="damage_area" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_p200p")
 
-[node name="death_timer" type="Timer" parent="."]
+[node name="attack_timer" type="Timer" parent="."]
+wait_time = 2.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
-[connection signal="timeout" from="detection_area/chase_tiimer" to="." method="_on_chase_tiimer_timeout"]
+[connection signal="timeout" from="detection_area/chase_timer" to="." method="_on_chase_tiimer_timeout"]
 [connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]
-[connection signal="timeout" from="death_timer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="attack_timer" to="." method="_on_death_timer_timeout"]

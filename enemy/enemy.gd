@@ -4,12 +4,13 @@ class_name enemy
 @export var gravity_component: GravityComponent
 @export var movement_component: MovementComponent
 @export var chase_timer: Timer
-#@export var death_timer: Timer
+@export var attack_timer: Timer #cooldown 
 
 @export_subgroup("Movement")
 @export var speed = 60
 @export var stop_at_edge: bool = true
 var player_chase = false
+var attack_again = true
 var player = null
 
 enum {
@@ -41,10 +42,12 @@ var look_direction: float = 1.0
 var search_timer: float = 0.0
 var search_duration: float = 3.0
 
+@export var damage: float = 20
+
 func _ready() -> void:
 	movement_component.set_speed(speed)
 	chase_timer.timeout.connect(_on_chase_timer_timeout)
-	#death_timer.timeout.connect(_on_death_timer_timeout)
+	attack_timer.timeout.connect(_on_attack_timer_timeout)
 
 	current_patrol_target = patrol_point2
 		
@@ -54,6 +57,8 @@ func _physics_process(delta: float) -> void:
 		return	
 	if state == DAMAGED:
 		return
+	if state == ATTACK:
+		return
 	var direction = 0
 	
 	if state == STANDBY:
@@ -62,14 +67,14 @@ func _physics_process(delta: float) -> void:
 		direction = AGGRO_behaviour()
 	if state == SEARCH:
 		direction = SEARCH_behaviour(delta)
-	if state == ATTACK:
-		direction = ATTACK_behaviour()
-
+	#if state == ATTACK:
+	#	direction = ATTACK_behaviour()
 		
 	gravity_component.handle_gravity(self, delta)
 	movement_component.handle_horizontal_movement(self, direction)
 	
 	handle_animations(direction)
+	attack_collision()
 	move_and_slide()
 	
 func is_at_edge(direction: float) -> bool:
@@ -133,10 +138,8 @@ func _on_chase_timer_timeout() -> void:
 	player_chase = false
 	player = null
 	
-#func _on_death_timer_timeout() -> void:
-#	$AnimatedSprite2D.play("death")
-#	print("play dead")
-#	queue_free()
+func _on_attack_timer_timeout() -> void:
+	attack_again = true
 
 func STANDBY_behaviour(delta: float) -> float:
 	patrol_timer += delta
@@ -169,9 +172,6 @@ func SEARCH_behaviour(delta: float) -> float:
 		current_patrol_target = patrol_point1  # Return to start point
 		print("SEARCH finished back to patrol")
 		return 0
-		
-func ATTACK_behaviour():
-	pass
 	
 func patrol():
 	var distance_to_target = global_position.distance_to(current_patrol_target)
@@ -195,9 +195,28 @@ func stand_guard(delta: float) -> float:
 		last_flip_time = 0
 	return 0 
 
+func attack_collision():
+	for i in range(get_slide_collision_count()):
+		var collision = get_slide_collision(i).get_collider()
+		if collision:
+			on_collision(collision)
+
+func on_collision(collider):
+	if collider.name == "Player" and attack_again == true:
+		#state = ATTACK # use this if you make  _on_animated_sprite_2d_animation_finished work for attack case 
+		$AnimatedSprite2D.play("attack")
+		print("play attack")
+		collider.take_damage(damage)
+		attack_timer.start()
+		attack_again = false
+ 
+func ATTACK_behaviour():
+	pass
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if $AnimatedSprite2D.animation == "death":
 		queue_free()
 	if $AnimatedSprite2D.animation == "take_damage":
 		state = AGGRO
+	if $AnimatedSprite2D.animation == "attack":
+		state = AGGRO # apparently doesn't work correctly 
