@@ -10,9 +10,12 @@ extends CharacterBody2D
 @export var speed: int = 100
 @export var jump_velocity: int = 350
 @export var coyote_time = 0.2
+@export var reset_hold_time := 1.0  # seconds to count as "hold reset"
 var _aim_direction: Vector2 = Vector2(1,0)
 
 var _interactable = null
+var _reset_timer := 0.0
+var _reset_held := false
 
 # state machine
 enum {
@@ -66,6 +69,20 @@ func _physics_process(delta: float) -> void:
 		animation_controller.flip_animation(velocity.x < 0)
 	if _interactable != null and input_controller.get_interact_input():
 		_interactable.interact()
+		
+	if Input.is_action_pressed("reset"):
+		_reset_timer += delta
+		if _reset_timer >= reset_hold_time and not _reset_held:
+			_reset_held = true
+			_reset_full()
+	elif Input.is_action_just_released("reset"):
+		if not _reset_held:
+			_reset_to_checkpoint()
+		_reset_timer = 0.0
+		_reset_held = false
+	else:
+		if _reset_timer > 0.0 and not _reset_held:
+			_reset_timer = 0.0
 	move_and_slide()
 	
 func update_coyote_time_counter(delta: float) -> void:
@@ -80,3 +97,12 @@ func set_interactable(node: Interactable):
 func remove_interactable():
 	_interactable = null
 	
+func _reset_to_checkpoint():
+	if CheckpointManager.has_checkpoint():
+		GameController.reload_from_checkpoint()
+	else:
+		GameController.reload_scene()
+
+func _reset_full():
+	CheckpointManager.clear_checkpoint()
+	GameController.reload_scene()
