@@ -42,7 +42,7 @@ func _ready() -> void:
 func shoot(direction: Vector2) -> float:
 	var force := 0.0
 	var scene := chambers[current_index]
-	if scene != null:
+	if scene != null and not _is_reloading:
 		var bullet := scene.instantiate()
 		get_tree().root.add_child(bullet)
 		if "global_position" in bullet:

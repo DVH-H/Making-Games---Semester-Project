@@ -15,7 +15,7 @@ extends CharacterBody2D
 @onready var coyote_time: float = PlayerVariables.coyote_time
 var _aim_direction: Vector2 = Vector2(-0.01,1)
 
-var _interactable = null
+var _interactable: Interactable = null
 
 # state machine
 enum {
@@ -55,8 +55,11 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		if velocity.x != 0:
 			state = RUNNING
-			animation_controller.play_animation("run")
-			animation_controller.flip_animation(velocity.x < 0)
+			if velocity.x > 0:
+				animation_controller.play_animation("run_right")
+			else:
+				animation_controller.play_animation("run_left")
+			animation_controller.flip_animation(velocity.x > 0)
 		else:
 			state = IDLE
 			animation_controller.play_animation("idle")

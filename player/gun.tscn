@@ -1,17 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://bn5px6qyvj2ja"]
 
-[ext_resource type="Texture2D" uid="uid://bxejqij00ky5p" path="res://assets/sprites/gun_tileset.png" id="1_8uwdw"]
 [ext_resource type="Script" uid="uid://b5ysq20cxmhge" path="res://player/gun.gd" id="1_ybrg7"]
+[ext_resource type="Texture2D" uid="uid://c3t68dnfner8e" path="res://player/sprites/005_Sprite_Player.png" id="2_yknm8"]
 
 [node name="Gun" type="Node2D"]
 script = ExtResource("1_ybrg7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(7.000001, -2)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_8uwdw")
+position = Vector2(129, 28)
+rotation = 1.5707964
+texture = ExtResource("2_yknm8")
+flip_v = true
 region_enabled = true
-region_rect = Rect2(1056.0002, 268.00003, 113, 69.00003)
+region_rect = Rect2(1470.0782, 1479.8903, 406.33264, 486.0802)
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(20, -6)
+position = Vector2(270, 6)

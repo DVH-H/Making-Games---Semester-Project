@@ -16,13 +16,13 @@
 position = Vector2(882, 227)
 
 [node name="KillZone" parent="." instance=ExtResource("3_chqat")]
-position = Vector2(-90, 430)
+position = Vector2(-4994, 14677)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
 shape = SubResource("WorldBoundaryShape2D_chqat")
 
-[node name="Checkpoint" parent="KillZone" instance=ExtResource("4_6n17u")]
-position = Vector2(627, -933)
-
 [node name="Enemy" parent="." instance=ExtResource("5_127qd")]
 position = Vector2(-118, 157)
+
+[node name="Checkpoint" parent="." instance=ExtResource("4_6n17u")]
+position = Vector2(537, -503)

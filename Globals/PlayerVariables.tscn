@@ -4,3 +4,5 @@
 
 [node name="PlayerVariables" type="Node"]
 script = ExtResource("1_ors7t")
+speed = 50
+jump_velocity = 250
