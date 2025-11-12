@@ -14,6 +14,10 @@ class_name ReloadBarControl
 @export var color_fg: Color = Color.hex(0xF5C542FF)
 @export var color_border: Color = Color.hex(0x000000FF)
 
+@export var color_cooldown: Color = Color.hex(0x42A5F5FF)  # blue tone
+@export var color_reload: Color = Color.hex(0xF5C542FF) # yellow tone
+
+
 var _player: Node2D
 var _gun: Node
 var _active := false
@@ -28,7 +32,8 @@ func _ready() -> void:
 	if _gun:
 		# gun emits: reload_started(chamber_index: int, duration: float), reload_finished(chamber_index: int)
 		_gun.reload_started.connect(_on_reload_started)
-		_gun.reload_finished.connect(_on_reload_finished)
+		if _gun.has_signal("fire_cooldown_started"):
+			_gun.fire_cooldown_started.connect(_on_fire_cooldown_started)
 
 	custom_minimum_size = Vector2(size_px.x, size_px.y)
 	set_anchors_preset(Control.PRESET_TOP_LEFT)
@@ -69,16 +74,13 @@ func _draw() -> void:
 		draw_line(Vector2(0, 0), Vector2(0, h), color_border, border_px)
 		draw_line(Vector2(w, 0), Vector2(w, h), color_border, border_px)
 
-func _on_reload_started(_idx: int, duration: float) -> void:
+func _show_reload_bar(duration: float, color: Color) -> void:
 	_duration = max(0.001, duration)
 	_elapsed = 0.0
 	_active = true
+	color_fg = color
 	visible = true
 	queue_redraw()
-
-func _on_reload_finished(_idx: int) -> void:
-	# We let _process hide it at the end of the current bullet's duration.
-	pass
 
 func _update_screen_position() -> void:
 	if not _player:
@@ -99,3 +101,10 @@ func _update_screen_position() -> void:
 	# place this control so its top-left sits at (screen + offset - half width)
 	var pos := screen + Vector2(offset_px) - Vector2(size_px.x / 2, 0)
 	position = pos
+	
+# Signal handlers
+func _on_reload_started(_idx: int, duration: float) -> void:
+	_show_reload_bar(duration, color_reload)
+
+func _on_fire_cooldown_started(duration: float) -> void:
+	_show_reload_bar(duration, color_cooldown)
