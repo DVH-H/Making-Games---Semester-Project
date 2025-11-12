@@ -50,7 +50,7 @@ func _on_fire_cooldown_ready():
 
 func _can_shoot() -> bool:
 	# Gate shooting behind both reload state and fire-cooldown
-	return not _fire_locked and not _is_reloading and not chambers.is_empty()
+	return not _fire_locked and not _is_reloading and not chambers[current_index] == null
 	
 func shoot(direction: Vector2) -> float:
 	var force := 0.0
