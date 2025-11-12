@@ -13,6 +13,7 @@ func reload_scene():
 	get_tree().reload_current_scene()
 	
 func reload_from_checkpoint():
+	PlayerVariables.current_health = PlayerVariables.default_max_health
 	goto_scene(CheckpointManager._scene_path)
 
 func _deferred_goto_scene(path):
