@@ -7,6 +7,7 @@ class_name Bullet
 @export var damage: float = 5
 @export var SPEED: int = 300
 @export var load_time: float = 0.2
+@export var fire_cooldown: float = 0.2
 @export var ui_color: Color = Color.hex(0x6ec1e4ff)
 
 @onready var movementComponent: MovementComponent = $MovementComponent

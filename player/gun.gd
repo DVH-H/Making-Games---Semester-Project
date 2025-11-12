@@ -8,7 +8,8 @@ signal chamber_colors_updated(colors: Array[Color])
 signal dry_fire()
 signal fired(bullet_instance: Node)
 signal reload_started(chamber_index: int, duration: float)
-signal reload_finished(chamber_index: int)
+signal fire_cooldown_started(duration: float)
+
 
 @onready var muzzle: Marker2D = $Marker2D
 
@@ -31,6 +32,8 @@ var loadout_scenes: Array[PackedScene] = []
 var _load_time_cache: Dictionary = {}  # path -> float
 var _ui_color_cache: Dictionary = {}   # path -> Color
 var _is_reloading: bool = false
+var _fire_locked := false
+@onready var _fire_timer: Timer = Timer.new()
 
 func _ready() -> void:
 	_resize_arrays()
@@ -38,24 +41,43 @@ func _ready() -> void:
 	_fill_all_from_loadout()  # start full; remove if you want to start empty
 	current_index = posmod(current_index, capacity)
 	_emit_all()
+	add_child(_fire_timer)
+	_fire_timer.one_shot = true
+	_fire_timer.timeout.connect(_on_fire_cooldown_ready)
 
+func _on_fire_cooldown_ready():
+	_fire_locked = false
+
+func _can_shoot() -> bool:
+	# Gate shooting behind both reload state and fire-cooldown
+	return not _fire_locked and not _is_reloading and not chambers[current_index] == null
+	
 func shoot(direction: Vector2) -> float:
 	var force := 0.0
-	var scene := chambers[current_index]
-	if scene != null:
-		var bullet := scene.instantiate()
-		get_tree().root.add_child(bullet)
-		if "global_position" in bullet:
-			bullet.global_position = muzzle.global_position
-		if bullet.has_method("initialize"):
-			bullet.initialize(direction)
-		if "knockback_force" in bullet:
-			force = float(bullet.knockback_force)
-		emit_signal("fired", bullet)
-		chambers[current_index] = null
-	else:
+	
+	if not _can_shoot():
 		emit_signal("dry_fire")
-
+		return force
+		
+	var scene := chambers[current_index]
+	var bullet := scene.instantiate()
+	get_tree().root.add_child(bullet)
+	if "global_position" in bullet:
+		bullet.global_position = muzzle.global_position
+	if bullet.has_method("initialize"):
+		bullet.initialize(direction)
+	if "knockback_force" in bullet:
+		force = float(bullet.knockback_force)
+	emit_signal("fired", bullet)
+	
+	chambers[current_index] = null
+	var cooldown := 0.2
+	if "fire_cooldown" in bullet:
+		cooldown = float(bullet.fire_cooldown)
+	_fire_locked = true
+	_fire_timer.start(cooldown)
+	emit_signal("fire_cooldown_started", cooldown)
+	
 	_advance_cylinder()
 	_emit_all()
 	return force
@@ -96,7 +118,6 @@ func reload_all_to_loadout() -> void:
 		if chambers[idx] == null:
 			chambers[idx] = scene
 			_emit_all()
-		emit_signal("reload_finished", idx)
 	_is_reloading = false
 
 # ── Loadout helpers ──────────────────────────────────────────────────────────
