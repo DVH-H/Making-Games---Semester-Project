@@ -334,7 +334,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ont7t")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -386,7 +386,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3pcjh")
 }],
-"loop": true,
+"loop": false,
 "name": &"take_damage",
 "speed": 5.0
 }, {
@@ -422,12 +422,11 @@ height = 132.0
 radius = 20.0
 height = 50.0
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "movement_component", "chase_timer", "death_timer")]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "movement_component", "chase_timer") groups=["Enemy"]]
 script = ExtResource("1_1wwld")
 gravity_component = NodePath("Gravity")
 movement_component = NodePath("MovementComponent")
 chase_timer = NodePath("detection_area/chase_tiimer")
-death_timer = NodePath("death_timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, 0)
@@ -436,7 +435,7 @@ shape = SubResource("CapsuleShape2D_pmsee")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_scxef")
-animation = &"idle"
+animation = &"take_damage"
 autoplay = "idle"
 offset = Vector2(0, -6)
 
@@ -474,6 +473,7 @@ shape = SubResource("CapsuleShape2D_p200p")
 
 [node name="death_timer" type="Timer" parent="."]
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
 [connection signal="timeout" from="detection_area/chase_tiimer" to="." method="_on_chase_tiimer_timeout"]

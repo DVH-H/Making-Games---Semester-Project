@@ -4,7 +4,7 @@ class_name enemy
 @export var gravity_component: GravityComponent
 @export var movement_component: MovementComponent
 @export var chase_timer: Timer
-@export var death_timer: Timer
+#@export var death_timer: Timer
 
 @export_subgroup("Movement")
 @export var speed = 60
@@ -44,14 +44,16 @@ var search_duration: float = 3.0
 func _ready() -> void:
 	movement_component.set_speed(speed)
 	chase_timer.timeout.connect(_on_chase_timer_timeout)
-	death_timer.timeout.connect(_on_death_timer_timeout)
+	#death_timer.timeout.connect(_on_death_timer_timeout)
 
 	current_patrol_target = patrol_point2
 		
 func _physics_process(delta: float) -> void:
 	if is_dying:
-		$AnimatedSprite2D.play("death")
+		#$AnimatedSprite2D.play("death")
 		return	
+	if state == DAMAGED:
+		return
 	var direction = 0
 	
 	if state == STANDBY:
@@ -62,8 +64,7 @@ func _physics_process(delta: float) -> void:
 		direction = SEARCH_behaviour(delta)
 	if state == ATTACK:
 		direction = ATTACK_behaviour()
-	if state == DAMAGED:
-		direction = 0
+
 		
 	gravity_component.handle_gravity(self, delta)
 	movement_component.handle_horizontal_movement(self, direction)
@@ -101,37 +102,41 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 		return
 	chase_timer.start() 
 
+# Maybe delete: damage will be called from the bullet
 func _on_damage_area_body_entered(body: Node2D) -> void:
-	if body is Bullet and not is_dying and player:
-		print("bullet hit enemy")
-		state = DAMAGED
-		take_damage()
+	pass
+#	if body is Bullet and not is_dying and player:
+#		print("bullet hit enemy")
+#		state = DAMAGED
+#		take_damage()
 	
-func take_damage() -> void:
-	health = health - 10
+func take_damage(dmg: int) -> void:
+	health = health - dmg
+	state = DAMAGED
 	$AnimatedSprite2D.play("take_damage")
 	print("hit")
 	if health <= 0:
 		die()
-	else:
-		state = AGGRO
-		print("here")
+	#else:
+	#	state = AGGRO
+	#	print("here")
 
 func die():
+	$AnimatedSprite2D.play("death")
 	is_dying = true
 	print("die")
 	velocity.x = 0
 	player_chase = false
-	death_timer.start()	
+	#death_timer.start()	
 	
 func _on_chase_timer_timeout() -> void:
 	player_chase = false
 	player = null
 	
-func _on_death_timer_timeout() -> void:
-	$AnimatedSprite2D.play("death")
-	print("play dead")
-	queue_free()
+#func _on_death_timer_timeout() -> void:
+#	$AnimatedSprite2D.play("death")
+#	print("play dead")
+#	queue_free()
 
 func STANDBY_behaviour(delta: float) -> float:
 	patrol_timer += delta
@@ -189,3 +194,10 @@ func stand_guard(delta: float) -> float:
 		$AnimatedSprite2D.flip_h = (look_direction < 0)
 		last_flip_time = 0
 	return 0 
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if $AnimatedSprite2D.animation == "death":
+		queue_free()
+	if $AnimatedSprite2D.animation == "take_damage":
+		state = AGGRO
