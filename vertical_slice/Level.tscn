@@ -25,7 +25,11 @@ shape = SubResource("WorldBoundaryShape2D_chqat")
 position = Vector2(627, -933)
 
 [node name="Enemy" parent="." instance=ExtResource("5_127qd")]
-position = Vector2(-118, 157)
+position = Vector2(-115, 149)
+patrol_point1 = Vector2(-115, 149)
+patrol_point2 = Vector2(19, 149)
 
 [node name="Enemy2" parent="." instance=ExtResource("5_127qd")]
-position = Vector2(876, 289)
+position = Vector2(667, 281)
+patrol_point1 = Vector2(876, 280)
+patrol_point2 = Vector2(667, 280)
