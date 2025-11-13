@@ -429,6 +429,7 @@ gravity_component = NodePath("Gravity")
 movement_component = NodePath("MovementComponent")
 chase_timer = NodePath("detection_area/chase_timer")
 attack_timer = NodePath("attack_timer")
+speed = 1200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, 0)

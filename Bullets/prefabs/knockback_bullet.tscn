@@ -9,10 +9,12 @@ radius = 1.0
 height = 12.0
 
 [node name="KnockbackBullet" type="CharacterBody2D"]
+scale = Vector2(30, 30)
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_xbsg4")
 knockback_force = 4000.0
+SPEED = 3000
 load_time = 0.5
 fire_cooldown = 0.5
 ui_color = Color(0.8542778, 0.6136127, 0.08999228, 1)

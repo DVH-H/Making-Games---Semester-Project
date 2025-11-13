@@ -153,8 +153,9 @@ func STANDBY_behaviour(delta: float) -> float:
 func AGGRO_behaviour() -> float:
 	if player and player_chase:
 		var direction = sign(player.position.x - position.x)
-		if stop_at_edge and is_on_floor() and is_at_edge(direction):
-			return 0
+		#if stop_at_edge and is_on_floor() and is_at_edge(direction):
+		#	print("stop")
+		#	return 0
 		return direction
 		
 	print("Exit AGGRO enter SEARCH")

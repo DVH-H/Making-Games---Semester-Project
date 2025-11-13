@@ -9,10 +9,12 @@ radius = 1.0
 height = 6.0
 
 [node name="Bullet" type="CharacterBody2D"]
+scale = Vector2(30, 30)
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_olui7")
 knockback_force = 100.0
+SPEED = 3000
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5707964

@@ -33,7 +33,8 @@ func _physics_process(delta: float) -> void:
 func on_collision(collider):
 	if collider.is_in_group("Enemy"):
 		collider.take_damage(damage)
-	queue_free()
+	if collider.name != "Player":
+		queue_free()
  
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
