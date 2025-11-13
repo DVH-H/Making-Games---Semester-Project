@@ -127,7 +127,7 @@ ground_deacc = 256.0
 air_deacc = 48.0
 
 [node name="Gravity" parent="." instance=ExtResource("6_boad6")]
-gravity = 5000.0
+gravity = 6000.0
 
 [node name="Gun" parent="." instance=ExtResource("7_boad6")]
 position = Vector2(14, -32)

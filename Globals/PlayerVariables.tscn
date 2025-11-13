@@ -4,7 +4,7 @@
 
 [node name="PlayerVariables" type="Node"]
 script = ExtResource("1_ors7t")
-speed = 1000
+speed = 2000
 jump_velocity = 3000
 velocity_cap = 5000
 coyote_time = 2.0
