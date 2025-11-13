@@ -2,7 +2,8 @@ extends Node
 
 
 # Checkpoint
-var _scene_path: String = "res://game.tscn"
+var _default_scene_path: String = "res://vertical_slice/Level.tscn"
+var _scene_path: String = "res://vertical_slice/Level.tscn"
 var _spawn_coords: Vector2
 
 func set_checkpoint(scene, coords):
@@ -14,8 +15,8 @@ func spawn_player_at_checkpoint(player: CharacterBody2D):
 		player.global_position = _spawn_coords
 
 func has_checkpoint() -> bool:
-	return _spawn_coords != Vector2.ZERO or _scene_path != "res://game.tscn"
+	return _spawn_coords != Vector2.ZERO or _scene_path != _default_scene_path
 
 func clear_checkpoint():
 	_spawn_coords = Vector2.ZERO
-	_scene_path = "res://game.tscn"
+	_scene_path = _default_scene_path
