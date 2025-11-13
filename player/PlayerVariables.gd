@@ -7,6 +7,7 @@ extends Node
 @onready var current_health: int = max_health
 
 @export_subgroup("Movement")
+
 @export var speed: int = 100
 @export var jump_velocity: int = 350
 @export var velocity_cap: int = 500

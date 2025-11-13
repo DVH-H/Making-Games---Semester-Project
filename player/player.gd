@@ -11,6 +11,7 @@ extends CharacterBody2D
 
 var _reset_timer := 0.0
 var _reset_held := false
+var reset_hold_time = 1
 
 @onready var speed: int = PlayerVariables.speed
 @onready var jump_velocity: int = PlayerVariables.jump_velocity
