@@ -13,7 +13,7 @@
 [node name="Tilemap" parent="." instance=ExtResource("1_s1o1j")]
 
 [node name="Player" parent="." instance=ExtResource("2_chqat")]
-position = Vector2(882, 227)
+position = Vector2(315, -1543)
 
 [node name="KillZone" parent="." instance=ExtResource("3_chqat")]
 position = Vector2(-4994, 14677)
@@ -22,7 +22,10 @@ position = Vector2(-4994, 14677)
 shape = SubResource("WorldBoundaryShape2D_chqat")
 
 [node name="Enemy" parent="." instance=ExtResource("5_127qd")]
-position = Vector2(-118, 157)
+position = Vector2(201, -478)
 
 [node name="Checkpoint" parent="." instance=ExtResource("4_6n17u")]
-position = Vector2(537, -503)
+position = Vector2(3507, -11119)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("4_6n17u")]
+position = Vector2(-32148, -19182)
