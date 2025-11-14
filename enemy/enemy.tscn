@@ -425,6 +425,7 @@ height = 50.0
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "movement_component", "chase_timer", "attack_timer") groups=["Enemy"]]
 collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_1wwld")
 gravity_component = NodePath("Gravity")
 movement_component = NodePath("MovementComponent")

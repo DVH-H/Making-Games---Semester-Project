@@ -58,7 +58,7 @@ func _physics_process(delta: float) -> void:
 		var force = gun.shoot(_aim_direction)
 		movement_component.handle_knockback(self, _aim_direction * -1, force)
 	movement_component.horizontal_movement_with_acc(self, input_controller.get_horizontal_input())
-	if (Input.is_action_just_pressed("reload") and is_on_floor()):
+	if (Input.is_action_just_pressed("reload") and (is_on_floor() or coyote_time_counter > 0.0)):
 		gun.reload_all_to_loadout()
 	# State machine. Also setting animations
 	if is_on_floor():
