@@ -101,8 +101,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(32, 11)
-collision_layer = 3
+collision_layer = 2
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -161,3 +160,5 @@ offset_bottom = 141.0
 script = ExtResource("10_8t03j")
 player_path = NodePath("../..")
 gun_path = NodePath("../../Gun")
+size_px = Vector2i(660, 90)
+border_px = 30

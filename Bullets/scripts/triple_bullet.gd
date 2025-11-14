@@ -15,8 +15,3 @@ func initialize(dir: Vector2):
 	var dir2 = Vector2.from_angle(dir.angle() - PI * 0.1)
 	b1.initialize(dir1)
 	b2.initialize(dir2)
-
-func on_collision(collider):
-	if collider.name == "LevelTileMap":
-		queue_free()
-	#queue_free()

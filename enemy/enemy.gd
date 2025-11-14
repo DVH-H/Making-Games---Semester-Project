@@ -71,8 +71,17 @@ func _physics_process(delta: float) -> void:
 	#	direction = ATTACK_behaviour()
 		
 	gravity_component.handle_gravity(self, delta)
-	movement_component.handle_horizontal_movement(self, direction)
-	
+	movement_component.horizontal_movement_with_acc(self, direction)
+	if velocity.x > PlayerVariables.velocity_cap or velocity.x < PlayerVariables.velocity_cap * -1:
+		if velocity.x > 0:
+			velocity.x = PlayerVariables.velocity_cap
+		else:
+			velocity.x = PlayerVariables.velocity_cap * -1
+	if velocity.y > PlayerVariables.velocity_cap or velocity.y < PlayerVariables.velocity_cap * -1:
+		if velocity.y > 0:
+			velocity.y = PlayerVariables.velocity_cap
+		else:
+			velocity.y = PlayerVariables.velocity_cap * -1
 	handle_animations(direction)
 	attack_collision()
 	move_and_slide()

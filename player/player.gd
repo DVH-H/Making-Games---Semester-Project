@@ -44,7 +44,13 @@ func _physics_process(delta: float) -> void:
 		coyote_time_counter = 0.0  # consume coyote time so it can't be reused mid-air
 	
 	# Aiming and shooting
-	var aim_dir = input_controller.get_aim_input().normalized()
+	
+	var aim_dir := Vector2.ZERO
+	if len(Input.get_connected_joypads()) > 0:
+		aim_dir = input_controller.get_aim_input().normalized()
+	else:
+		var mouse_pos: Vector2 = get_global_mouse_position()
+		aim_dir = (mouse_pos - global_position).normalized()
 	if aim_dir != Vector2.ZERO:
 		_aim_direction = aim_dir
 	gun.aim(_aim_direction)
@@ -52,7 +58,7 @@ func _physics_process(delta: float) -> void:
 		var force = gun.shoot(_aim_direction)
 		movement_component.handle_knockback(self, _aim_direction * -1, force)
 	movement_component.horizontal_movement_with_acc(self, input_controller.get_horizontal_input())
-	if Input.is_action_just_pressed("reload"):
+	if (Input.is_action_just_pressed("reload") and is_on_floor()):
 		gun.reload_all_to_loadout()
 	# State machine. Also setting animations
 	if is_on_floor():

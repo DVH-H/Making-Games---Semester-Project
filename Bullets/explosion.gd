@@ -21,3 +21,5 @@ func _physics_process(delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and body not in collision_list:
 		collision_list.append(body)
+	if body.is_in_group("Enemy"):
+		collision_list.append(body)

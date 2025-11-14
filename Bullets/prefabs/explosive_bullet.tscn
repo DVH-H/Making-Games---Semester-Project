@@ -9,12 +9,13 @@
 radius = 1.0
 height = 12.0
 
-[node name="ExplosiveBullet" type="CharacterBody2D"]
+[node name="ExplosiveBullet" type="CharacterBody2D" groups=["Bullet"]]
+scale = Vector2(30, 30)
 collision_layer = 8
-collision_mask = 3
+collision_mask = 5
 script = ExtResource("1_0k6ku")
 explosion = ExtResource("2_plxq6")
-knockback_force = 0.0
+ui_color = Color(1, 0, 0, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5707964

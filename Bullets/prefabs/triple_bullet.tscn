@@ -8,11 +8,13 @@
 radius = 1.0
 height = 6.0
 
-[node name="TripleBullet" type="CharacterBody2D"]
+[node name="TripleBullet" type="CharacterBody2D" groups=["Bullet"]]
+scale = Vector2(30, 30)
 collision_layer = 8
-collision_mask = 3
+collision_mask = 5
 script = ExtResource("1_lkaf5")
 knockback_force = 175.0
+ui_color = Color(0, 1, 0, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5707964
