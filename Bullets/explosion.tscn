@@ -124,7 +124,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 30.0
+"speed": 20.0
 }]
 
 [node name="Explosion" type="Node2D"]
