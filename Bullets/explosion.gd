@@ -3,7 +3,7 @@ extends Node2D
 var collision_list: Array = []
 
 
-@export var duration = 0.05
+@export var duration = 0.1
 var _time_passed = 0.0
 
 @export var force = 400
