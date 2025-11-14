@@ -142,6 +142,10 @@ func get_ammo_count() -> int:
 func _advance_cylinder() -> void:
 	current_index = posmod(current_index + 1, capacity)
 	emit_signal("chamber_changed", current_index)
+	
+func _de_advance_cylinder() -> void:
+	current_index = posmod(current_index - 1, capacity)
+	emit_signal("chamber_changed", current_index)
 
 func _resize_arrays() -> void:
 	chambers.resize(capacity)

@@ -60,6 +60,10 @@ func _physics_process(delta: float) -> void:
 	movement_component.horizontal_movement_with_acc(self, input_controller.get_horizontal_input())
 	if (Input.is_action_just_pressed("reload") and (is_on_floor() or coyote_time_counter > 0.0)):
 		gun.reload_all_to_loadout()
+	if Input.is_action_just_pressed("rotate_cylinder_forward"):
+		gun._advance_cylinder()
+	if Input.is_action_just_pressed("rotate_cylinder_backward"):
+		gun._de_advance_cylinder()
 	# State machine. Also setting animations
 	if is_on_floor():
 		if velocity.x != 0:
