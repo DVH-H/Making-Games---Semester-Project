@@ -8,7 +8,10 @@
 radius = 1.0
 height = 6.0
 
-[node name="Bullet" type="CharacterBody2D"]
+[node name="Bullet" type="CharacterBody2D" groups=["Bullet"]]
+scale = Vector2(30, 30)
+collision_layer = 8
+collision_mask = 5
 script = ExtResource("1_olui7")
 knockback_force = 100.0
 

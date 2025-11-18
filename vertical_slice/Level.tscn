@@ -13,19 +13,42 @@
 [node name="Tilemap" parent="." instance=ExtResource("1_s1o1j")]
 
 [node name="Player" parent="." instance=ExtResource("2_chqat")]
-position = Vector2(87, -262)
+position = Vector2(379, -855)
 
 [node name="KillZone" parent="." instance=ExtResource("3_chqat")]
-position = Vector2(-90, 430)
+position = Vector2(-4994, 14677)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
 shape = SubResource("WorldBoundaryShape2D_chqat")
 
-[node name="Checkpoint" parent="KillZone" instance=ExtResource("4_6n17u")]
-position = Vector2(627, -933)
-
 [node name="Enemy" parent="." instance=ExtResource("5_127qd")]
-position = Vector2(-118, 157)
+position = Vector2(-28280, -8650)
+patrol_point1 = Vector2(-26514, -8650)
+patrol_point2 = Vector2(-30007, -8669)
+
+[node name="Checkpoint" parent="." instance=ExtResource("4_6n17u")]
+position = Vector2(3507, -11119)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("4_6n17u")]
+position = Vector2(-21245, -15206)
 
 [node name="Enemy2" parent="." instance=ExtResource("5_127qd")]
-position = Vector2(876, 289)
+position = Vector2(-58900, -10204)
+
+[node name="Enemy3" parent="." instance=ExtResource("5_127qd")]
+position = Vector2(-51744, -11380)
+patrol_point1 = Vector2(-51687, -11265)
+patrol_point2 = Vector2(-47080, -11303)
+
+[node name="Enemy4" parent="." instance=ExtResource("5_127qd")]
+position = Vector2(-41842, -6006)
+patrol_point1 = Vector2(-43070, -6064)
+patrol_point2 = Vector2(-41842, -6006)
+
+[node name="Enemy5" parent="." instance=ExtResource("5_127qd")]
+position = Vector2(-14545, -14470)
+patrol_point1 = Vector2(-14545, -14470)
+patrol_point2 = Vector2(-11205, -14470)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("4_6n17u")]
+position = Vector2(-45638, -9176)

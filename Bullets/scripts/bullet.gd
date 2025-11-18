@@ -6,7 +6,7 @@ class_name Bullet
 @export var display_name: String = "Normal Bullet"
 @export var knockback_force: float = 200
 @export var damage: float = 5
-@export var SPEED: int = 300
+@export var SPEED: int = 8000
 @export var load_time: float = 0.2
 @export var fire_cooldown: float = 0.2
 @export var ui_color: Color = Color.hex(0x6ec1e4ff)
@@ -32,7 +32,10 @@ func _physics_process(delta: float) -> void:
 		#	print("do somthing")
 	
 func on_collision(collider):
-	queue_free()
+	if collider.is_in_group("Enemy"):
+		collider.take_damage(damage)
+	if collider.name != "Player":
+		queue_free()
  
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()

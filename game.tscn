@@ -256,4 +256,6 @@ position = Vector2(-27, 122)
 shape = SubResource("WorldBoundaryShape2D_ryrav")
 
 [node name="Enemy" parent="." instance=ExtResource("6_ryrav")]
-position = Vector2(189, 38)
+position = Vector2(185, 34)
+patrol_point1 = Vector2(207, 82)
+patrol_point2 = Vector2(276, 82)

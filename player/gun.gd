@@ -47,6 +47,8 @@ func _ready() -> void:
 		print("Gun: LoadoutManager not available, using default loadout")
 		_set_default_alternating_loadout()
 	
+	loadout_scenes = PlayerVariables.default_loadout
+	#_set_default_alternating_loadout()
 	_fill_all_from_loadout()  # start full; remove if you want to start empty
 	current_index = posmod(current_index, capacity)
 	_emit_all()
@@ -92,13 +94,8 @@ func shoot(direction: Vector2) -> float:
 	return force
 
 func aim(dir: Vector2) -> void:
-	var stick_dir := Vector2.ZERO
-	if len(Input.get_connected_joypads()) > 0:
-		stick_dir = dir
-	else:
-		var mouse_pos: Vector2 = get_global_mouse_position()
-		stick_dir = (mouse_pos - global_position).normalized()
-	look_at(global_position + stick_dir)
+
+	look_at(global_position + dir)
 	rotation_degrees = wrap(rotation_degrees, 0, 360)
 	scale.y = -1 if rotation_degrees > 90 and rotation_degrees < 270 else 1
 
@@ -154,6 +151,10 @@ func get_ammo_count() -> int:
 
 func _advance_cylinder() -> void:
 	current_index = posmod(current_index + 1, capacity)
+	emit_signal("chamber_changed", current_index)
+	
+func _de_advance_cylinder() -> void:
+	current_index = posmod(current_index - 1, capacity)
 	emit_signal("chamber_changed", current_index)
 
 func _resize_arrays() -> void:
