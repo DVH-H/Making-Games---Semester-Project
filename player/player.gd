@@ -46,10 +46,12 @@ func _physics_process(delta: float) -> void:
 	if aim_dir != Vector2.ZERO:
 		_aim_direction = aim_dir
 	gun.aim(_aim_direction)
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and not _is_loadout_menu_open():
 		velocity += (_aim_direction * -1) * gun.shoot(_aim_direction)
 	if Input.is_action_just_pressed("reload"):
 		gun.reload_all_to_loadout()
+	if Input.is_action_just_pressed("loadout_menu"):
+		_open_loadout_menu()
 	# State machine. Also setting animations
 	if is_on_floor():
 		if velocity.x != 0:
@@ -106,3 +108,40 @@ func _reset_to_checkpoint():
 func _reset_full():
 	CheckpointManager.clear_checkpoint()
 	GameController.reload_scene()
+
+func _open_loadout_menu():
+	# Find or create the loadout menu
+	var loadout_menu = get_tree().get_first_node_in_group("LoadoutMenu")
+	if not loadout_menu:
+		# Create the loadout menu if it doesn't exist
+		var loadout_menu_scene = preload("res://ui/LoadoutMenu.tscn")
+		loadout_menu = loadout_menu_scene.instantiate()
+		
+		# Add to the player's CanvasLayer so it follows the camera
+		var canvas_layer = get_node("CanvasLayer")
+		if canvas_layer:
+			canvas_layer.add_child(loadout_menu)
+		else:
+			# Fallback to root if CanvasLayer not found
+			get_tree().root.add_child(loadout_menu)
+		
+		loadout_menu.add_to_group("LoadoutMenu")
+		
+		# Connect signals
+		loadout_menu.loadout_applied.connect(_on_loadout_applied)
+		loadout_menu.menu_closed.connect(_on_loadout_menu_closed)
+	
+	# Toggle the menu instead of just opening
+	loadout_menu.toggle_menu()
+
+func _on_loadout_applied(new_loadout: Array[PackedScene]):
+	# Apply the new loadout to the gun
+	gun.apply_current_loadout()
+
+func _on_loadout_menu_closed():
+	# Handle menu closing if needed
+	pass
+
+func _is_loadout_menu_open() -> bool:
+	var loadout_menu = get_tree().get_first_node_in_group("LoadoutMenu")
+	return loadout_menu != null and loadout_menu.visible

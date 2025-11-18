@@ -14,6 +14,11 @@ func _ready() -> void:
 		push_error("HUD: gun_path is not set or node not found")
 		return
 
+	# Sync RevolverCylinderUI capacity with gun capacity
+	if wheel:
+		wheel.capacity = gun.capacity
+		print("HUD: Synced wheel capacity to gun capacity: ", gun.capacity)
+
 	# --- Initial sync ---
 	_on_ammo_changed(gun.get_ammo_count())
 	_on_chamber_changed(gun.current_index)

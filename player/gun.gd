@@ -37,7 +37,16 @@ var _fire_locked := false
 
 func _ready() -> void:
 	_resize_arrays()
-	_set_default_alternating_loadout()
+	
+	# Connect to LoadoutManager if available
+	if is_instance_valid(LoadoutManager):
+		LoadoutManager.set_capacity(capacity)
+		LoadoutManager.loadout_changed.connect(_on_loadout_changed)
+		_sync_with_loadout_manager()
+	else:
+		print("Gun: LoadoutManager not available, using default loadout")
+		_set_default_alternating_loadout()
+	
 	_fill_all_from_loadout()  # start full; remove if you want to start empty
 	current_index = posmod(current_index, capacity)
 	_emit_all()
@@ -213,3 +222,23 @@ func _get_round_ui_color(scene: PackedScene) -> Color:
 	
 func get_chamber_colors() -> Array[Color]:
 	return _colors_from(chambers)
+
+# ── LoadoutManager Integration ──────────────────────────────────────────────
+func _sync_with_loadout_manager() -> void:
+	if is_instance_valid(LoadoutManager):
+		loadout_scenes = LoadoutManager.get_loadout()
+
+func _on_loadout_changed(new_loadout: Array[PackedScene]) -> void:
+	loadout_scenes = new_loadout.duplicate()
+	# Optionally update chambers if you want immediate effect
+	# _fill_all_from_loadout()
+	# _emit_all()
+
+func apply_current_loadout() -> void:
+	"""Apply the current LoadoutManager loadout to the gun"""
+	if is_instance_valid(LoadoutManager):
+		loadout_scenes = LoadoutManager.get_loadout()
+		_fill_all_from_loadout()
+		_emit_all()
+	else:
+		print("Gun: Cannot apply loadout - LoadoutManager not available")

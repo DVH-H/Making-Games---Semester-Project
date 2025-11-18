@@ -3,6 +3,7 @@ extends CharacterBody2D
 class_name Bullet
 
 @export_subgroup("Settings")
+@export var display_name: String = "Normal Bullet"
 @export var knockback_force: float = 200
 @export var damage: float = 5
 @export var SPEED: int = 300
