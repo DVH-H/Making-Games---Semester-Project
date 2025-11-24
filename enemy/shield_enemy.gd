@@ -3,6 +3,8 @@ extends enemy
 @onready var shield: Node2D = $Shield
 var attack_direction: int = 0
 @export var attack_dash_speed_multiplier: float = 2
+@export var attack_duration: float = 1.5
+var attack_time: float = 0.0
 
 
 
@@ -40,20 +42,25 @@ func AGGRO_behaviour() -> float:
 				attack_direction = 1
 			else:
 				attack_direction = -1
+		if is_at_edge(direction) and is_on_floor():
+			movement_component.handle_jump(self)
 		return direction
 	return 0
 	
-func ATTACK_behaviour():
-	attack_timer.start()
-	attack_cd_ready = false
-	animation_node.play("attack")
-	movement_component.set_speed(speed * 2)
-	return attack_direction
-
-func _on_animated_sprite_2d_animation_finished() -> void:
-	super()
-	if animation_node.animation == "attack":
+func ATTACK_behaviour(delta) -> float:
+	if attack_time < attack_duration:
+		attack_time += delta
+		attack_timer.start()
+		attack_cd_ready = false
+		animation_node.play("attack")
+		movement_component.set_speed(speed * 2)
+		return attack_direction
+	else:
+		attack_time = 0.0
+		state = AGGRO
 		movement_component.set_speed(speed)
+		return 0
+
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	super(body)

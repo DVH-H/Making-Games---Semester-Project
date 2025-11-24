@@ -71,37 +71,10 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yblw3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yblw3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yblw3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yblw3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yblw3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yblw3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yblw3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yblw3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yblw3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yblw3")
 }],
-"loop": false,
+"loop": true,
 "name": &"attack",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -173,6 +146,7 @@ collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_jx0n0")
 speed = 1500
+stop_at_edge = false
 
 [node name="Hurtbox" type="CollisionShape2D" parent="."]
 position = Vector2(4, 0)
@@ -222,7 +196,7 @@ position = Vector2(1240, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_r6x2f")
 
-[node name="attack_timer" type="Timer" parent="."]
+[node name="attack_cd_timer" type="Timer" parent="."]
 wait_time = 3.0
 
 [node name="Shield" parent="." instance=ExtResource("7_f676e")]

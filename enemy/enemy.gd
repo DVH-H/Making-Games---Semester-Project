@@ -5,7 +5,7 @@ class_name enemy
 @onready var gravity_component: GravityComponent = $Gravity
 @onready var movement_component: MovementComponent = $MovementComponent
 @onready var chase_timer: Timer = $detection_area/chase_timer
-@onready var attack_timer: Timer = $attack_timer #cooldown 
+@onready var attack_timer: Timer = $attack_cd_timer #cooldown 
 @onready var animation_node: AnimatedSprite2D = $AnimatedSprite2D
 
 @export_subgroup("Movement")
@@ -66,19 +66,17 @@ func _ready() -> void:
 func do_state_behaviour(delta):
 	var direction = 0.0
 	if state == DYING:
-		return
+		pass
 	elif state == DAMAGED:
 		pass
 	elif state == ATTACK:
-		print("ATTACK")
-		direction = ATTACK_behaviour()
+		direction = ATTACK_behaviour(delta)
 	else:
 		if state == STANDBY:
 			direction = STANDBY_behaviour(delta)
 		if state == SEARCH:
 			direction = SEARCH_behaviour(delta)
 		if state == AGGRO:
-			print("AGGRO")
 			direction = AGGRO_behaviour()
 	return direction
 
@@ -126,6 +124,8 @@ func handle_animations(direction: float) -> void:
 		animation_node.play("idle")
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
+	if not player:
+		player = body
 	state = AGGRO
 	player_chase =  true 
 	attack_cd_ready = false
@@ -218,19 +218,16 @@ func check_collisions():
 		var collision = get_slide_collision(i).get_collider()
 		if collision:
 			if collision.name == "Player":
-				print(collision.name)
 				collision.take_damage(damage)
 
  
-func ATTACK_behaviour():
-	#if attack_cd_ready:
+func ATTACK_behaviour(_delta):
 	attack_timer.start()
 	attack_cd_ready = false
 	animation_node.play("attack")
 	return 0
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	print("Animation done " + animation_node.animation)
 	if animation_node.animation == "death":
 		queue_free()
 	if animation_node.animation == "take_damage":
