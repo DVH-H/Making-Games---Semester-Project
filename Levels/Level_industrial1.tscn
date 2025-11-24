@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://yf8beriq0pgu"]
+
+[ext_resource type="PackedScene" uid="uid://d2bjxyv4jkfuy" path="res://Levels/Tilemaps/Tilemap_Industrial1.tscn" id="1_1b1b1"]
+[ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="2_sahbs"]
+
+[node name="LevelIndustrial1" type="Node2D"]
+
+[node name="TilemapIndustrial1" parent="." instance=ExtResource("1_1b1b1")]
+
+[node name="Player" parent="." instance=ExtResource("2_sahbs")]
+position = Vector2(0, -764)
