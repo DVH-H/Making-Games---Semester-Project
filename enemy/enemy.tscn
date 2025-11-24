@@ -1,7 +1,7 @@
 [gd_scene load_steps=63 format=3 uid="uid://1g43dvmxf5hh"]
 
 [ext_resource type="Script" uid="uid://dg13oauy48vo7" path="res://enemy/enemy.gd" id="1_1wwld"]
-[ext_resource type="Texture2D" uid="uid://fts0rfiqs7k7" path="res://enemy/NightBorne.png" id="2_p200p"]
+[ext_resource type="Texture2D" uid="uid://fts0rfiqs7k7" path="res://enemy/sprites/NightBorne.png" id="2_p200p"]
 [ext_resource type="PackedScene" uid="uid://dtuwo2b8qi1nh" path="res://components/movement_component.tscn" id="4_p200p"]
 [ext_resource type="PackedScene" uid="uid://dytqh10wawuk0" path="res://components/gravity_component.tscn" id="6_1wwld"]
 
@@ -264,9 +264,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wjonb")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -420,21 +420,16 @@ radius = 2844.0
 height = 5688.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p200p"]
-radius = 104.99999
-height = 213.59999
+radius = 277.0
+height = 2120.0
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("gravity_component", "movement_component", "chase_timer", "attack_timer") groups=["Enemy"]]
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_1wwld")
-gravity_component = NodePath("Gravity")
-movement_component = NodePath("MovementComponent")
-chase_timer = NodePath("detection_area/chase_timer")
-attack_timer = NodePath("attack_timer")
-speed = 1200
-damage = 60.0
+speed = 2000
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hurtbox" type="CollisionShape2D" parent="."]
 position = Vector2(4, 0)
 shape = SubResource("CapsuleShape2D_pmsee")
 
@@ -442,17 +437,17 @@ shape = SubResource("CapsuleShape2D_pmsee")
 position = Vector2(0, -2)
 scale = Vector2(30, 30)
 sprite_frames = SubResource("SpriteFrames_scxef")
-animation = &"take_damage"
+animation = &"walk"
 autoplay = "idle"
 offset = Vector2(0, -6)
 
 [node name="RightRayCast2D" type="RayCast2D" parent="."]
 position = Vector2(17, 0)
-target_position = Vector2(0, 20)
+target_position = Vector2(392, 619)
 
 [node name="LeftRayCast2D" type="RayCast2D" parent="."]
 position = Vector2(-15, 0)
-target_position = Vector2(0, 21)
+target_position = Vector2(-358, 619)
 
 [node name="Gravity" parent="." instance=ExtResource("6_1wwld")]
 gravity = 6000.0
@@ -473,18 +468,18 @@ wait_time = 3.0
 ground_deacc = 256.0
 air_deacc = 48.0
 
-[node name="damage_area" type="Area2D" parent="."]
+[node name="attack_area" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_area"]
 position = Vector2(0, 1)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_p200p")
 
 [node name="attack_timer" type="Timer" parent="."]
-wait_time = 0.495
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
-[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
 [connection signal="timeout" from="detection_area/chase_timer" to="." method="_on_chase_tiimer_timeout"]
-[connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]
-[connection signal="timeout" from="attack_timer" to="." method="_on_death_timer_timeout"]
+[connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="attack_area" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]

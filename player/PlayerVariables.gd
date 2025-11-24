@@ -5,6 +5,7 @@ extends Node
 
 @export var max_health: int = 100
 @onready var current_health: int = max_health
+@export var invulnerability_time: float = 0.1
 
 @export_subgroup("Movement")
 
