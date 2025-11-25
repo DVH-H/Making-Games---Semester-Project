@@ -2,6 +2,7 @@ extends enemy
 
 @onready var shield: Node2D = $Shield
 var attack_direction: int = 0
+@export var attack_build_up_duration: float = 0.2
 @export var attack_dash_speed_multiplier: float = 2
 @export var attack_duration: float = 1.5
 var attack_time: float = 0.0
@@ -48,7 +49,11 @@ func AGGRO_behaviour() -> float:
 	return 0
 	
 func ATTACK_behaviour(delta) -> float:
-	if attack_time < attack_duration:
+	if attack_time < attack_build_up_duration:
+		attack_time += delta
+		animation_node.play("attack")
+		return 0
+	elif attack_time < attack_duration + attack_build_up_duration:
 		attack_time += delta
 		attack_timer.start()
 		attack_cd_ready = false

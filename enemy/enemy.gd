@@ -12,6 +12,7 @@ class_name enemy
 @export var speed = 60
 @export var stop_at_edge: bool = true
 @export var patrol_array: Array[Vector2]
+@export var jump_force = 3000
 var player_chase = false
 var attack_cd_ready = true
 var in_attack_range = false
@@ -54,7 +55,7 @@ var search_duration: float = 3.0
 
 func _ready() -> void:
 	movement_component.set_speed(speed)
-	movement_component.set_jump_velocity(3000)
+	movement_component.set_jump_velocity(jump_force)
 	chase_timer.timeout.connect(_on_chase_timer_timeout)
 	attack_timer.timeout.connect(_on_attack_timer_timeout)
 	detection_area.body_entered.connect(_on_detection_area_body_entered)
