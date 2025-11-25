@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+# Signals
+signal health_changed(new_health: int, max_health: int)
+
 @onready var gravity_component: GravityComponent = $Gravity
 @onready var input_controller: InputComponent = $InputController
 @onready var animation_controller: AnimationComponent = $AnimationController
@@ -41,6 +44,8 @@ func _ready() -> void:
 	movement_component.set_speed(speed)
 	movement_component.set_jump_velocity(jump_velocity)
 	CheckpointManager.spawn_player_at_checkpoint(self)
+	# Emit initial health for UI
+	health_changed.emit(current_health, max_health)
 
 func _physics_process(delta: float) -> void:
 	update_coyote_time_counter(delta)
@@ -146,10 +151,15 @@ func _reset_to_checkpoint():
 func take_damage(dmg: int):
 	current_health -= dmg
 	PlayerVariables.current_health = current_health
+	health_changed.emit(current_health, max_health)
 	if current_health <= 0:
 		# play death animation then
 		GameController.reload_from_checkpoint()
-		
+
+func heal(amount: int):
+	current_health = min(current_health + amount, max_health)
+	PlayerVariables.current_health = current_health
+	health_changed.emit(current_health, max_health)
 
 func _reset_full():
 	CheckpointManager.clear_checkpoint()
