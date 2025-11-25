@@ -86,3 +86,24 @@ func set_capacity(new_capacity: int) -> void:
 		current_loadout[i] = available_bullets[0]  # Default to normal bullet
 	
 	emit_signal("loadout_changed", current_loadout)
+
+func open_loadout_menu(tree: SceneTree, parent: Node = null) -> LoadoutMenu:
+	"""Get or create the loadout menu and open it"""
+	var loadout_menu = tree.get_first_node_in_group("LoadoutMenu") as LoadoutMenu
+	if not loadout_menu:
+		# Create the loadout menu if it doesn't exist
+		var loadout_menu_scene = preload("res://ui/LoadoutMenu.tscn")
+		loadout_menu = loadout_menu_scene.instantiate()
+		
+		# Add to parent if provided, otherwise add to root
+		if parent:
+			parent.add_child(loadout_menu)
+		else:
+			tree.root.add_child(loadout_menu)
+		
+		loadout_menu.add_to_group("LoadoutMenu")
+	
+	if not loadout_menu.visible:
+		loadout_menu.open_menu()
+	
+	return loadout_menu

@@ -3,6 +3,11 @@
 extends Control
 class_name LoadoutMenu
 
+@export_group("UI Sizing")
+@export var bullet_list_column_width: int = 500
+@export var chamber_button_size: Vector2 = Vector2(240, 180)
+@export var chamber_grid_spacing: Vector2 = Vector2(30, 30)
+
 var bullet_list: ItemList
 var apply_button: Button
 var cancel_button: Button
@@ -13,11 +18,9 @@ var chamber_buttons: Array[Button] = []
 var working_loadout: Array[PackedScene] = []
 var original_loadout: Array[PackedScene] = []
 var selected_chamber_index: int = -1
-var gun_reference: Gun = null
 
 signal loadout_applied(loadout: Array[PackedScene])
 signal menu_closed()
-signal bullet_selected(bullet_scene: PackedScene)
 
 func _get_node_references() -> void:
 	# Get UI nodes
@@ -47,7 +50,7 @@ func _setup_ui() -> void:
 	# Configure bullet list
 	if bullet_list:
 		bullet_list.set_max_columns(1)
-		bullet_list.fixed_column_width = 120
+		bullet_list.fixed_column_width = bullet_list_column_width
 
 func _setup_chamber_display() -> void:
 	if not chamber_container:
@@ -58,8 +61,8 @@ func _setup_chamber_display() -> void:
 	chamber_grid = GridContainer.new()
 	chamber_grid.name = "ChamberGrid"
 	chamber_grid.columns = 3  # 3x2 grid for 6 chambers
-	chamber_grid.add_theme_constant_override("h_separation", 2)
-	chamber_grid.add_theme_constant_override("v_separation", 2)
+	chamber_grid.add_theme_constant_override("h_separation", chamber_grid_spacing.x)
+	chamber_grid.add_theme_constant_override("v_separation", chamber_grid_spacing.y)
 	
 	chamber_container.add_child(chamber_grid)
 	
@@ -75,39 +78,33 @@ func _connect_signals() -> void:
 		bullet_list.item_selected.connect(_on_bullet_selected)
 
 func _populate_bullet_list() -> void:
-	print("LoadoutMenu: _populate_bullet_list called")
 	if not bullet_list:
-		print("LoadoutMenu: bullet_list is null!")
+		push_error("LoadoutMenu: bullet_list is null!")
 		return
 	
 	bullet_list.clear()
-	print("LoadoutMenu: bullet_list cleared")
 	
 	# Add "Empty" option
 	bullet_list.add_item("Empty Chamber")
 	bullet_list.set_item_metadata(0, null)
-	print("LoadoutMenu: Added Empty Chamber")
 	
 	# Add available bullets
 	if not LoadoutManager:
-		print("LoadoutMenu: LoadoutManager is null!")
+		push_error("LoadoutMenu: LoadoutManager is null!")
 		return
 		
 	var available_bullets = LoadoutManager.get_available_bullets()
-	print("LoadoutMenu: Found ", available_bullets.size(), " available bullets")
-	for i in range(available_bullets.size()):
-		var bullet_scene = available_bullets[i]
+	for bullet_scene in available_bullets:
 		var bullet = LoadoutManager.get_bullet_info(bullet_scene)
 		var item_text = bullet.display_name if bullet else "Unknown Bullet"
 		
-		print("LoadoutMenu: Adding bullet ", i, ": ", item_text)
 		var item_index = bullet_list.add_item(item_text)
 		bullet_list.set_item_metadata(item_index, bullet_scene)
 		
 		# Set color if available
 		if bullet:
 			bullet_list.set_item_custom_bg_color(item_index, bullet.ui_color * Color(1, 1, 1, 0.3))
-		
+			
 			# Set tooltip with detailed info
 			var tooltip = "%s\nDamage: %.0f\nSpeed: %d\nLoad Time: %.1fs" % [
 				bullet.display_name,
@@ -116,8 +113,6 @@ func _populate_bullet_list() -> void:
 				bullet.load_time
 			]
 			bullet_list.set_item_tooltip(item_index, tooltip)
-	
-	print("LoadoutMenu: Finished populating bullet list. Total items: ", bullet_list.get_item_count())
 
 func open_menu() -> void:
 	if not LoadoutManager:
@@ -183,21 +178,21 @@ func _on_bullet_selected(index: int) -> void:
 	# Insert bullet into selected chamber
 	if selected_chamber_index < working_loadout.size():
 		working_loadout[selected_chamber_index] = bullet_scene
-		print("Inserted bullet into chamber ", selected_chamber_index + 1)
 		
 		# Update display
 		_update_chamber_display()
 		
-		# Clear selection
+		# Clear chamber selection
 		selected_chamber_index = -1
-	
-	emit_signal("bullet_selected", bullet_scene)
+		
+		# Deselect bullet list item
+		bullet_list.deselect_all()
 
 func _input(event: InputEvent) -> void:
 	if not visible:
 		return
 	
-	if event.is_action_pressed("ui_cancel") or event.is_action_pressed("loadout_menu"):
+	if event.is_action_pressed("ui_cancel"):
 		_on_cancel_pressed()
 		get_viewport().set_input_as_handled()
 
@@ -256,7 +251,7 @@ func _create_chamber_buttons() -> void:
 		var button = Button.new()
 		button.name = "Chamber" + str(i)
 		button.text = str(i + 1) + "\nEmpty"
-		button.custom_minimum_size = Vector2(35, 25)
+		button.custom_minimum_size = chamber_button_size
 		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		button.mouse_filter = Control.MOUSE_FILTER_PASS
 		
@@ -266,12 +261,9 @@ func _create_chamber_buttons() -> void:
 		
 		chamber_buttons.append(button)
 		chamber_grid.add_child(button)
-	
-	print("LoadoutMenu: Created ", capacity, " chamber buttons")
 
 func _on_chamber_selected(chamber_index: int) -> void:
 	selected_chamber_index = chamber_index
-	print("LoadoutMenu: Selected chamber ", chamber_index + 1)
 	
 	# Update visual feedback
 	_update_chamber_display()
@@ -295,7 +287,6 @@ func _on_chamber_input(event: InputEvent, chamber_index: int) -> void:
 			# Right-click to clear chamber
 			if chamber_index < working_loadout.size():
 				working_loadout[chamber_index] = null
-				print("LoadoutMenu: Cleared chamber ", chamber_index + 1)
 				_update_chamber_display()
 				
 				# Clear instruction if this was the selected chamber
