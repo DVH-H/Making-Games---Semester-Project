@@ -477,9 +477,9 @@ position = Vector2(0, 1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_p200p")
 
-[node name="attack_timer" type="Timer" parent="."]
+[node name="attack_cd_timer" type="Timer" parent="."]
 
 [connection signal="timeout" from="detection_area/chase_timer" to="." method="_on_chase_tiimer_timeout"]
 [connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="attack_area" to="." method="_on_attack_area_body_exited"]
-[connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="attack_cd_timer" to="." method="_on_attack_timer_timeout"]
