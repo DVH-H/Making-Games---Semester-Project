@@ -22,6 +22,12 @@ signal fire_cooldown_started(duration: float)
 @export var normal_round: PackedScene = preload("res://Bullets/prefabs/bullet.tscn")
 @export var knockback_round: PackedScene = preload("res://Bullets/prefabs/knockback_bullet.tscn")
 
+@onready var sound_component: SoundComponent = $SoundComponent
+@export var reloading_sound: AudioStreamPlayer
+@export var shoot_sound: AudioStreamPlayer
+@export var spin_sound: AudioStreamPlayer
+var spin_sound_flag: bool = true
+
 # Single source of truth: what’s actually loaded now (null = empty)
 var chambers: Array[PackedScene] = []
 
@@ -63,6 +69,9 @@ func shoot(direction: Vector2) -> float:
 	var scene := chambers[current_index]
 	var bullet := scene.instantiate()
 	get_tree().root.add_child(bullet)
+	
+	sound_component.play_sound_noCheck(shoot_sound)
+	
 	if "global_position" in bullet:
 		bullet.global_position = muzzle.global_position
 	if bullet.has_method("initialize"):
@@ -79,6 +88,7 @@ func shoot(direction: Vector2) -> float:
 	_fire_timer.start(cooldown)
 	emit_signal("fire_cooldown_started", cooldown)
 	
+	spin_sound_flag = false
 	_advance_cylinder()
 	_emit_all()
 	return force
@@ -111,6 +121,7 @@ func reload_all_to_loadout() -> void:
 		var delay := _get_round_load_time(scene)
 		emit_signal("reload_started", idx, delay)
 		await get_tree().create_timer(delay).timeout
+		sound_component.play_sound(reloading_sound)
 		if chambers[idx] == null:
 			chambers[idx] = scene
 			_emit_all()
@@ -141,10 +152,15 @@ func get_ammo_count() -> int:
 
 func _advance_cylinder() -> void:
 	current_index = posmod(current_index + 1, capacity)
+	if spin_sound_flag:
+		sound_component.play_sound_noCheck(spin_sound)
+	else:
+		spin_sound_flag = true
 	emit_signal("chamber_changed", current_index)
 	
 func _de_advance_cylinder() -> void:
 	current_index = posmod(current_index - 1, capacity)
+	sound_component.play_sound_noCheck(spin_sound)
 	emit_signal("chamber_changed", current_index)
 
 func _resize_arrays() -> void:

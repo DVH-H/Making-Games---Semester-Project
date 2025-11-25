@@ -1,11 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bn5px6qyvj2ja"]
+[gd_scene load_steps=8 format=3 uid="uid://bn5px6qyvj2ja"]
 
 [ext_resource type="Script" uid="uid://b5ysq20cxmhge" path="res://player/gun.gd" id="1_ybrg7"]
 [ext_resource type="Texture2D" uid="uid://c3t68dnfner8e" path="res://player/sprites/005_Sprite_Player.png" id="2_yknm8"]
 [ext_resource type="Texture2D" uid="uid://bqjwrbgnbf5tn" path="res://icon.svg" id="3_b605q"]
+[ext_resource type="Script" uid="uid://bx1w6d3tl7sjh" path="res://components/sound_component.gd" id="4_48vku"]
+[ext_resource type="AudioStream" uid="uid://p5scu0jnvf8a" path="res://assets/sounds/reloading_sound.wav" id="5_83xil"]
+[ext_resource type="AudioStream" uid="uid://3weh1a6pwdk4" path="res://assets/sounds/spin_sound.wav" id="6_83xil"]
+[ext_resource type="AudioStream" uid="uid://cpuhvd8ytnoaj" path="res://assets/sounds/gun_sound.mp3" id="6_twxxf"]
 
-[node name="Gun" type="Node2D"]
+[node name="Gun" type="Node2D" node_paths=PackedStringArray("reloading_sound", "shoot_sound", "spin_sound")]
 script = ExtResource("1_ybrg7")
+reloading_sound = NodePath("ReloadingSound")
+shoot_sound = NodePath("ShootSound")
+spin_sound = NodePath("SpinSound")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(129, 28)
@@ -23,3 +30,17 @@ modulate = Color(0, 0, 0, 0.25490198)
 position = Vector2(1617, 4.9999847)
 scale = Vector2(20.675327, 0.10368535)
 texture = ExtResource("3_b605q")
+
+[node name="SoundComponent" type="Node" parent="."]
+script = ExtResource("4_48vku")
+metadata/_custom_type_script = "uid://bx1w6d3tl7sjh"
+
+[node name="ReloadingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_83xil")
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_twxxf")
+volume_db = -5.0
+
+[node name="SpinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_83xil")

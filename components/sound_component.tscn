@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo3uylfjwav7l"]
+
+[ext_resource type="Script" uid="uid://bx1w6d3tl7sjh" path="res://components/sound_component.gd" id="1_uxp5w"]
+
+[node name="SoundComponent" type="Node"]
+script = ExtResource("1_uxp5w")
+metadata/_custom_type_script = "uid://bx1w6d3tl7sjh"

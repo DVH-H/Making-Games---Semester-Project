@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var input_controller: InputComponent = $InputController
 @onready var animation_controller: AnimationComponent = $AnimationController
 @onready var movement_component: MovementComponent = $MovementComponent
+@onready var sound_component: SoundComponent = $SoundComponent
 @onready var gun = $Gun
 
 @onready var max_health: int = PlayerVariables.max_health
@@ -19,6 +20,8 @@ var reset_hold_time = 1
 var _aim_direction: Vector2 = Vector2(-0.01,1)
 
 var _interactable: Interactable = null
+
+@export var footsteps_sound: AudioStreamPlayer
 
 # state machine
 enum {
@@ -68,6 +71,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		if velocity.x != 0:
 			state = RUNNING
+			sound_component.play_sound(footsteps_sound)
 			if velocity.x > 0:
 				animation_controller.play_animation("run_right")
 			else:
