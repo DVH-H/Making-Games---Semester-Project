@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyudtqkkhm2ww"]
+
+[ext_resource type="Script" uid="uid://bsmlq36b5tk0h" path="res://player/PlayerVariables.gd" id="1_ors7t"]
+
+[node name="PlayerVariables" type="Node"]
+script = ExtResource("1_ors7t")
+speed = 2000
+jump_velocity = 3000
+velocity_cap = 5000
+coyote_time = 2.0

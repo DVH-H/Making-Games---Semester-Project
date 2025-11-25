@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://b17bk3uhod7ph"]
+
+[ext_resource type="Script" uid="uid://cjyvf6tkmf0bf" path="res://Bullets/scripts/explosive_bullet.gd" id="1_0k6ku"]
+[ext_resource type="PackedScene" uid="uid://cbboxn7ew4lqk" path="res://Bullets/explosion.tscn" id="2_plxq6"]
+[ext_resource type="Texture2D" uid="uid://bxejqij00ky5p" path="res://assets/sprites/gun_tileset.png" id="2_ry8be"]
+[ext_resource type="PackedScene" uid="uid://dtuwo2b8qi1nh" path="res://components/movement_component.tscn" id="3_plxq6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wtmpj"]
+radius = 1.0
+height = 12.0
+
+[node name="ExplosiveBullet" type="CharacterBody2D" groups=["Bullet"]]
+scale = Vector2(30, 30)
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_0k6ku")
+explosion = ExtResource("2_plxq6")
+ui_color = Color(1, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5707964
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_ry8be")
+region_enabled = true
+region_rect = Rect2(671.9092, 163.09094, 16.363647, 60.909103)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-3, -1, 6, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_wtmpj")
+
+[node name="MovementComponent" parent="." instance=ExtResource("3_plxq6")]

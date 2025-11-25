@@ -257,5 +257,8 @@ shape = SubResource("WorldBoundaryShape2D_ryrav")
 
 [node name="Enemy" parent="." instance=ExtResource("6_ryrav")]
 position = Vector2(185, 34)
+speed = null
+stop_at_edge = null
+health = null
 patrol_point1 = Vector2(207, 82)
 patrol_point2 = Vector2(276, 82)
