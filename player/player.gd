@@ -16,6 +16,9 @@ var reset_hold_time = 1
 @onready var speed: int = PlayerVariables.speed
 @onready var jump_velocity: int = PlayerVariables.jump_velocity
 @onready var coyote_time: float = PlayerVariables.coyote_time
+@onready var invulnerability_time: float = PlayerVariables.invulnerability_time
+var invulnerability_current_time: float = 0.0
+var is_invulnerable: bool = false
 var _aim_direction: Vector2 = Vector2(-0.01,1)
 
 var _interactable: Interactable = null
@@ -38,6 +41,12 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	update_coyote_time_counter(delta)
+	if is_invulnerable:
+		invulnerability_current_time -= delta
+		if invulnerability_current_time < 0.0:
+			is_invulnerable = false
+		
+		
 	gravity_component.handle_gravity(self, delta)
 	if input_controller.get_jump_input() and (is_on_floor() or coyote_time_counter > 0.0):
 		movement_component.handle_jump(self)
@@ -57,7 +66,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot"):
 		var force = gun.shoot(_aim_direction)
 		movement_component.handle_knockback(self, _aim_direction * -1, force)
-	movement_component.horizontal_movement_with_acc(self, input_controller.get_horizontal_input())
+	movement_component.h_movement_with_acc(self, input_controller.get_horizontal_input())
 	if (Input.is_action_just_pressed("reload") and (is_on_floor() or coyote_time_counter > 0.0)):
 		gun.reload_all_to_loadout()
 	if Input.is_action_just_pressed("rotate_cylinder_forward"):
@@ -100,16 +109,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		if _reset_timer > 0.0 and not _reset_held:
 			_reset_timer = 0.0
-	if velocity.x > PlayerVariables.velocity_cap or velocity.x < PlayerVariables.velocity_cap * -1:
-		if velocity.x > 0:
-			velocity.x = PlayerVariables.velocity_cap
-		else:
-			velocity.x = PlayerVariables.velocity_cap * -1
-	if velocity.y > PlayerVariables.velocity_cap or velocity.y < PlayerVariables.velocity_cap * -1:
-		if velocity.y > 0:
-			velocity.y = PlayerVariables.velocity_cap
-		else:
-			velocity.y = PlayerVariables.velocity_cap * -1
+	movement_component.velocity_cap(self)
 	move_and_slide()
 	
 func update_coyote_time_counter(delta: float) -> void:
@@ -130,11 +130,15 @@ func _reset_to_checkpoint():
 	else:
 		GameController.reload_scene()
 func take_damage(dmg: int):
-	current_health -= dmg
-	PlayerVariables.current_health = current_health
-	if current_health <= 0:
-		# play death animation then
-		GameController.reload_from_checkpoint()
+	if not is_invulnerable:
+		invulnerability_current_time = invulnerability_time
+		is_invulnerable = true
+		current_health -= dmg
+		print(current_health)
+		PlayerVariables.current_health = current_health
+		if current_health <= 0:
+			# play death animation then
+			GameController.reload_from_checkpoint()
 		
 
 func _reset_full():
