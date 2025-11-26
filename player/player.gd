@@ -191,7 +191,7 @@ func _open_loadout_menu():
 		var canvas_layer = get_node_or_null("CanvasLayer")
 		var parent = canvas_layer if canvas_layer else null
 		loadout_menu = LoadoutManager.open_loadout_menu(get_tree(), parent)
-	
+		return
 	# Toggle if already exists
 	if loadout_menu.visible:
 		loadout_menu.close_menu()
