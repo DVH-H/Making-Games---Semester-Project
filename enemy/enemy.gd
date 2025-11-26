@@ -129,7 +129,7 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 		player = body
 	state = AGGRO
 	player_chase =  true 
-	attack_cd_ready = false
+	#attack_cd_ready = false
 	attack_timer.start()
 	chase_timer.stop()
 
@@ -168,15 +168,12 @@ func STANDBY_behaviour(delta: float) -> float:
 	
 
 func AGGRO_behaviour() -> float:
-	#if in_attack_range and attack_cd_ready:
-	#	state = ATTACK
-	#	return 0
 	if player and player_chase:
-		
 		var direction = 1 if player.position.x > position.x else -1
 		attack_area_direction(direction)
-		
 		if is_at_edge(direction) and is_on_floor():
+			if stop_at_edge:
+				return 0
 			movement_component.handle_jump(self)
 		return direction
 		

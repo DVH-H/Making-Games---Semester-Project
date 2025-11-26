@@ -7,7 +7,7 @@ var attack_direction: int = 0
 @export var attack_duration: float = 1.5
 var attack_time: float = 0.0
 
-
+ 
 
 func aim_shield() -> void:
 	if state == AGGRO:
@@ -23,8 +23,6 @@ func AGGRO_behaviour() -> float:
 	if player and player_chase:
 		aim_shield()
 		var direction = 0
-		if is_at_edge(direction) and is_on_floor():
-			movement_component.handle_jump(self)
 		if player.position.x > position.x:
 			attack_area_direction(1)
 			if player.position.x - 2000 > position.x:
@@ -44,6 +42,8 @@ func AGGRO_behaviour() -> float:
 			else:
 				attack_direction = -1
 		if is_at_edge(direction) and is_on_floor():
+			if stop_at_edge:
+				return 0
 			movement_component.handle_jump(self)
 		return direction
 	return 0

@@ -163,11 +163,11 @@ offset = Vector2(0, -6)
 
 [node name="RightRayCast2D" type="RayCast2D" parent="."]
 position = Vector2(17, 0)
-target_position = Vector2(392, 619)
+target_position = Vector2(499, 859)
 
 [node name="LeftRayCast2D" type="RayCast2D" parent="."]
 position = Vector2(-15, 0)
-target_position = Vector2(-358, 619)
+target_position = Vector2(-458, 840)
 
 [node name="Gravity" parent="." instance=ExtResource("3_caiko")]
 gravity = 6000.0

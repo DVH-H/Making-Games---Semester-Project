@@ -36,6 +36,7 @@ window/stretch/mode="viewport"
 
 Enemy=""
 Bullet=""
+Breakable=""
 
 [input]
 

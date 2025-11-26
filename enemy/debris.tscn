@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://k04y7m71pcmi"]
+
+[ext_resource type="Texture2D" uid="uid://bqjwrbgnbf5tn" path="res://icon.svg" id="1_0xoxu"]
+[ext_resource type="Script" uid="uid://b121hphverpe6" path="res://enemy/debris.gd" id="1_5jdo2"]
+[ext_resource type="PackedScene" uid="uid://dtuwo2b8qi1nh" path="res://components/movement_component.tscn" id="2_2fxi0"]
+[ext_resource type="PackedScene" uid="uid://dytqh10wawuk0" path="res://components/gravity_component.tscn" id="4_nx7wp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2fxi0"]
+radius = 128.0
+
+[node name="Debris" type="CharacterBody2D" groups=["Breakable"]]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_5jdo2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_0xoxu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2fxi0")
+
+[node name="MovementComponent" parent="." instance=ExtResource("2_2fxi0")]
+
+[node name="Gravity" parent="." instance=ExtResource("4_nx7wp")]
