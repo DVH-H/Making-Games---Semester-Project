@@ -1,0 +1,79 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5v8r7xd2n1yl"]
+
+[ext_resource type="Script" path="res://ui/LoadoutMenu.gd" id="1_x8v4r"]
+
+[node name="LoadoutMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x8v4r")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1946.0
+offset_top = -971.9999
+offset_right = -746.0
+offset_bottom = -271.99988
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Loadout Menu"
+horizontal_alignment = 1
+
+[node name="ContentContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BulletList" type="ItemList" parent="VBoxContainer/ContentContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/ContentContainer"]
+layout_mode = 2
+
+[node name="ChamberContainer" type="VBoxContainer" parent="VBoxContainer/ContentContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="ChamberLabel" type="Label" parent="VBoxContainer/ContentContainer/ChamberContainer"]
+layout_mode = 2
+text = "Chamber States"
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(400, 120)
+layout_mode = 2
+text = "Cancel"
+
+[node name="ApplyButton" type="Button" parent="VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(400, 120)
+layout_mode = 2
+text = "Apply"

@@ -1,9 +1,13 @@
 extends CharacterBody2D
 
+# Signals
+signal health_changed(new_health: int, max_health: int)
+
 @onready var gravity_component: GravityComponent = $Gravity
 @onready var input_controller: InputComponent = $InputController
 @onready var animation_controller: AnimationComponent = $AnimationController
 @onready var movement_component: MovementComponent = $MovementComponent
+@onready var sound_component: SoundComponent = $SoundComponent
 @onready var gun = $Gun
 
 @onready var max_health: int = PlayerVariables.max_health
@@ -23,6 +27,8 @@ var _aim_direction: Vector2 = Vector2(-0.01,1)
 
 var _interactable: Interactable = null
 
+@export var footsteps_sound: AudioStreamPlayer
+
 # state machine
 enum {
 	IDLE,
@@ -35,9 +41,14 @@ enum {
 var coyote_time_counter = 0.0
 
 func _ready() -> void:
+	add_to_group("Player")
+	# Clean up any orphaned loadout menus from previous scene instances
+	_cleanup_orphaned_loadout_menus()
 	movement_component.set_speed(speed)
 	movement_component.set_jump_velocity(jump_velocity)
 	CheckpointManager.spawn_player_at_checkpoint(self)
+	# Emit initial health for UI
+	health_changed.emit(current_health, max_health)
 
 func _physics_process(delta: float) -> void:
 	update_coyote_time_counter(delta)
@@ -63,7 +74,7 @@ func _physics_process(delta: float) -> void:
 	if aim_dir != Vector2.ZERO:
 		_aim_direction = aim_dir
 	gun.aim(_aim_direction)
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") :
 		var force = gun.shoot(_aim_direction)
 		movement_component.handle_knockback(self, _aim_direction * -1, force)
 	movement_component.h_movement_with_acc(self, input_controller.get_horizontal_input())
@@ -73,10 +84,18 @@ func _physics_process(delta: float) -> void:
 		gun._advance_cylinder()
 	if Input.is_action_just_pressed("rotate_cylinder_backward"):
 		gun._de_advance_cylinder()
+	if Input.is_action_just_pressed("loadout_menu") and not _is_loadout_menu_open():
+		_open_loadout_menu()
+	elif Input.is_action_just_pressed("loadout_menu") and _is_loadout_menu_open():
+		# Close the menu if it's already open
+		var loadout_menu = get_tree().get_first_node_in_group("LoadoutMenu")
+		if loadout_menu:
+			loadout_menu.close_menu()
 	# State machine. Also setting animations
 	if is_on_floor():
 		if velocity.x != 0:
 			state = RUNNING
+			sound_component.play_sound(footsteps_sound)
 			if velocity.x > 0:
 				animation_controller.play_animation("run_right")
 			else:
@@ -134,13 +153,51 @@ func take_damage(dmg: int):
 		invulnerability_current_time = invulnerability_time
 		is_invulnerable = true
 		current_health -= dmg
-		print(current_health)
+		health_changed.emit(current_health, max_health)
 		PlayerVariables.current_health = current_health
 		if current_health <= 0:
 			# play death animation then
 			GameController.reload_from_checkpoint()
-		
+
+func heal(amount: int):
+	current_health = min(current_health + amount, max_health)
+	PlayerVariables.current_health = current_health
+	health_changed.emit(current_health, max_health)
 
 func _reset_full():
 	CheckpointManager.clear_checkpoint()
 	GameController.reload_scene()
+
+func _cleanup_orphaned_loadout_menus():
+	# Remove any loadout menus that aren't children of the current player's CanvasLayer
+	var canvas_layer = get_node_or_null("CanvasLayer")
+	var all_menus = get_tree().get_nodes_in_group("LoadoutMenu")
+	for menu in all_menus:
+		if canvas_layer and menu.get_parent() != canvas_layer:
+			# This menu is orphaned (from a previous scene or checkpoint)
+			menu.queue_free()
+		elif not canvas_layer and menu.get_parent() != get_tree().root:
+			# No canvas layer exists but menu is in wrong place
+			menu.queue_free()
+
+func _open_loadout_menu():
+	if not LoadoutManager:
+		return
+	
+	# Get or create the loadout menu
+	var loadout_menu = get_tree().get_first_node_in_group("LoadoutMenu") as LoadoutMenu
+	if not loadout_menu or not is_instance_valid(loadout_menu):
+		# Try to add to CanvasLayer so it follows the camera
+		var canvas_layer = get_node_or_null("CanvasLayer")
+		var parent = canvas_layer if canvas_layer else null
+		loadout_menu = LoadoutManager.open_loadout_menu(get_tree(), parent)
+	
+	# Toggle if already exists
+	if loadout_menu.visible:
+		loadout_menu.close_menu()
+	else:
+		loadout_menu.open_menu()
+
+func _is_loadout_menu_open() -> bool:
+	var loadout_menu = get_tree().get_first_node_in_group("LoadoutMenu")
+	return loadout_menu != null and loadout_menu.visible
