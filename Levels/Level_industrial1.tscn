@@ -1,32 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://yf8beriq0pgu"]
+[gd_scene load_steps=5 format=3 uid="uid://yf8beriq0pgu"]
 
 [ext_resource type="PackedScene" uid="uid://d2bjxyv4jkfuy" path="res://Levels/Tilemaps/Tilemap_Industrial1.tscn" id="1_1b1b1"]
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="2_sahbs"]
 [ext_resource type="PackedScene" uid="uid://1g43dvmxf5hh" path="res://enemy/enemy.tscn" id="3_sahbs"]
+[ext_resource type="PackedScene" uid="uid://dgoi0evox7so3" path="res://enemy/shield_enemy.tscn" id="4_umvup"]
 
 [node name="LevelIndustrial1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("2_sahbs")]
-position = Vector2(0, -764)
+position = Vector2(-1574, -1970)
 
 [node name="TilemapIndustrial1" parent="." instance=ExtResource("1_1b1b1")]
+z_index = -1
 
 [node name="Enemy" parent="." instance=ExtResource("3_sahbs")]
 position = Vector2(8613, -17339)
-patrol_point1 = Vector2(7630, -17352)
-patrol_point2 = Vector2(9741, -17326)
 
 [node name="Enemy2" parent="." instance=ExtResource("3_sahbs")]
-position = Vector2(-9104, -15699)
-patrol_point1 = Vector2(-5241, -15608)
-patrol_point2 = Vector2(-11444, -15624)
+position = Vector2(-9082, -15591)
 
 [node name="Enemy3" parent="." instance=ExtResource("3_sahbs")]
 position = Vector2(-33065, -17261)
-patrol_point1 = Vector2(-31407, -17145)
-patrol_point2 = Vector2(-35286, -17232)
 
 [node name="Enemy4" parent="." instance=ExtResource("3_sahbs")]
-position = Vector2(-33227, -27475)
-patrol_point1 = Vector2(-31496, -27537)
-patrol_point2 = Vector2(-34927, -27537)
+position = Vector2(-35001, -27412)
+patrol_array = Array[Vector2]([Vector2(-31095, -27475), Vector2(-35001, -27412)])
+
+[node name="ShieldEnemy" parent="." instance=ExtResource("4_umvup")]
+position = Vector2(-67521, -8305)
+
+[node name="Enemy5" parent="." instance=ExtResource("3_sahbs")]
+position = Vector2(-88450, -28139)
