@@ -125,6 +125,8 @@ func handle_animations(direction: float) -> void:
 		animation_node.play("idle")
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
+	if state == DYING:
+		return
 	if not player:
 		player = body
 	state = AGGRO
@@ -141,6 +143,8 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 
 	
 func take_damage(dmg: int) -> void:
+	if state == DYING:
+		return
 	health = health - dmg
 	state = DAMAGED
 	animation_node.play("take_damage")
@@ -155,10 +159,14 @@ func die():
 	player_chase = false
 	
 func _on_chase_timer_timeout() -> void:
+	if state == DYING:
+		return
 	player_chase = false
 	state = SEARCH
 	
 func _on_attack_timer_timeout() -> void:
+	if state == DYING:
+		return
 	attack_cd_ready = true
 
 func STANDBY_behaviour(delta: float) -> float:
@@ -203,6 +211,8 @@ func patrol():
 	return direction
 	
 func stand_guard(delta: float) -> float:
+	if state == DYING:
+		return 0
 	last_flip_time += delta
 	
 	if last_flip_time >= 1.0:
@@ -212,6 +222,8 @@ func stand_guard(delta: float) -> float:
 	return 0 
 
 func check_collisions():
+	if state == DYING:
+		return
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i).get_collider()
 		if collision:
@@ -219,7 +231,7 @@ func check_collisions():
 				collision.take_damage(damage)
 
  
-func ATTACK_behaviour(_delta):
+func ATTACK_behaviour(_delta) -> float:
 	attack_timer.start()
 	attack_cd_ready = false
 	animation_node.play("attack")
