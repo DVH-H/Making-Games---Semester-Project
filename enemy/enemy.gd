@@ -201,7 +201,7 @@ func SEARCH_behaviour(delta: float) -> float:
 	
 func patrol():
 	var current_patrol_target = patrol_array[current_patrol_index]
-	var distance_to_target = global_position.distance_to(current_patrol_target)
+	var distance_to_target = abs(global_position.x - current_patrol_target.x) #.distance_to(current_patrol_target)
 	if distance_to_target < 50.0:  
 		current_patrol_index += 1
 		current_patrol_index = wrap(current_patrol_index, 0, len(patrol_array))

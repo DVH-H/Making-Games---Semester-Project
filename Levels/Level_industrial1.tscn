@@ -84,9 +84,9 @@ rotation = 0.2443461
 position = Vector2(-28335, -16112)
 
 [node name="Enemy2" parent="." instance=ExtResource("3_sahbs")]
-position = Vector2(-35153, -17226)
+position = Vector2(-31618, -17175)
 stop_at_edge = false
-patrol_array = Array[Vector2]([Vector2(-35362, -17187), Vector2(-31390, -17226)])
+patrol_array = Array[Vector2]([Vector2(-35000, -17175), Vector2(-31500, -17175)])
 
 [node name="Enemy3" parent="." instance=ExtResource("3_sahbs")]
 position = Vector2(-60945, -7888)
