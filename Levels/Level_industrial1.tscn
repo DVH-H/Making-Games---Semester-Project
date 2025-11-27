@@ -1,23 +1,24 @@
-[gd_scene load_steps=14 format=3 uid="uid://yf8beriq0pgu"]
+[gd_scene load_steps=15 format=3 uid="uid://yf8beriq0pgu"]
 
-[ext_resource type="PackedScene" uid="uid://d2bjxyv4jkfuy" path="res://Levels/Tilemaps/Tilemap_Industrial1.tscn" id="1_1b1b1"]
+[ext_resource type="PackedScene" uid="uid://d2bjxyv4jkfuy" path="res://levels/Tilemaps/Tilemap_Industrial1.tscn" id="1_1b1b1"]
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="2_sahbs"]
 [ext_resource type="PackedScene" uid="uid://1g43dvmxf5hh" path="res://enemy/enemy.tscn" id="3_sahbs"]
 [ext_resource type="PackedScene" uid="uid://dgoi0evox7so3" path="res://enemy/shield_enemy.tscn" id="4_umvup"]
-[ext_resource type="PackedScene" uid="uid://cht6xoj54fvc5" path="res://Levels/Prefabs/SignLeft.tscn" id="5_03vgu"]
-[ext_resource type="PackedScene" uid="uid://ccvirxqwljcfj" path="res://Levels/Prefabs/DevilSign.tscn" id="6_f7mfh"]
-[ext_resource type="PackedScene" uid="uid://7yqd2masewrp" path="res://Levels/Prefabs/CheckpointSprite.tscn" id="7_r3ut4"]
-[ext_resource type="PackedScene" uid="uid://dnbdq5rdocitq" path="res://Levels/Prefabs/SignUp.tscn" id="8_r3ut4"]
-[ext_resource type="PackedScene" uid="uid://co1iy5xnrtxwg" path="res://Levels/Prefabs/SignWarning.tscn" id="9_empux"]
+[ext_resource type="PackedScene" uid="uid://cht6xoj54fvc5" path="res://levels/Prefabs/SignLeft.tscn" id="5_03vgu"]
+[ext_resource type="PackedScene" uid="uid://ccvirxqwljcfj" path="res://levels/Prefabs/DevilSign.tscn" id="6_f7mfh"]
+[ext_resource type="PackedScene" uid="uid://7yqd2masewrp" path="res://levels/Prefabs/CheckpointSprite.tscn" id="7_r3ut4"]
+[ext_resource type="PackedScene" uid="uid://dnbdq5rdocitq" path="res://levels/Prefabs/SignUp.tscn" id="8_r3ut4"]
+[ext_resource type="PackedScene" uid="uid://co1iy5xnrtxwg" path="res://levels/Prefabs/SignWarning.tscn" id="9_empux"]
 [ext_resource type="PackedScene" uid="uid://cvnfqpm4d7gxa" path="res://enemy/throw_enemy.tscn" id="10_xgbf6"]
-[ext_resource type="PackedScene" uid="uid://byyrydbatwhxw" path="res://Levels/Prefabs/TrashCan.tscn" id="11_xgbf6"]
-[ext_resource type="PackedScene" uid="uid://c0xqdei221r46" path="res://Levels/Prefabs/Barrel.tscn" id="12_orvb1"]
-[ext_resource type="PackedScene" uid="uid://bxolfqry5am5b" path="res://Levels/Prefabs/SignDown.tscn" id="13_bgc5n"]
+[ext_resource type="PackedScene" uid="uid://byyrydbatwhxw" path="res://levels/Prefabs/TrashCan.tscn" id="11_xgbf6"]
+[ext_resource type="PackedScene" uid="uid://c0xqdei221r46" path="res://levels/Prefabs/Barrel.tscn" id="12_orvb1"]
+[ext_resource type="PackedScene" uid="uid://bxolfqry5am5b" path="res://levels/Prefabs/SignDown.tscn" id="13_bgc5n"]
+[ext_resource type="PackedScene" uid="uid://3ei6sbrmm6t4" path="res://interactable/Checkpoint.tscn" id="14_4lf3c"]
 
 [node name="LevelIndustrial1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("2_sahbs")]
-position = Vector2(-2643, -15030)
+position = Vector2(-1055, -1394)
 
 [node name="TilemapIndustrial1" parent="." instance=ExtResource("1_1b1b1")]
 z_index = -1
@@ -33,11 +34,11 @@ position = Vector2(-67700, -7924)
 position = Vector2(-15139, -16579)
 
 [node name="DevilSign" parent="." instance=ExtResource("6_f7mfh")]
-position = Vector2(2295.9998, -8971)
-rotation = -0.61086524
+position = Vector2(3702.9998, -9394)
+rotation = -0.09250245
 
 [node name="CheckpointSprite" parent="." instance=ExtResource("7_r3ut4")]
-position = Vector2(3356, -8970)
+position = Vector2(3389, -8981)
 
 [node name="SignLeft2" parent="." instance=ExtResource("5_03vgu")]
 position = Vector2(-1834, -110)
@@ -266,3 +267,15 @@ position = Vector2(-166772, -16701)
 z_index = -3
 position = Vector2(-169459.02, -17409)
 scale = Vector2(5, 5)
+
+[node name="Checkpoint" parent="." instance=ExtResource("14_4lf3c")]
+position = Vector2(3582, -8916)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("14_4lf3c")]
+position = Vector2(-18412, -16869)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("14_4lf3c")]
+position = Vector2(-46196, -33551)
+
+[node name="Checkpoint4" parent="." instance=ExtResource("14_4lf3c")]
+position = Vector2(-71252, -25846)

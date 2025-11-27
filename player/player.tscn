@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dve8hfghfvdfr"]
+[gd_scene load_steps=26 format=3 uid="uid://dve8hfghfvdfr"]
 
 [ext_resource type="Script" uid="uid://xqq4q7ftp7cv" path="res://player/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c3t68dnfner8e" path="res://player/sprites/005_Sprite_Player.png" id="3_2ieo8"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://b50du138nw0ma" path="res://assets/sounds/footsteps_sound.wav" id="12_yllr7"]
 [ext_resource type="Texture2D" uid="uid://dl0o0h3au8qxi" path="res://player/sprites/heart pixel art 32x32 - yellowi.png" id="13_e7oew"]
 [ext_resource type="Texture2D" uid="uid://bqncrp8fee5gp" path="res://player/sprites/heart pixel art 32x32 - blacki.png" id="14_c35mf"]
+[ext_resource type="Texture2D" uid="uid://b3ocxes7it3ri" path="res://assets/background.png" id="17_tqiix"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
 radius = 142.0
@@ -188,3 +189,9 @@ metadata/_custom_type_script = "uid://bx1w6d3tl7sjh"
 [node name="FootstepsSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_yllr7")
 pitch_scale = 1.5
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -15
+position = Vector2(-650, -2134.0002)
+scale = Vector2(11.539583, 10.906019)
+texture = ExtResource("17_tqiix")
