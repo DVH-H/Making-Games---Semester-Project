@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnbdq5rdocitq"]
+
+[ext_resource type="Texture2D" uid="uid://c7tlr7ifkkxjn" path="res://assets/sprites/Assets_0014_Layer-38.png" id="1_o7gab"]
+
+[node name="SignUp" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_o7gab")

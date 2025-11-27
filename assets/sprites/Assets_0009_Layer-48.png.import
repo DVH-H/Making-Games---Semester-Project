@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0y8njsaotsuv"
-path="res://.godot/imported/005_Asset_Level.png-c05fa8f56f9823f0c7b7ab92282fa53a.ctex"
+uid="uid://b46bt65eyeb22"
+path="res://.godot/imported/Assets_0009_Layer-48.png-833e26e7e8de11c4cb44751484ed999b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Tilesheets/005_Asset_Level.png"
-dest_files=["res://.godot/imported/005_Asset_Level.png-c05fa8f56f9823f0c7b7ab92282fa53a.ctex"]
+source_file="res://assets/sprites/Assets_0009_Layer-48.png"
+dest_files=["res://.godot/imported/Assets_0009_Layer-48.png-833e26e7e8de11c4cb44751484ed999b.ctex"]
 
 [params]
 
