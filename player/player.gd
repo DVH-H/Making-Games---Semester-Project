@@ -100,18 +100,29 @@ func _physics_process(delta: float) -> void:
 				animation_controller.play_animation("run_right")
 			else:
 				animation_controller.play_animation("run_left")
-			animation_controller.flip_animation(velocity.x > 0)
+			#animation_controller.flip_animation(velocity.x >= 0)
 		else:
 			state = IDLE
-			animation_controller.play_animation("idle")
+			if "right" in $AnimatedSprite2D.animation:
+				animation_controller.play_animation("idle_right")
+			elif "left" in $AnimatedSprite2D.animation:
+				animation_controller.play_animation("idle_left")
 	else:
 		if velocity.y > 0:
 			state = FALLING
-			animation_controller.play_animation("fall")
+			if "right" in $AnimatedSprite2D.animation or velocity.x > 0:
+				animation_controller.play_animation("fall_right")
+			elif "left" in $AnimatedSprite2D.animation or velocity.x < 0:
+				animation_controller.play_animation("fall_left")
+			#animation_controller.play_animation("fall")
 		else:
 			state = JUMPING
-			animation_controller.play_animation("jump")
-		animation_controller.flip_animation(velocity.x < 0)
+			if "right" in $AnimatedSprite2D.animation or velocity.x > 0:
+				animation_controller.play_animation("jump_right")
+			elif "left" in $AnimatedSprite2D.animation or velocity.x < 0:
+				animation_controller.play_animation("jump_left")
+			#animation_controller.play_animation("jump")
+		#animation_controller.flip_animation(velocity.x < 0)
 	if _interactable != null and input_controller.get_interact_input():
 		_interactable.interact()
 		
