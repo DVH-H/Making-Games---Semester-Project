@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dve8hfghfvdfr"]
+[gd_scene load_steps=27 format=3 uid="uid://dve8hfghfvdfr"]
 
 [ext_resource type="Script" uid="uid://xqq4q7ftp7cv" path="res://player/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c3t68dnfner8e" path="res://player/sprites/005_Sprite_Player.png" id="3_2ieo8"]
@@ -16,6 +16,8 @@
 [ext_resource type="AudioStream" uid="uid://b50du138nw0ma" path="res://assets/sounds/footsteps_sound.wav" id="12_yllr7"]
 [ext_resource type="Texture2D" uid="uid://dl0o0h3au8qxi" path="res://player/sprites/heart pixel art 32x32 - yellowi.png" id="13_e7oew"]
 [ext_resource type="Texture2D" uid="uid://bqncrp8fee5gp" path="res://player/sprites/heart pixel art 32x32 - blacki.png" id="14_c35mf"]
+[ext_resource type="AudioStream" uid="uid://uuajdb26q3sp" path="res://assets/sounds/Jump.wav" id="17_tqiix"]
+[ext_resource type="AudioStream" uid="uid://cu2sg3fiq14ay" path="res://assets/sounds/Land.wav" id="18_e7oew"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
 radius = 142.0
@@ -106,10 +108,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("footsteps_sound")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("footsteps_sound", "jump_sound", "land_sound")]
 collision_layer = 2
 script = ExtResource("1_onrkg")
 footsteps_sound = NodePath("FootstepsSound")
+jump_sound = NodePath("JumpSound")
+land_sound = NodePath("LandSound")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_sh265")
@@ -188,3 +192,9 @@ metadata/_custom_type_script = "uid://bx1w6d3tl7sjh"
 [node name="FootstepsSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_yllr7")
 pitch_scale = 1.5
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_tqiix")
+
+[node name="LandSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_e7oew")
