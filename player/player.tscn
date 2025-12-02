@@ -198,6 +198,7 @@ air_deacc = 48.0
 [node name="Gravity" parent="." instance=ExtResource("6_boad6")]
 
 [node name="Gun" parent="." instance=ExtResource("7_boad6")]
+z_index = -1
 position = Vector2(-47, -44)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -251,6 +252,7 @@ stream = ExtResource("12_yllr7")
 pitch_scale = 1.5
 
 [node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.09265783, 1.4439226e-07, 0.53407574, 1)
 z_index = -15
 position = Vector2(165, -2723)
 scale = Vector2(11.539583, 10.906019)

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dj7inuvktwqrw" path="res://assets/sprites/Assets_0005_Layer-41.png" id="1_nh0n5"]
 
 [node name="DevilSign" type="Node2D"]
+z_index = -2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_nh0n5")

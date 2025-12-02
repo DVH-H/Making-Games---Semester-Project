@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6vnm5w2oxnge"]
+
+[ext_resource type="Texture2D" uid="uid://dyrj2na3e53jq" path="res://assets/sprites/Layer 44Asset_.png" id="1_tryoc"]
+
+[node name="CelingLamp" type="Node2D"]
+
+[node name="Layer44Asset" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(-5, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_tryoc")
