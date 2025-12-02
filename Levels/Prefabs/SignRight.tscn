@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7mwi3i2ulybl"]
+
+[ext_resource type="Texture2D" uid="uid://drpnpvttsy10h" path="res://assets/sprites/Assets_0015_Layer-36.png" id="1_wp740"]
+
+[node name="SignRight" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_wp740")

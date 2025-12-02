@@ -13,6 +13,7 @@ scale = Vector2(30, 30)
 collision_layer = 8
 collision_mask = 5
 script = ExtResource("1_lkaf5")
+display_name = "Triple Bullet"
 knockback_force = 175.0
 ui_color = Color(0, 1, 0, 1)
 

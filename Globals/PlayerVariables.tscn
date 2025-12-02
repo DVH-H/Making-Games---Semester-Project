@@ -4,6 +4,7 @@
 
 [node name="PlayerVariables" type="Node"]
 script = ExtResource("1_ors7t")
+invulnerability_time = 1.0
 speed = 2000
 jump_velocity = 3000
 velocity_cap = 5000

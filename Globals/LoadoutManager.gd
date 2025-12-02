@@ -20,8 +20,10 @@ func _initialize_bullet_types() -> void:
 	# Register available bullet types
 	var normal_bullet = preload("res://Bullets/prefabs/bullet.tscn")
 	var knockback_bullet = preload("res://Bullets/prefabs/knockback_bullet.tscn")
+	var explosive_bullet = preload("res://Bullets/prefabs/explosive_bullet.tscn")
+	var triple_bullet = preload("res://Bullets/prefabs/triple_bullet.tscn")
 	
-	available_bullets = [normal_bullet, knockback_bullet]
+	available_bullets = [normal_bullet, knockback_bullet, explosive_bullet, triple_bullet]
 	
 	# Cache bullet instances for UI info access
 	for bullet_scene in available_bullets:

@@ -11,6 +11,7 @@ class_name Bullet
 @export var fire_cooldown: float = 0.2
 @export var ui_color: Color = Color.hex(0x6ec1e4ff)
 
+@export var explosive: bool = false
 @onready var movementComponent: MovementComponent = $MovementComponent
 var _direction: Vector2
 
@@ -28,12 +29,12 @@ func _physics_process(delta: float) -> void:
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i).get_collider()
 		on_collision(collision)
-		#if collision.name == "Enemy":
-		#	print("do somthing")
 	
 func on_collision(collider):
 	if collider.is_in_group("Enemy"):
 		collider.take_damage(damage)
+	if collider.is_in_group("Breakable"):
+		collider.destroy()
 	if collider.name != "Player":
 		queue_free()
  

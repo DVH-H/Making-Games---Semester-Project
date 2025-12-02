@@ -6,8 +6,9 @@ var collision_list: Array = []
 @export var duration = 0.1
 var _time_passed = 0.0
 
-@export var force = 400
 
+@export var force = 400
+@export var damage = 5
 
 
 func _physics_process(delta: float) -> void:
@@ -16,6 +17,8 @@ func _physics_process(delta: float) -> void:
 		for body in collision_list:
 			var direction = body.global_position - global_position
 			body.velocity = force * direction
+			if body.is_in_group("Enemy"):
+				body.take_damage(damage)
 		queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

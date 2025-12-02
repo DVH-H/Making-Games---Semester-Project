@@ -81,6 +81,8 @@ func _draw() -> void:
 	# Place so current_index points up
 	var base_angle := -PI * 0.5
 	var dir := 1.0 if clockwise else -1.0
+	
+	var first = true
 
 	for i in capacity:
 		var chamber_idx := posmod(current_index + int(dir) * i, capacity)
@@ -90,7 +92,9 @@ func _draw() -> void:
 		var fill_color := color_empty
 		if filled:
 			fill_color = chamber_colors[chamber_idx] if chamber_colors.size() == capacity else color_fallback_filled
-
+		if first:
+			first = false
+			draw_circle(get_viewport().get_visible_rect().size/2, small_r, fill_color)
 		draw_circle(pos, small_r, fill_color)
 		draw_arc(pos, small_r, 0.0, TAU, 24, color_outline, 1.0)
 
