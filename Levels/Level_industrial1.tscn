@@ -1,22 +1,22 @@
 [gd_scene load_steps=17 format=3 uid="uid://yf8beriq0pgu"]
 
-[ext_resource type="PackedScene" uid="uid://d2bjxyv4jkfuy" path="res://Levels/Tilemaps/Tilemap_Industrial1.tscn" id="1_1b1b1"]
+[ext_resource type="PackedScene" uid="uid://d2bjxyv4jkfuy" path="res://levels/Tilemaps/Tilemap_Industrial1.tscn" id="1_1b1b1"]
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="2_sahbs"]
-[ext_resource type="PackedScene" uid="uid://cht6xoj54fvc5" path="res://Levels/Prefabs/SignLeft.tscn" id="5_03vgu"]
-[ext_resource type="PackedScene" uid="uid://ccvirxqwljcfj" path="res://Levels/Prefabs/DevilSign.tscn" id="6_f7mfh"]
-[ext_resource type="PackedScene" uid="uid://7yqd2masewrp" path="res://Levels/Prefabs/CheckpointSprite.tscn" id="7_r3ut4"]
-[ext_resource type="PackedScene" uid="uid://dnbdq5rdocitq" path="res://Levels/Prefabs/SignUp.tscn" id="8_r3ut4"]
-[ext_resource type="PackedScene" uid="uid://c0xqdei221r46" path="res://Levels/Prefabs/Barrel.tscn" id="9_c8ijy"]
-[ext_resource type="PackedScene" uid="uid://co1iy5xnrtxwg" path="res://Levels/Prefabs/SignWarning.tscn" id="10_xgbf6"]
+[ext_resource type="PackedScene" uid="uid://cht6xoj54fvc5" path="res://levels/Prefabs/SignLeft.tscn" id="5_03vgu"]
+[ext_resource type="PackedScene" uid="uid://ccvirxqwljcfj" path="res://levels/Prefabs/DevilSign.tscn" id="6_f7mfh"]
+[ext_resource type="PackedScene" uid="uid://7yqd2masewrp" path="res://levels/Prefabs/CheckpointSprite.tscn" id="7_r3ut4"]
+[ext_resource type="PackedScene" uid="uid://dnbdq5rdocitq" path="res://levels/Prefabs/SignUp.tscn" id="8_r3ut4"]
+[ext_resource type="PackedScene" uid="uid://c0xqdei221r46" path="res://levels/Prefabs/Barrel.tscn" id="9_c8ijy"]
+[ext_resource type="PackedScene" uid="uid://co1iy5xnrtxwg" path="res://levels/Prefabs/SignWarning.tscn" id="10_xgbf6"]
 [ext_resource type="PackedScene" uid="uid://1g43dvmxf5hh" path="res://enemy/enemy.tscn" id="11_orvb1"]
-[ext_resource type="PackedScene" uid="uid://byyrydbatwhxw" path="res://Levels/Prefabs/TrashCan.tscn" id="11_xgbf6"]
+[ext_resource type="PackedScene" uid="uid://byyrydbatwhxw" path="res://levels/Prefabs/TrashCan.tscn" id="11_xgbf6"]
 [ext_resource type="PackedScene" uid="uid://cvnfqpm4d7gxa" path="res://enemy/throw_enemy.tscn" id="12_orvb1"]
 [ext_resource type="PackedScene" uid="uid://dgoi0evox7so3" path="res://enemy/shield_enemy.tscn" id="13_bgc5n"]
 [ext_resource type="PackedScene" uid="uid://3ei6sbrmm6t4" path="res://interactable/Checkpoint.tscn" id="14_4lf3c"]
 [ext_resource type="Texture2D" uid="uid://bqjwrbgnbf5tn" path="res://icon.svg" id="14_f3m8y"]
-[ext_resource type="PackedScene" uid="uid://dcl7rkjay76kw" path="res://killzone.tscn" id="15_i5mvw"]
+[ext_resource type="PackedScene" uid="uid://dcl7rkjay76kw" path="res://killzone.tscn" id="15_4077t"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gkes4"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ii4iu"]
 distance = -110.0
 
 [node name="LevelIndustrial1" type="Node2D"]
@@ -121,8 +121,8 @@ position = Vector2(-17710, -23562)
 position = Vector2(-1102, -23583)
 rotation = -0.36651915
 
-[node name="KillZone" parent="." instance=ExtResource("15_i5mvw")]
-position = Vector2(-11845, 828)
+[node name="KillZone" parent="." instance=ExtResource("15_4077t")]
+position = Vector2(-13419, 4453)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
-shape = SubResource("WorldBoundaryShape2D_gkes4")
+shape = SubResource("WorldBoundaryShape2D_ii4iu")
