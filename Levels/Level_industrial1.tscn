@@ -1,28 +1,34 @@
-[gd_scene load_steps=9 format=3 uid="uid://yf8beriq0pgu"]
+[gd_scene load_steps=15 format=3 uid="uid://yf8beriq0pgu"]
 
-[ext_resource type="PackedScene" uid="uid://d2bjxyv4jkfuy" path="res://levels/Tilemaps/Tilemap_Industrial1.tscn" id="1_1b1b1"]
+[ext_resource type="PackedScene" uid="uid://d2bjxyv4jkfuy" path="res://Levels/Tilemaps/Tilemap_Industrial1.tscn" id="1_1b1b1"]
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="2_sahbs"]
-[ext_resource type="PackedScene" uid="uid://cht6xoj54fvc5" path="res://levels/Prefabs/SignLeft.tscn" id="5_03vgu"]
-[ext_resource type="PackedScene" uid="uid://ccvirxqwljcfj" path="res://levels/Prefabs/DevilSign.tscn" id="6_f7mfh"]
-[ext_resource type="PackedScene" uid="uid://7yqd2masewrp" path="res://levels/Prefabs/CheckpointSprite.tscn" id="7_r3ut4"]
-[ext_resource type="PackedScene" uid="uid://dnbdq5rdocitq" path="res://levels/Prefabs/SignUp.tscn" id="8_r3ut4"]
-[ext_resource type="PackedScene" uid="uid://byyrydbatwhxw" path="res://levels/Prefabs/TrashCan.tscn" id="11_xgbf6"]
+[ext_resource type="PackedScene" uid="uid://cht6xoj54fvc5" path="res://Levels/Prefabs/SignLeft.tscn" id="5_03vgu"]
+[ext_resource type="PackedScene" uid="uid://ccvirxqwljcfj" path="res://Levels/Prefabs/DevilSign.tscn" id="6_f7mfh"]
+[ext_resource type="PackedScene" uid="uid://7yqd2masewrp" path="res://Levels/Prefabs/CheckpointSprite.tscn" id="7_r3ut4"]
+[ext_resource type="PackedScene" uid="uid://dnbdq5rdocitq" path="res://Levels/Prefabs/SignUp.tscn" id="8_r3ut4"]
+[ext_resource type="PackedScene" uid="uid://c0xqdei221r46" path="res://Levels/Prefabs/Barrel.tscn" id="9_c8ijy"]
+[ext_resource type="PackedScene" uid="uid://co1iy5xnrtxwg" path="res://Levels/Prefabs/SignWarning.tscn" id="10_xgbf6"]
+[ext_resource type="PackedScene" uid="uid://1g43dvmxf5hh" path="res://enemy/enemy.tscn" id="11_orvb1"]
+[ext_resource type="PackedScene" uid="uid://byyrydbatwhxw" path="res://Levels/Prefabs/TrashCan.tscn" id="11_xgbf6"]
+[ext_resource type="PackedScene" uid="uid://cvnfqpm4d7gxa" path="res://enemy/throw_enemy.tscn" id="12_orvb1"]
+[ext_resource type="PackedScene" uid="uid://dgoi0evox7so3" path="res://enemy/shield_enemy.tscn" id="13_bgc5n"]
 [ext_resource type="PackedScene" uid="uid://3ei6sbrmm6t4" path="res://interactable/Checkpoint.tscn" id="14_4lf3c"]
+[ext_resource type="Texture2D" uid="uid://bqjwrbgnbf5tn" path="res://icon.svg" id="14_f3m8y"]
 
 [node name="LevelIndustrial1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("2_sahbs")]
-position = Vector2(-1055, -1394)
+position = Vector2(4000, -3000)
 
 [node name="TilemapIndustrial1" parent="." instance=ExtResource("1_1b1b1")]
 z_index = -1
 
 [node name="DevilSign" parent="." instance=ExtResource("6_f7mfh")]
-position = Vector2(-11420, -6561)
+position = Vector2(-13623, -6587.9995)
 rotation = -0.09250245
 
 [node name="CheckpointSprite" parent="." instance=ExtResource("7_r3ut4")]
-position = Vector2(-11558, -5853)
+position = Vector2(-13734, -5871)
 
 [node name="SignLeft2" parent="." instance=ExtResource("5_03vgu")]
 position = Vector2(-3340.9998, -2257)
@@ -32,8 +38,81 @@ rotation = -0.27925268
 position = Vector2(-12787, -1912)
 
 [node name="TrashCan2" parent="." instance=ExtResource("11_xgbf6")]
-z_index = -2
 position = Vector2(2485, -543)
 
 [node name="Checkpoint" parent="." instance=ExtResource("14_4lf3c")]
-position = Vector2(-11347, -5988)
+position = Vector2(-13483, -5960)
+
+[node name="TrashCan" parent="." instance=ExtResource("11_xgbf6")]
+position = Vector2(-15469, -3220)
+
+[node name="Barrel" parent="." instance=ExtResource("9_c8ijy")]
+position = Vector2(-21497, -11541)
+
+[node name="SignWarning" parent="." instance=ExtResource("10_xgbf6")]
+position = Vector2(-7624, -8888)
+rotation = -0.20943952
+
+[node name="Enemy" parent="." instance=ExtResource("11_orvb1")]
+position = Vector2(-6983, -8960)
+stop_at_edge = false
+patrol_array = Array[Vector2]([Vector2(-638, -8976), Vector2(-6983, -8960)])
+
+[node name="ThrowEnemy" parent="." instance=ExtResource("12_orvb1")]
+position = Vector2(-23561, -18161)
+patrol_array = Array[Vector2]([Vector2(-19611, -18129), Vector2(-23561, -18161)])
+
+[node name="ThrowEnemy2" parent="." instance=ExtResource("12_orvb1")]
+position = Vector2(424, -18844)
+
+[node name="ShieldEnemy" parent="." instance=ExtResource("13_bgc5n")]
+position = Vector2(5744, -19546)
+patrol_array = Array[Vector2]([Vector2(16747, -19575), Vector2(5744, -19546)])
+
+[node name="Enemy2" parent="." instance=ExtResource("11_orvb1")]
+position = Vector2(-31285, -23891)
+stop_at_edge = false
+patrol_array = Array[Vector2]([Vector2(-35220, -23910), Vector2(-26621, -23910)])
+
+[node name="ThrowEnemy3" parent="." instance=ExtResource("12_orvb1")]
+position = Vector2(-37991, -17734)
+
+[node name="Barrel2" parent="." instance=ExtResource("9_c8ijy")]
+position = Vector2(-30461, -14684)
+
+[node name="Barrel3" parent="." instance=ExtResource("9_c8ijy")]
+position = Vector2(-30855, -14632.001)
+scale = Vector2(0.7, 0.7)
+
+[node name="SignUp2" parent="." instance=ExtResource("8_r3ut4")]
+position = Vector2(-30468.002, -6596.9985)
+rotation = -0.28797933
+
+[node name="SignUp3" parent="." instance=ExtResource("8_r3ut4")]
+position = Vector2(-29444, -6581)
+rotation = 0.12217305
+
+[node name="SignUp4" parent="." instance=ExtResource("8_r3ut4")]
+position = Vector2(-27938, -5504.999)
+rotation = -0.12217305
+
+[node name="SignLeft" parent="." instance=ExtResource("5_03vgu")]
+position = Vector2(-27198.998, -12612.998)
+rotation = 0.36651915
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(-7287, -16994)
+scale = Vector2(0.796875, 0.8203125)
+texture = ExtResource("14_f3m8y")
+
+[node name="Enemy3" parent="." instance=ExtResource("11_orvb1")]
+position = Vector2(-12053, -14424)
+stop_at_edge = false
+patrol_array = Array[Vector2]([Vector2(-8448, -14453), Vector2(-12053, -14424)])
+
+[node name="SignLeft3" parent="." instance=ExtResource("5_03vgu")]
+position = Vector2(-17710, -23562)
+
+[node name="SignLeft4" parent="." instance=ExtResource("5_03vgu")]
+position = Vector2(-1102, -23583)
+rotation = -0.36651915

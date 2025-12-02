@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d30p5q7o5rhos" path="res://assets/sprites/Assets_0010_Layer-45.png" id="1_13q5h"]
 
 [node name="TrashCan" type="Node2D"]
+z_index = -2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_13q5h")
