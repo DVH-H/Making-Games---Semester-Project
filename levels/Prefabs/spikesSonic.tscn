@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccfha5xbdgfgk"]
+
+[ext_resource type="Texture2D" uid="uid://cpppjibcgd446" path="res://assets/sprites/Layer 50Asset_.png" id="1_hv75k"]
+[ext_resource type="PackedScene" uid="uid://dcl7rkjay76kw" path="res://killzone.tscn" id="2_8n0j7"]
+
+[node name="SpikesSonic" type="Node2D"]
+
+[node name="Layer50Asset" type="Sprite2D" parent="."]
+position = Vector2(-1, 2)
+texture = ExtResource("1_hv75k")
+
+[node name="KillZone" parent="." instance=ExtResource("2_8n0j7")]
+position = Vector2(-26, -45)
+scale = Vector2(0.12, 1)
+
+[node name="CollisionShape2D" parent="KillZone" index="1"]
+position = Vector2(233.33334, -13)
+scale = Vector2(300.0001, 100)
+
+[editable path="KillZone"]

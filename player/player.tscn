@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dve8hfghfvdfr"]
+[gd_scene load_steps=37 format=3 uid="uid://dve8hfghfvdfr"]
 
 [ext_resource type="Script" uid="uid://xqq4q7ftp7cv" path="res://player/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c3t68dnfner8e" path="res://player/sprites/005_Sprite_Player.png" id="3_2ieo8"]
@@ -17,8 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://cj3q5f8wrucqo" path="res://assets/sprites/UI_0001_Layer-18.png" id="13_c35mf"]
 [ext_resource type="Texture2D" uid="uid://d0007c7mxfujf" path="res://assets/sprites/UI_0000_Layer-18-copy.png" id="14_65viv"]
 [ext_resource type="Texture2D" uid="uid://0jrvs8a0bfnu" path="res://assets/sprites/UI_0002_Layer-19.png" id="15_65viv"]
-[ext_resource type="AudioStream" uid="uid://uuajdb26q3sp" path="res://assets/sounds/Jump.wav" id="17_tqiix"]
+[ext_resource type="Texture2D" uid="uid://b3ocxes7it3ri" path="res://assets/background.png" id="17_tqiix"]
 [ext_resource type="AudioStream" uid="uid://cu2sg3fiq14ay" path="res://assets/sounds/Land.wav" id="18_e7oew"]
+[ext_resource type="AudioStream" uid="uid://uuajdb26q3sp" path="res://assets/sounds/Jump.wav" id="19_65viv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
 radius = 142.0
@@ -251,11 +252,12 @@ pitch_scale = 1.5
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -15
-position = Vector2(-650, -2134.0002)
+position = Vector2(165, -2723)
 scale = Vector2(11.539583, 10.906019)
+texture = ExtResource("17_tqiix")
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("17_tqiix")
+stream = ExtResource("19_65viv")
 
 [node name="LandSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_e7oew")

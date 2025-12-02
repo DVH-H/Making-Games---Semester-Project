@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://yf8beriq0pgu"]
+[gd_scene load_steps=23 format=3 uid="uid://yf8beriq0pgu"]
 
 [ext_resource type="PackedScene" uid="uid://d2bjxyv4jkfuy" path="res://levels/Tilemaps/Tilemap_Industrial1.tscn" id="1_1b1b1"]
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="2_sahbs"]
@@ -14,6 +14,14 @@
 [ext_resource type="PackedScene" uid="uid://dgoi0evox7so3" path="res://enemy/shield_enemy.tscn" id="13_bgc5n"]
 [ext_resource type="PackedScene" uid="uid://3ei6sbrmm6t4" path="res://interactable/Checkpoint.tscn" id="14_4lf3c"]
 [ext_resource type="Texture2D" uid="uid://bqjwrbgnbf5tn" path="res://icon.svg" id="14_f3m8y"]
+[ext_resource type="PackedScene" uid="uid://dcl7rkjay76kw" path="res://killzone.tscn" id="15_4077t"]
+[ext_resource type="PackedScene" uid="uid://cy482vtfjdebe" path="res://levels/Prefabs/wallLamp.tscn" id="16_ii4iu"]
+[ext_resource type="PackedScene" uid="uid://5ss1vdg1uhk1" path="res://levels/Prefabs/ledgeType1.tscn" id="17_g87c8"]
+[ext_resource type="PackedScene" uid="uid://blqppa5yn8smk" path="res://levels/Prefabs/SafetyFenceA.tscn" id="18_oxrhk"]
+[ext_resource type="PackedScene" uid="uid://7vpte4iqsdl7" path="res://levels/Prefabs/SafetyFenceB.tscn" id="19_mv4ll"]
+[ext_resource type="PackedScene" uid="uid://d28i7cm5npn33" path="res://levels/Prefabs/StreetLamp.tscn" id="20_76ig1"]
+[ext_resource type="PackedScene" uid="uid://bxolfqry5am5b" path="res://levels/Prefabs/SignDown.tscn" id="21_vbr1y"]
+[ext_resource type="PackedScene" uid="uid://cll0cadbqhwj0" path="res://levels/Prefabs/BigWindow.tscn" id="22_2g3iq"]
 
 [node name="LevelIndustrial1" type="Node2D"]
 
@@ -116,3 +124,106 @@ position = Vector2(-17710, -23562)
 [node name="SignLeft4" parent="." instance=ExtResource("5_03vgu")]
 position = Vector2(-1102, -23583)
 rotation = -0.36651915
+
+[node name="KillZone" parent="." instance=ExtResource("15_4077t")]
+position = Vector2(-30219, -1218)
+scale = Vector2(3, 1)
+
+[node name="KillZone2" parent="." instance=ExtResource("15_4077t")]
+position = Vector2(17833, 4457)
+scale = Vector2(5, 1)
+
+[node name="KillZone3" parent="." instance=ExtResource("15_4077t")]
+position = Vector2(-46563, -9520)
+scale = Vector2(2, 1)
+
+[node name="WallLamp" parent="." instance=ExtResource("16_ii4iu")]
+position = Vector2(-14397, -2374)
+
+[node name="LedgeType1" parent="." instance=ExtResource("17_g87c8")]
+position = Vector2(-36243, -13973)
+
+[node name="SafetyFence" parent="." instance=ExtResource("18_oxrhk")]
+position = Vector2(-40421, -17299)
+
+[node name="SafetyFenceB" parent="." instance=ExtResource("19_mv4ll")]
+position = Vector2(-40700, -17329)
+
+[node name="SafetyFence2" parent="." instance=ExtResource("18_oxrhk")]
+position = Vector2(-40005, -17317)
+
+[node name="SafetyFence3" parent="." instance=ExtResource("18_oxrhk")]
+position = Vector2(-39589, -17321)
+
+[node name="SafetyFence4" parent="." instance=ExtResource("18_oxrhk")]
+position = Vector2(-39167, -17304)
+
+[node name="StreetLamp" parent="." instance=ExtResource("20_76ig1")]
+position = Vector2(-16211, -9358)
+
+[node name="StreetLamp2" parent="." instance=ExtResource("20_76ig1")]
+position = Vector2(-18443, -9386)
+
+[node name="StreetLamp3" parent="." instance=ExtResource("20_76ig1")]
+position = Vector2(-9356, -1818)
+
+[node name="StreetLamp4" parent="." instance=ExtResource("20_76ig1")]
+position = Vector2(-6226, -1818)
+
+[node name="StreetLamp5" parent="." instance=ExtResource("20_76ig1")]
+position = Vector2(-2939, -2857)
+
+[node name="StreetLamp6" parent="." instance=ExtResource("20_76ig1")]
+position = Vector2(-11742, -14766)
+
+[node name="StreetLamp7" parent="." instance=ExtResource("20_76ig1")]
+position = Vector2(-8845, -14766)
+
+[node name="StreetLamp8" parent="." instance=ExtResource("20_76ig1")]
+position = Vector2(-1552, -14766)
+
+[node name="SignLeft5" parent="." instance=ExtResource("5_03vgu")]
+position = Vector2(4659, -19573)
+
+[node name="TrashCan3" parent="." instance=ExtResource("11_xgbf6")]
+position = Vector2(18786, -18500)
+
+[node name="TrashCan4" parent="." instance=ExtResource("11_xgbf6")]
+position = Vector2(8058, -9925)
+scale = Vector2(6.635, 6.635)
+
+[node name="SignDown" parent="." instance=ExtResource("21_vbr1y")]
+position = Vector2(-12514.001, 3375.0002)
+rotation = 3.111922
+
+[node name="StreetLamp9" parent="." instance=ExtResource("20_76ig1")]
+position = Vector2(8095, -9381)
+
+[node name="BigWindow" parent="." instance=ExtResource("22_2g3iq")]
+position = Vector2(-40096, -14960)
+
+[node name="BigWindow2" parent="." instance=ExtResource("22_2g3iq")]
+position = Vector2(-38232, -14971)
+
+[node name="BigWindow3" parent="." instance=ExtResource("22_2g3iq")]
+position = Vector2(-17096, -6892)
+
+[node name="BigWindow4" parent="." instance=ExtResource("22_2g3iq")]
+position = Vector2(-17097, -5914)
+
+[node name="BigWindow5" parent="." instance=ExtResource("22_2g3iq")]
+position = Vector2(-17093, -4946)
+
+[node name="WallLamp2" parent="." instance=ExtResource("16_ii4iu")]
+position = Vector2(-8204, -4457)
+rotation = -0.12042772
+scale = Vector2(-1, 1)
+
+[node name="StreetLamp10" parent="." instance=ExtResource("20_76ig1")]
+position = Vector2(-6764, -9383)
+
+[node name="StreetLamp11" parent="." instance=ExtResource("20_76ig1")]
+position = Vector2(-3558, -9383)
+
+[node name="StreetLamp12" parent="." instance=ExtResource("20_76ig1")]
+position = Vector2(-295, -9364)
