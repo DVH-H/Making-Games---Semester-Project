@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxolfqry5am5b"]
+
+[ext_resource type="Texture2D" uid="uid://bqln81v75ppyg" path="res://assets/sprites/Assets_0002_Layer-35.png" id="1_udfn6"]
+
+[node name="SignDown" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_udfn6")

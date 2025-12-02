@@ -20,11 +20,18 @@ var reset_hold_time = 1
 @onready var speed: int = PlayerVariables.speed
 @onready var jump_velocity: int = PlayerVariables.jump_velocity
 @onready var coyote_time: float = PlayerVariables.coyote_time
+@onready var invulnerability_time: float = PlayerVariables.invulnerability_time
+var invulnerability_current_time: float = 0.0
+var is_invulnerable: bool = false
 var _aim_direction: Vector2 = Vector2(-0.01,1)
 
 var _interactable: Interactable = null
 
 @export var footsteps_sound: AudioStreamPlayer
+@export var jump_sound: AudioStreamPlayer
+@export var land_sound: AudioStreamPlayer
+var jumpSoundFlag
+var fallSoundFlag = false
 
 # state machine
 enum {
@@ -49,10 +56,17 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	update_coyote_time_counter(delta)
+	if is_invulnerable:
+		invulnerability_current_time -= delta
+		if invulnerability_current_time < 0.0:
+			is_invulnerable = false
+		
+		
 	gravity_component.handle_gravity(self, delta)
 	if input_controller.get_jump_input() and (is_on_floor() or coyote_time_counter > 0.0):
 		movement_component.handle_jump(self)
 		coyote_time_counter = 0.0  # consume coyote time so it can't be reused mid-air
+		jumpSoundFlag = true
 	
 	# Aiming and shooting
 	
@@ -68,7 +82,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot") :
 		var force = gun.shoot(_aim_direction)
 		movement_component.handle_knockback(self, _aim_direction * -1, force)
-	movement_component.horizontal_movement_with_acc(self, input_controller.get_horizontal_input())
+	movement_component.h_movement_with_acc(self, input_controller.get_horizontal_input())
 	if (Input.is_action_just_pressed("reload") and (is_on_floor() or coyote_time_counter > 0.0)):
 		gun.reload_all_to_loadout()
 	if Input.is_action_just_pressed("rotate_cylinder_forward"):
@@ -84,6 +98,9 @@ func _physics_process(delta: float) -> void:
 			loadout_menu.close_menu()
 	# State machine. Also setting animations
 	if is_on_floor():
+		if fallSoundFlag: 
+			sound_component.play_sound(land_sound)
+			fallSoundFlag = false
 		if velocity.x != 0:
 			state = RUNNING
 			sound_component.play_sound(footsteps_sound)
@@ -91,18 +108,32 @@ func _physics_process(delta: float) -> void:
 				animation_controller.play_animation("run_right")
 			else:
 				animation_controller.play_animation("run_left")
-			animation_controller.flip_animation(velocity.x > 0)
+			#animation_controller.flip_animation(velocity.x >= 0)
 		else:
 			state = IDLE
-			animation_controller.play_animation("idle")
+			if "right" in $AnimatedSprite2D.animation:
+				animation_controller.play_animation("idle_right")
+			elif "left" in $AnimatedSprite2D.animation:
+				animation_controller.play_animation("idle_left")
 	else:
 		if velocity.y > 0:
 			state = FALLING
-			animation_controller.play_animation("fall")
+			if "right" in $AnimatedSprite2D.animation or velocity.x > 0:
+				animation_controller.play_animation("fall_right")
+			elif "left" in $AnimatedSprite2D.animation or velocity.x < 0:
+				animation_controller.play_animation("fall_left")
+			#animation_controller.play_animation("fall")
 		else:
 			state = JUMPING
-			animation_controller.play_animation("jump")
-		animation_controller.flip_animation(velocity.x < 0)
+			if "right" in $AnimatedSprite2D.animation or velocity.x > 0:
+				animation_controller.play_animation("jump_right")
+			elif "left" in $AnimatedSprite2D.animation or velocity.x < 0:
+				animation_controller.play_animation("jump_left")
+			#animation_controller.play_animation("jump")
+			if jumpSoundFlag: 
+				sound_component.play_sound(jump_sound)
+				jumpSoundFlag = false
+			fallSoundFlag =  true #ajust depending on when I want to here this sound
 	if _interactable != null and input_controller.get_interact_input():
 		_interactable.interact()
 		
@@ -119,16 +150,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		if _reset_timer > 0.0 and not _reset_held:
 			_reset_timer = 0.0
-	if velocity.x > PlayerVariables.velocity_cap or velocity.x < PlayerVariables.velocity_cap * -1:
-		if velocity.x > 0:
-			velocity.x = PlayerVariables.velocity_cap
-		else:
-			velocity.x = PlayerVariables.velocity_cap * -1
-	if velocity.y > PlayerVariables.velocity_cap or velocity.y < PlayerVariables.velocity_cap * -1:
-		if velocity.y > 0:
-			velocity.y = PlayerVariables.velocity_cap
-		else:
-			velocity.y = PlayerVariables.velocity_cap * -1
+	movement_component.velocity_cap(self)
 	move_and_slide()
 	
 func update_coyote_time_counter(delta: float) -> void:
@@ -149,12 +171,15 @@ func _reset_to_checkpoint():
 	else:
 		GameController.reload_scene()
 func take_damage(dmg: int):
-	current_health -= dmg
-	PlayerVariables.current_health = current_health
-	health_changed.emit(current_health, max_health)
-	if current_health <= 0:
-		# play death animation then
-		GameController.reload_from_checkpoint()
+	if not is_invulnerable:
+		invulnerability_current_time = invulnerability_time
+		is_invulnerable = true
+		current_health -= dmg
+		health_changed.emit(current_health, max_health)
+		PlayerVariables.current_health = current_health
+		if current_health <= 0:
+			# play death animation then
+			GameController.reload_from_checkpoint()
 
 func heal(amount: int):
 	current_health = min(current_health + amount, max_health)
@@ -188,7 +213,7 @@ func _open_loadout_menu():
 		var canvas_layer = get_node_or_null("CanvasLayer")
 		var parent = canvas_layer if canvas_layer else null
 		loadout_menu = LoadoutManager.open_loadout_menu(get_tree(), parent)
-	
+		return
 	# Toggle if already exists
 	if loadout_menu.visible:
 		loadout_menu.close_menu()

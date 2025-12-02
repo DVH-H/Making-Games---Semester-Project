@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fts0rfiqs7k7"
-path="res://.godot/imported/NightBorne.png-039d88d86d55b9a592dd26071fd0b8a2.ctex"
+uid="uid://cjq0m67rc3bay"
+path="res://.godot/imported/Protect2.png-ba2cde0cc9bffe9b4c6d6d86a90bd667.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemy/NightBorne.png"
-dest_files=["res://.godot/imported/NightBorne.png-039d88d86d55b9a592dd26071fd0b8a2.ctex"]
+source_file="res://enemy/sprites/Protect2.png"
+dest_files=["res://.godot/imported/Protect2.png-ba2cde0cc9bffe9b4c6d6d86a90bd667.ctex"]
 
 [params]
 
