@@ -374,12 +374,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_thj1i"]
-radius = 4724.0
-height = 9448.0
+radius = 2650.0
+height = 11708.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qbijd"]
-radius = 1909.0
-height = 9366.0
+radius = 1748.0
+height = 11648.0
 
 [node name="ThrowEnemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4
@@ -417,12 +417,13 @@ position = Vector2(0, -1)
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
-position = Vector2(0, -4)
-shape = SubResource("CapsuleShape2D_thj1i")
-
 [node name="chase_timer" type="Timer" parent="detection_area"]
 wait_time = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
+position = Vector2(0, -4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_thj1i")
 
 [node name="attack_area" type="Area2D" parent="."]
 collision_layer = 4
