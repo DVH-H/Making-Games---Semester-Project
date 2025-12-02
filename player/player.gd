@@ -28,6 +28,10 @@ var _aim_direction: Vector2 = Vector2(-0.01,1)
 var _interactable: Interactable = null
 
 @export var footsteps_sound: AudioStreamPlayer
+@export var jump_sound: AudioStreamPlayer
+@export var land_sound: AudioStreamPlayer
+var jumpSoundFlag
+var fallSoundFlag = false
 
 # state machine
 enum {
@@ -62,6 +66,7 @@ func _physics_process(delta: float) -> void:
 	if input_controller.get_jump_input() and (is_on_floor() or coyote_time_counter > 0.0):
 		movement_component.handle_jump(self)
 		coyote_time_counter = 0.0  # consume coyote time so it can't be reused mid-air
+		jumpSoundFlag = true
 	
 	# Aiming and shooting
 	
@@ -93,6 +98,9 @@ func _physics_process(delta: float) -> void:
 			loadout_menu.close_menu()
 	# State machine. Also setting animations
 	if is_on_floor():
+		if fallSoundFlag: 
+			sound_component.play_sound(land_sound)
+			fallSoundFlag = false
 		if velocity.x != 0:
 			state = RUNNING
 			sound_component.play_sound(footsteps_sound)
@@ -122,7 +130,10 @@ func _physics_process(delta: float) -> void:
 			elif "left" in $AnimatedSprite2D.animation or velocity.x < 0:
 				animation_controller.play_animation("jump_left")
 			#animation_controller.play_animation("jump")
-		#animation_controller.flip_animation(velocity.x < 0)
+			if jumpSoundFlag: 
+				sound_component.play_sound(jump_sound)
+				jumpSoundFlag = false
+			fallSoundFlag =  true #ajust depending on when I want to here this sound
 	if _interactable != null and input_controller.get_interact_input():
 		_interactable.interact()
 		

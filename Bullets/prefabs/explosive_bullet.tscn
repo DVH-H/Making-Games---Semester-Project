@@ -17,6 +17,7 @@ script = ExtResource("1_0k6ku")
 explosion = ExtResource("2_plxq6")
 display_name = "Explosive Bullet"
 ui_color = Color(1, 0, 0, 1)
+explosive = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5707964
