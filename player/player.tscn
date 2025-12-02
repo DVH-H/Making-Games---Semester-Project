@@ -11,12 +11,12 @@
 [ext_resource type="Script" uid="uid://7k643xcc4b1k" path="res://player/canvas_layer.gd" id="8_hg6s5"]
 [ext_resource type="Script" uid="uid://dbafatust4pbo" path="res://player/RevolverCylinderUI.gd" id="8_rgyib"]
 [ext_resource type="Script" uid="uid://brbg6b6cmb837" path="res://player/reload_bar.gd" id="10_8t03j"]
-[ext_resource type="Script" uid="uid://ckb87mxw5yw8h" path="res://player/HealthUI.gd" id="11_32hag"]
-[ext_resource type="Script" uid="uid://bx1w6d3tl7sjh" path="res://components/sound_component.gd" id="11_ebec5"]
-[ext_resource type="Texture2D" uid="uid://cdkncwn6dhcqe" path="res://player/sprites/heart pixel art 32x32.png" id="12_tqiix"]
+[ext_resource type="Script" path="res://player/HealthUI.gd" id="11_32hag"]
+[ext_resource type="Script" path="res://components/sound_component.gd" id="11_ebec5"]
 [ext_resource type="AudioStream" uid="uid://b50du138nw0ma" path="res://assets/sounds/footsteps_sound.wav" id="12_yllr7"]
-[ext_resource type="Texture2D" uid="uid://dl0o0h3au8qxi" path="res://player/sprites/heart pixel art 32x32 - yellowi.png" id="13_e7oew"]
-[ext_resource type="Texture2D" uid="uid://bqncrp8fee5gp" path="res://player/sprites/heart pixel art 32x32 - blacki.png" id="14_c35mf"]
+[ext_resource type="Texture2D" uid="uid://cj3q5f8wrucqo" path="res://assets/sprites/UI_0001_Layer-18.png" id="13_e7oew"]
+[ext_resource type="Texture2D" uid="uid://d0007c7mxfujf" path="res://assets/sprites/UI_0000_Layer-18-copy.png" id="14_c35mf"]
+[ext_resource type="Texture2D" uid="uid://0jrvs8a0bfnu" path="res://assets/sprites/UI_0002_Layer-19.png" id="15_65viv"]
 [ext_resource type="Texture2D" uid="uid://b3ocxes7it3ri" path="res://assets/background.png" id="17_tqiix"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
@@ -205,9 +205,9 @@ gun_path = NodePath("../Gun")
 layout_mode = 3
 anchors_preset = 0
 offset_left = 377.0
-offset_top = 564.0
+offset_top = 372.0
 offset_right = 417.0
-offset_bottom = 604.0
+offset_bottom = 412.0
 mouse_filter = 1
 script = ExtResource("8_rgyib")
 outer_radius = 350.0
@@ -218,10 +218,10 @@ gap_from_edge = 100.0
 [node name="ReloadBar" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 139.0
-offset_top = 101.0
-offset_right = 179.0
-offset_bottom = 141.0
+offset_left = 826.0
+offset_top = 355.0
+offset_right = 866.0
+offset_bottom = 395.0
 script = ExtResource("10_8t03j")
 player_path = NodePath("../..")
 gun_path = NodePath("../../Gun")
@@ -229,19 +229,18 @@ size_px = Vector2i(660, 90)
 border_px = 30
 
 [node name="HealthUI" type="HBoxContainer" parent="CanvasLayer"]
-offset_left = 115.0
-offset_top = 72.0
-offset_right = 155.0
-offset_bottom = 112.0
-scale = Vector2(3, 3)
+offset_left = 805.00006
+offset_top = 50.00003
+offset_right = 845.00006
+offset_bottom = 90.00003
+scale = Vector2(7.6737466, 7.6737466)
 script = ExtResource("11_32hag")
-heart_full_texture = ExtResource("12_tqiix")
-heart_half_texture = ExtResource("13_e7oew")
-heart_empty_texture = ExtResource("14_c35mf")
+heart_full_texture = ExtResource("13_e7oew")
+heart_half_texture = ExtResource("14_c35mf")
+heart_empty_texture = ExtResource("15_65viv")
 
 [node name="SoundComponent" type="Node" parent="."]
 script = ExtResource("11_ebec5")
-metadata/_custom_type_script = "uid://bx1w6d3tl7sjh"
 
 [node name="FootstepsSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_yllr7")
