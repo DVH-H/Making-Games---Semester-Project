@@ -203,13 +203,7 @@ position = Vector2(-40096, -14960)
 position = Vector2(-38232, -14971)
 
 [node name="BigWindow3" parent="." instance=ExtResource("22_2g3iq")]
-position = Vector2(-17096, -6892)
-
-[node name="BigWindow4" parent="." instance=ExtResource("22_2g3iq")]
-position = Vector2(-17097, -5914)
-
-[node name="BigWindow5" parent="." instance=ExtResource("22_2g3iq")]
-position = Vector2(-17093, -4946)
+position = Vector2(-72595, -30447)
 
 [node name="WallLamp2" parent="." instance=ExtResource("16_ii4iu")]
 position = Vector2(-8204, -4457)
