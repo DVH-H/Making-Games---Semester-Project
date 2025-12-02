@@ -8,6 +8,7 @@ signal chamber_colors_updated(colors: Array[Color])
 signal dry_fire()
 signal fired(bullet_instance: Node)
 signal reload_started(chamber_index: int, duration: float)
+signal reload_cancelled()
 signal fire_cooldown_started(duration: float)
 
 
@@ -39,6 +40,7 @@ var loadout_scenes: Array[PackedScene] = []
 var _load_time_cache: Dictionary = {}  # path -> float
 var _ui_color_cache: Dictionary = {}   # path -> Color
 var _is_reloading: bool = false
+var _reload_cancelled: bool = false
 var _fire_locked := false
 @onready var _fire_timer: Timer = Timer.new()
 
@@ -65,41 +67,54 @@ func _on_fire_cooldown_ready():
 	_fire_locked = false
 
 func _can_shoot() -> bool:
-	# Gate shooting behind both reload state and fire-cooldown
-	return not _fire_locked and not _is_reloading and not chambers[current_index] == null
+	# Check fire-cooldown and if chamber has ammo
+	return not _fire_locked and not chambers[current_index] == null
 	
 func shoot(direction: Vector2) -> float:
 	var force := 0.0
 	
-	if not _can_shoot():
+	# Cancel reload if in progress
+	if _is_reloading:
+		_reload_cancelled = true
+		_is_reloading = false
+		emit_signal("reload_cancelled")
+	
+	# Check if fire cooldown is active
+	if _fire_locked:
 		emit_signal("dry_fire")
 		return force
-		
+	
+	# Check if chamber has a bullet
 	var scene := chambers[current_index]
-	var bullet := scene.instantiate()
-	get_tree().root.add_child(bullet)
-	
-	if not bullet.explosive:
-		sound_component.play_sound_noCheck(gun_sound)
+	if scene == null:
+		emit_signal("dry_fire")
 	else:
-		sound_component.play_sound_noCheck(explosion)
+		# Fire the bullet
+		var bullet := scene.instantiate()
+		get_tree().root.add_child(bullet)
+		
+		if not bullet.explosive:
+			sound_component.play_sound_noCheck(gun_sound)
+		else:
+			sound_component.play_sound_noCheck(explosion)
+		
+		if "global_position" in bullet:
+			bullet.global_position = muzzle.global_position
+		if bullet.has_method("initialize"):
+			bullet.initialize(direction)
+		if "knockback_force" in bullet:
+			force = float(bullet.knockback_force)
+		emit_signal("fired", bullet)
+		
+		chambers[current_index] = null
+		var cooldown := 0.2
+		if "fire_cooldown" in bullet:
+			cooldown = float(bullet.fire_cooldown)
+		_fire_locked = true
+		_fire_timer.start(cooldown)
+		emit_signal("fire_cooldown_started", cooldown)
 	
-	if "global_position" in bullet:
-		bullet.global_position = muzzle.global_position
-	if bullet.has_method("initialize"):
-		bullet.initialize(direction)
-	if "knockback_force" in bullet:
-		force = float(bullet.knockback_force)
-	emit_signal("fired", bullet)
-	
-	chambers[current_index] = null
-	var cooldown := 0.2
-	if "fire_cooldown" in bullet:
-		cooldown = float(bullet.fire_cooldown)
-	_fire_locked = true
-	_fire_timer.start(cooldown)
-	emit_signal("fire_cooldown_started", cooldown)
-	
+	# Always advance cylinder and update UI (unless blocked by cooldown)
 	spin_sound_flag = false
 	_advance_cylinder()
 	_emit_all()
@@ -123,7 +138,12 @@ func reload_all_to_loadout() -> void:
 		return
 
 	_is_reloading = true
+	_reload_cancelled = false
 	for idx in order:
+		# Check if reload was cancelled
+		if _reload_cancelled:
+			break
+			
 		if chambers[idx] != null:
 			continue
 		var scene := loadout_scenes[idx]
@@ -133,11 +153,17 @@ func reload_all_to_loadout() -> void:
 		var delay := _get_round_load_time(scene)
 		emit_signal("reload_started", idx, delay)
 		await get_tree().create_timer(delay).timeout
+		
+		# Check again after the timer finishes
+		if _reload_cancelled:
+			break
+			
 		sound_component.play_sound(reloading_sound)
 		if chambers[idx] == null:
 			chambers[idx] = scene
 			_emit_all()
 	_is_reloading = false
+	_reload_cancelled = false
 
 # ── Loadout helpers ──────────────────────────────────────────────────────────
 func _set_default_alternating_loadout() -> void:
