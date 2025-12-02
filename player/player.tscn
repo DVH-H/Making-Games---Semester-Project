@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dve8hfghfvdfr"]
+[gd_scene load_steps=36 format=3 uid="uid://dve8hfghfvdfr"]
 
 [ext_resource type="Script" uid="uid://xqq4q7ftp7cv" path="res://player/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c3t68dnfner8e" path="res://player/sprites/005_Sprite_Player.png" id="3_2ieo8"]
@@ -11,15 +11,12 @@
 [ext_resource type="Script" uid="uid://7k643xcc4b1k" path="res://player/canvas_layer.gd" id="8_hg6s5"]
 [ext_resource type="Script" uid="uid://dbafatust4pbo" path="res://player/RevolverCylinderUI.gd" id="8_rgyib"]
 [ext_resource type="Script" uid="uid://brbg6b6cmb837" path="res://player/reload_bar.gd" id="10_8t03j"]
-[ext_resource type="Script" path="res://player/HealthUI.gd" id="11_32hag"]
-[ext_resource type="Script" path="res://components/sound_component.gd" id="11_ebec5"]
+[ext_resource type="Script" uid="uid://ckb87mxw5yw8h" path="res://player/HealthUI.gd" id="11_32hag"]
+[ext_resource type="Script" uid="uid://bx1w6d3tl7sjh" path="res://components/sound_component.gd" id="11_ebec5"]
 [ext_resource type="AudioStream" uid="uid://b50du138nw0ma" path="res://assets/sounds/footsteps_sound.wav" id="12_yllr7"]
-[ext_resource type="Texture2D" uid="uid://cj3q5f8wrucqo" path="res://assets/sprites/UI_0001_Layer-18.png" id="13_e7oew"]
-[ext_resource type="Texture2D" uid="uid://d0007c7mxfujf" path="res://assets/sprites/UI_0000_Layer-18-copy.png" id="14_c35mf"]
+[ext_resource type="Texture2D" uid="uid://cj3q5f8wrucqo" path="res://assets/sprites/UI_0001_Layer-18.png" id="13_c35mf"]
+[ext_resource type="Texture2D" uid="uid://d0007c7mxfujf" path="res://assets/sprites/UI_0000_Layer-18-copy.png" id="14_65viv"]
 [ext_resource type="Texture2D" uid="uid://0jrvs8a0bfnu" path="res://assets/sprites/UI_0002_Layer-19.png" id="15_65viv"]
-[ext_resource type="Texture2D" uid="uid://b3ocxes7it3ri" path="res://assets/background.png" id="17_tqiix"]
-[ext_resource type="Texture2D" uid="uid://dl0o0h3au8qxi" path="res://player/sprites/heart pixel art 32x32 - yellowi.png" id="13_e7oew"]
-[ext_resource type="Texture2D" uid="uid://bqncrp8fee5gp" path="res://player/sprites/heart pixel art 32x32 - blacki.png" id="14_c35mf"]
 [ext_resource type="AudioStream" uid="uid://uuajdb26q3sp" path="res://assets/sounds/Jump.wav" id="17_tqiix"]
 [ext_resource type="AudioStream" uid="uid://cu2sg3fiq14ay" path="res://assets/sounds/Land.wav" id="18_e7oew"]
 
@@ -241,8 +238,8 @@ offset_right = 845.00006
 offset_bottom = 90.00003
 scale = Vector2(7.6737466, 7.6737466)
 script = ExtResource("11_32hag")
-heart_full_texture = ExtResource("13_e7oew")
-heart_half_texture = ExtResource("14_c35mf")
+heart_full_texture = ExtResource("13_c35mf")
+heart_half_texture = ExtResource("14_65viv")
 heart_empty_texture = ExtResource("15_65viv")
 
 [node name="SoundComponent" type="Node" parent="."]
@@ -256,7 +253,6 @@ pitch_scale = 1.5
 z_index = -15
 position = Vector2(-650, -2134.0002)
 scale = Vector2(11.539583, 10.906019)
-texture = ExtResource("17_tqiix")
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_tqiix")
