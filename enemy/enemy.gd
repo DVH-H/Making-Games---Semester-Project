@@ -184,7 +184,6 @@ func AGGRO_behaviour() -> float:
 				return 0
 			movement_component.handle_jump(self)
 		return direction
-		
 	#state = SEARCH
 	return 0
 
@@ -242,6 +241,9 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		queue_free()
 	if animation_node.animation == "take_damage":
 		state = AGGRO
+		player_chase = true
+		if not player: 
+			player = get_tree().current_scene.get_node("Player")
 	if animation_node.animation == "attack":
 		state = AGGRO 
 
