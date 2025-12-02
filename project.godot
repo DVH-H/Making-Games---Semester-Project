@@ -138,8 +138,11 @@ rotate_cylinder_backward={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Bullet"
 
+[physics]
+
+common/physics_jitter_fix=1.0
+common/physics_interpolation=true
+
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
 viewport/hdr_2d=true
-2d/snap/snap_2d_transforms_to_pixel=true
