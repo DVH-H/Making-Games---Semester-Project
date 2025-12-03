@@ -187,6 +187,10 @@ autoplay = "idle_left"
 [node name="AnimationController" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("5_sweqy")]
 sprite = NodePath("../AnimatedSprite2D")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+position_smoothing_speed = 10.0
+
 [node name="MovementComponent" parent="." instance=ExtResource("6_g6k8r")]
 ground_deacc = 256.0
 air_deacc = 48.0
@@ -210,9 +214,15 @@ offset_right = 440.0
 offset_bottom = 457.0
 mouse_filter = 1
 script = ExtResource("8_rgyib")
+use_images = true
 cylinder_background = ExtResource("11_65viv")
+bullet_scale = 0.17
 outer_radius = 335.0
+chamber_radius = 82.0
+ring_thickness = null
 gap_from_edge = 150.0
+show_center_pivot = null
+show_indices = null
 
 [node name="ReloadBar" type="Control" parent="CanvasLayer"]
 layout_mode = 3

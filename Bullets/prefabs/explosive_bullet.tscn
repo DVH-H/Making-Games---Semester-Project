@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b17bk3uhod7ph"]
+[gd_scene load_steps=7 format=3 uid="uid://b17bk3uhod7ph"]
 
 [ext_resource type="Script" uid="uid://cjyvf6tkmf0bf" path="res://Bullets/scripts/explosive_bullet.gd" id="1_0k6ku"]
 [ext_resource type="PackedScene" uid="uid://cbboxn7ew4lqk" path="res://Bullets/explosion.tscn" id="2_plxq6"]
 [ext_resource type="Texture2D" uid="uid://bxejqij00ky5p" path="res://assets/sprites/gun_tileset.png" id="2_ry8be"]
 [ext_resource type="PackedScene" uid="uid://dtuwo2b8qi1nh" path="res://components/movement_component.tscn" id="3_plxq6"]
+[ext_resource type="Texture2D" uid="uid://yeg7yx17tu0m" path="res://Bullets/Sprites/explosivebullet.png" id="3_wtmpj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wtmpj"]
 radius = 1.0
@@ -17,6 +18,7 @@ script = ExtResource("1_0k6ku")
 explosion = ExtResource("2_plxq6")
 display_name = "Explosive Bullet"
 ui_color = Color(1, 0, 0, 1)
+ui_icon = ExtResource("3_wtmpj")
 explosive = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
