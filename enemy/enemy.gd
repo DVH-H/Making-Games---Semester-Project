@@ -20,6 +20,7 @@ var in_attack_range = false
 @onready var player = get_tree().current_scene.get_node("Player")
 
 @export var damage_sound: AudioStreamPlayer
+@export var death_sound: AudioStreamPlayer
 
 enum {
 	STANDBY,
@@ -111,6 +112,7 @@ func is_at_edge(direction: float) -> bool:
 func handle_animations(direction: float) -> void:
 	# Only do looping animations
 	if state == DYING:
+		sound_component.play_sound_noCheck(death_sound)
 		return
 	elif state == ATTACK:
 		return
