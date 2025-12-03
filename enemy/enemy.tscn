@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dg13oauy48vo7" path="res://enemy/enemy.gd" id="1_1wwld"]
 [ext_resource type="Texture2D" uid="uid://fts0rfiqs7k7" path="res://enemy/sprites/NightBorne.png" id="2_p200p"]
 [ext_resource type="PackedScene" uid="uid://dtuwo2b8qi1nh" path="res://components/movement_component.tscn" id="4_p200p"]
-[ext_resource type="Script" uid="uid://bx1w6d3tl7sjh" path="res://components/sound_component.gd" id="5_1wwld"]
+[ext_resource type="Script" path="res://components/sound_component.gd" id="5_1wwld"]
 [ext_resource type="PackedScene" uid="uid://dytqh10wawuk0" path="res://components/gravity_component.tscn" id="6_1wwld"]
 [ext_resource type="AudioStream" uid="uid://cpug64pfv17s" path="res://assets/sounds/Enemy hurt.wav" id="6_y5vj3"]
 [ext_resource type="AudioStream" uid="uid://bakcoopb60rs6" path="res://assets/sounds/Enemy death.wav" id="7_y5vj3"]
@@ -426,12 +426,13 @@ height = 5688.0
 radius = 277.0
 height = 2120.0
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("damage_sound") groups=["Enemy"]]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("damage_sound", "death_sound") groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_1wwld")
 speed = 2000
 damage_sound = NodePath("DamageSound")
+death_sound = NodePath("DeathSound")
 
 [node name="Hurtbox" type="CollisionShape2D" parent="."]
 position = Vector2(4, 0)
@@ -484,7 +485,6 @@ shape = SubResource("CapsuleShape2D_p200p")
 
 [node name="SoundComponent" type="Node" parent="."]
 script = ExtResource("5_1wwld")
-metadata/_custom_type_script = "uid://bx1w6d3tl7sjh"
 
 [node name="DamageSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_y5vj3")

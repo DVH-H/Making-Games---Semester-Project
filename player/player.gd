@@ -173,7 +173,7 @@ func take_damage(dmg: int):
 		sound_component.play_sound_noCheck(damage_sound) #change later to damage sound
 		if current_health <= 0:
 			# play death animation then
-			# play death_sound
+			# sound_component.play_sound_noCheck(death_sound) play death_sound
 			GameController.reload_from_checkpoint()
 
 func heal(amount: int):
