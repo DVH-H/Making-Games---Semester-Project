@@ -10,6 +10,7 @@ signal fired(bullet_instance: Node)
 signal reload_started(chamber_index: int, duration: float)
 signal reload_cancelled()
 signal fire_cooldown_started(duration: float)
+signal chamber_icons_updated(icons: Array[Texture2D])
 
 
 @onready var muzzle: Marker2D = $Marker2D
@@ -38,6 +39,7 @@ var loadout_scenes: Array[PackedScene] = []
 # Caches to avoid re-instantiating scenes to read properties
 var _load_time_cache: Dictionary = {}  # path -> float
 var _ui_color_cache: Dictionary = {}   # path -> Color
+var _ui_icon_cache: Dictionary = {}    # path -> Texture2D
 var _is_reloading: bool = false
 var _reload_cancelled: bool = false
 var _fire_locked := false
@@ -175,6 +177,7 @@ func _emit_all() -> void:
 	emit_signal("chamber_changed", current_index)
 	emit_signal("chambers_updated", _states_from(chambers))
 	emit_signal("chamber_colors_updated", _colors_from(chambers))  # <- derived from bullet.ui_color
+	emit_signal("chamber_icons_updated", _icons_from(chambers))  # <- derived from bullet.ui_icon
 
 # ── Small utilities ──────────────────────────────────────────────────────────
 func get_ammo_count() -> int:
@@ -263,6 +266,30 @@ func _get_round_ui_color(scene: PackedScene) -> Color:
 	
 func get_chamber_colors() -> Array[Color]:
 	return _colors_from(chambers)
+
+# Build icon array from bullet.ui_icon (cached by resource path)
+func _icons_from(src: Array[PackedScene]) -> Array[Texture2D]:
+	var out: Array[Texture2D] = []
+	out.resize(capacity)
+	for i in capacity:
+		var scene := src[i]
+		out[i] = _get_round_ui_icon(scene) if scene != null else null
+	return out
+
+func _get_round_ui_icon(scene: PackedScene) -> Texture2D:
+	if scene == null:
+		return null
+	var key := scene.resource_path
+	if _ui_icon_cache.has(key):
+		return _ui_icon_cache[key]
+	var icon: Texture2D = null
+	var node := scene.instantiate()
+	if node and "ui_icon" in node:
+		icon = node.ui_icon
+	if node:
+		node.queue_free()
+	_ui_icon_cache[key] = icon
+	return icon
 
 # ── LoadoutManager Integration ──────────────────────────────────────────────
 func _sync_with_loadout_manager() -> void:
