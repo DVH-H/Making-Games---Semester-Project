@@ -9,6 +9,7 @@ var _time_passed = 0.0
 
 @export var force = 400
 @export var damage = 5
+var source
 
 @export var sound: AudioStreamPlayer
 
@@ -18,8 +19,10 @@ func _physics_process(delta: float) -> void:
 		for body in collision_list:
 			var direction = body.global_position - global_position
 			body.velocity = force * direction
-			if body.is_in_group("Enemy"):
+			if not body == source:
 				body.take_damage(damage)
+			#if body.is_in_group("Enemy"):
+			#	body.take_damage(damage)
 		has_pushed = true
 	if _time_passed > duration:
 		queue_free()

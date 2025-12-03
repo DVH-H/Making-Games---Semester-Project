@@ -1,7 +1,7 @@
 extends Node
 
 var current_scene = null
-var _last_known_scene_path: String = "res://game.tscn"  # set to your start scene
+var _last_known_scene_path: String = "res://levels/Level_industrial1.tscn"  # set to your start scene
 
 func _ready():
 	current_scene = get_tree().current_scene
@@ -29,8 +29,8 @@ func reload_from_checkpoint():
 
 func _deferred_goto_scene(path):
 	var old = current_scene
-
 	var s = ResourceLoader.load(path)
+
 	var inst = s.instantiate()
 
 	get_tree().root.add_child(inst)
