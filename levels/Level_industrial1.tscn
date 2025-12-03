@@ -371,15 +371,6 @@ position = Vector2(-47731, -22556.002)
 rotation = -3.9043016
 scale = Vector2(1, -1)
 
-[node name="Checkpoint" parent="." instance=ExtResource("26_gd2rs")]
-position = Vector2(-13766, -5911)
-
-[node name="Checkpoint2" parent="." instance=ExtResource("26_gd2rs")]
-position = Vector2(-46995, -21573)
-
-[node name="Checkpoint3" parent="." instance=ExtResource("26_gd2rs")]
-position = Vector2(-62385, -33855)
-
 [node name="BigWindow4" parent="." instance=ExtResource("20_ok3ye")]
 position = Vector2(-83278, -35976)
 
@@ -391,9 +382,6 @@ position = Vector2(-79288, -35972)
 
 [node name="CelingLamp10" parent="." instance=ExtResource("22_0j48l")]
 position = Vector2(-77565, -34307)
-
-[node name="LedgeType4" parent="." instance=ExtResource("15_lolgy")]
-position = Vector2(-70839, -31711)
 
 [node name="SignLeft8" parent="." instance=ExtResource("4_darc0")]
 position = Vector2(-82347, -29282)
@@ -410,7 +398,7 @@ position = Vector2(-79016, -39621)
 scale = Vector2(-1, 1)
 
 [node name="NextLevelArea" parent="." instance=ExtResource("26_k03kb")]
-position = Vector2(-84971, -31511)
+position = Vector2(-86978, -21286)
 
 [node name="StreetLamp20" parent="." instance=ExtResource("18_6aa6y")]
 position = Vector2(-83547, -38531)
@@ -420,3 +408,16 @@ position = Vector2(-84309, -37935)
 
 [node name="TrashCan6" parent="." instance=ExtResource("6_3q4vd")]
 position = Vector2(-74742, -41048)
+
+[node name="Checkpoint" parent="." instance=ExtResource("26_gd2rs")]
+position = Vector2(-13779, -5908)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("26_gd2rs")]
+position = Vector2(-46766, -21556)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("26_gd2rs")]
+position = Vector2(-62280, -33859)
+
+[node name="LedgeType4" parent="." instance=ExtResource("21_ctlip")]
+position = Vector2(-70860, -32208)
+scale = Vector2(0.8, 0.8)

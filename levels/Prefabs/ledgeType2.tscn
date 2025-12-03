@@ -5,11 +5,13 @@
 [node name="LedgeType2" type="Node2D"]
 
 [node name="Layer7Assets" type="Sprite2D" parent="."]
+z_index = -2
 position = Vector2(-3, -3)
 scale = Vector2(2, 2)
 texture = ExtResource("1_ff5ip")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+z_index = -2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(931, -3281, 760, -2927, 708, -2704, 380, -2376, 131, -2376, -367, -1734, -380, -278, -341, -69, -341, 1845, -184, 2632, -538, 3078, -983, 3340, -986, -3301)
