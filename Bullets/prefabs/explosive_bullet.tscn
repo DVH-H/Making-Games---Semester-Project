@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b17bk3uhod7ph"]
+[gd_scene load_steps=7 format=3 uid="uid://b17bk3uhod7ph"]
 
 [ext_resource type="Script" uid="uid://cjyvf6tkmf0bf" path="res://Bullets/scripts/explosive_bullet.gd" id="1_0k6ku"]
 [ext_resource type="PackedScene" uid="uid://cbboxn7ew4lqk" path="res://Bullets/explosion.tscn" id="2_plxq6"]
 [ext_resource type="Texture2D" uid="uid://bxejqij00ky5p" path="res://assets/sprites/gun_tileset.png" id="2_ry8be"]
 [ext_resource type="PackedScene" uid="uid://dtuwo2b8qi1nh" path="res://components/movement_component.tscn" id="3_plxq6"]
+[ext_resource type="Script" uid="uid://bx1w6d3tl7sjh" path="res://components/sound_component.gd" id="5_plxq6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wtmpj"]
 radius = 1.0
@@ -34,3 +35,7 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_wtmpj")
 
 [node name="MovementComponent" parent="." instance=ExtResource("3_plxq6")]
+
+[node name="SoundComponent" type="Node" parent="."]
+script = ExtResource("5_plxq6")
+metadata/_custom_type_script = "uid://bx1w6d3tl7sjh"

@@ -30,9 +30,8 @@ var _interactable: Interactable = null
 @export var footsteps_sound: AudioStreamPlayer
 @export var jump_sound: AudioStreamPlayer
 @export var land_sound: AudioStreamPlayer
-var jumpSoundFlag
-var fallSoundFlag = false
-
+@export var damage_sound: AudioStreamPlayer
+@export var death_sound: AudioStreamPlayer
 # state machine
 enum {
 	IDLE,
@@ -66,7 +65,7 @@ func _physics_process(delta: float) -> void:
 	if input_controller.get_jump_input() and (is_on_floor() or coyote_time_counter > 0.0):
 		movement_component.handle_jump(self)
 		coyote_time_counter = 0.0  # consume coyote time so it can't be reused mid-air
-		jumpSoundFlag = true
+		sound_component.play_sound(jump_sound)
 	
 	# Aiming and shooting
 	
@@ -98,9 +97,8 @@ func _physics_process(delta: float) -> void:
 			loadout_menu.close_menu()
 	# State machine. Also setting animations
 	if is_on_floor():
-		if fallSoundFlag: 
+		if state == FALLING: 
 			sound_component.play_sound(land_sound)
-			fallSoundFlag = false
 		if velocity.x != 0:
 			state = RUNNING
 			sound_component.play_sound(footsteps_sound)
@@ -129,11 +127,6 @@ func _physics_process(delta: float) -> void:
 				animation_controller.play_animation("jump_right")
 			elif "left" in $AnimatedSprite2D.animation or velocity.x < 0:
 				animation_controller.play_animation("jump_left")
-			#animation_controller.play_animation("jump")
-			if jumpSoundFlag: 
-				sound_component.play_sound(jump_sound)
-				jumpSoundFlag = false
-			fallSoundFlag =  true #ajust depending on when I want to here this sound
 	if _interactable != null and input_controller.get_interact_input():
 		_interactable.interact()
 		
@@ -177,8 +170,10 @@ func take_damage(dmg: int):
 		current_health -= dmg
 		health_changed.emit(current_health, max_health)
 		PlayerVariables.current_health = current_health
+		sound_component.play_sound_noCheck(damage_sound) #change later to damage sound
 		if current_health <= 0:
 			# play death animation then
+			# play death_sound
 			GameController.reload_from_checkpoint()
 
 func heal(amount: int):

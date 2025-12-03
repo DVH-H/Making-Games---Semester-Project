@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://cbboxn7ew4lqk"]
+[gd_scene load_steps=23 format=3 uid="uid://cbboxn7ew4lqk"]
 
 [ext_resource type="Script" uid="uid://b5dpbg8dcbbsr" path="res://Bullets/explosion.gd" id="1_jb1rs"]
 [ext_resource type="Texture2D" uid="uid://bqjwrbgnbf5tn" path="res://icon.svg" id="2_krlxm"]
 [ext_resource type="Texture2D" uid="uid://dropshu7hcya3" path="res://Bullets/explosion (7).png" id="3_4l7th"]
+[ext_resource type="AudioStream" uid="uid://dwvcbyq4hmkav" path="res://assets/sounds/Explosion.wav" id="4_q14sr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3lvyn"]
 radius = 1251.384
@@ -127,9 +128,10 @@ animations = [{
 "speed": 20.0
 }]
 
-[node name="Explosion" type="Node2D"]
+[node name="Explosion" type="Node2D" node_paths=PackedStringArray("sound")]
 script = ExtResource("1_jb1rs")
 force = 4000
+sound = NodePath("Explosion")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -149,5 +151,8 @@ position = Vector2(-43.999996, -154.99998)
 scale = Vector2(40, 40)
 sprite_frames = SubResource("SpriteFrames_ctksu")
 autoplay = "default"
+
+[node name="Explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_q14sr")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
