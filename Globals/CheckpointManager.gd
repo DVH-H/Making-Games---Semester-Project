@@ -2,8 +2,8 @@ extends Node
 
 
 # Checkpoint
-var _default_scene_path: String = "res://vertical_slice/Level.tscn"
-var _scene_path: String = "res://vertical_slice/Level.tscn"
+var _default_scene_path: String = "res://Levels/Level_industrial1.tscn"
+var _scene_path: String = "res://Levels/Level_industrial1.tscn"
 var _spawn_coords: Vector2
 
 func set_checkpoint(scene, coords):

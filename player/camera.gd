@@ -12,7 +12,13 @@ var direction: float
 
 
 func _process(delta: float) -> void:
-	var player_pos = player.position + Vector2(0, -1000)
+	var player_pos
+	if player:
+		player_pos = player.position + Vector2(0, -1000)
+	else:
+		player = get_tree().current_scene.get_node("Player")
+		player_pos = player.position + Vector2(0, -1000)
+		position = player_pos
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	var aim_dir = (mouse_pos - global_position).normalized()
 	if player.velocity == Vector2.ZERO:
