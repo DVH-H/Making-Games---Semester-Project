@@ -3,7 +3,7 @@ extends Interactable
 @export var next_level: PackedScene
 
 func interact():
-	GameController.goto_scene(next_level)
+	GameController.goto_scene(next_level.resource_path)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
