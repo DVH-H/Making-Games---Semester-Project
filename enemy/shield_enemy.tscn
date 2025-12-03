@@ -170,7 +170,6 @@ position = Vector2(-15, 0)
 target_position = Vector2(-458, 840)
 
 [node name="Gravity" parent="." instance=ExtResource("3_caiko")]
-gravity = 6000.0
 
 [node name="detection_area" type="Area2D" parent="."]
 position = Vector2(0, -1)
@@ -201,3 +200,5 @@ shape = SubResource("CapsuleShape2D_r6x2f")
 wait_time = 3.0
 
 [node name="Shield" parent="." instance=ExtResource("7_f676e")]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

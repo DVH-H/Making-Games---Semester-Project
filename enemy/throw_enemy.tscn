@@ -435,3 +435,5 @@ shape = SubResource("CapsuleShape2D_qbijd")
 
 [node name="attack_cd_timer" type="Timer" parent="."]
 wait_time = 1.5
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
