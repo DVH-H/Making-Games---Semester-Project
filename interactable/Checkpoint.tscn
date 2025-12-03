@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://3ei6sbrmm6t4"]
+[gd_scene load_steps=14 format=3 uid="uid://3ei6sbrmm6t4"]
 
 [ext_resource type="Texture2D" uid="uid://c33d4hp60bw4r" path="res://assets/Flag.png" id="1_ir6d7"]
 [ext_resource type="Script" uid="uid://bxmi030axdqwy" path="res://interactable/checkpoint.gd" id="1_yt2a0"]
+[ext_resource type="Script" uid="uid://bx1w6d3tl7sjh" path="res://components/sound_component.gd" id="3_jmmw4"]
+[ext_resource type="AudioStream" uid="uid://b7ygmprosiw5t" path="res://assets/sounds/BarCheckpoint.wav" id="3_kd8um"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_861ed"]
 size = Vector2(46.5, 50)
@@ -63,8 +65,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Checkpoint" type="Node2D"]
+[node name="Checkpoint" type="Node2D" node_paths=PackedStringArray("check_sound")]
 script = ExtResource("1_yt2a0")
+check_sound = NodePath("BarCheckpoint")
 
 [node name="Area2D" type="Area2D" parent="."]
 scale = Vector2(30, 30)
@@ -77,6 +80,13 @@ shape = SubResource("RectangleShape2D_861ed")
 visible = false
 position = Vector2(23, -5)
 sprite_frames = SubResource("SpriteFrames_2kbmt")
+
+[node name="SoundComponent" type="Node" parent="."]
+script = ExtResource("3_jmmw4")
+metadata/_custom_type_script = "uid://bx1w6d3tl7sjh"
+
+[node name="BarCheckpoint" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kd8um")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

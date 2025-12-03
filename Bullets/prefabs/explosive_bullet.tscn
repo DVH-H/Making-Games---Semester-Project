@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dtuwo2b8qi1nh" path="res://components/movement_component.tscn" id="3_plxq6"]
 [ext_resource type="Texture2D" uid="uid://yeg7yx17tu0m" path="res://Bullets/Sprites/explosivebullet.png" id="3_wtmpj"]
 [ext_resource type="Texture2D" uid="uid://lt3jtheyddlb" path="res://Bullets/Sprites/explosive_ammo.png" id="4_plxq6"]
+[ext_resource type="Script" uid="uid://bx1w6d3tl7sjh" path="res://components/sound_component.gd" id="5_plxq6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wtmpj"]
 radius = 1.0
@@ -34,3 +35,7 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_wtmpj")
 
 [node name="MovementComponent" parent="." instance=ExtResource("3_plxq6")]
+
+[node name="SoundComponent" type="Node" parent="."]
+script = ExtResource("5_plxq6")
+metadata/_custom_type_script = "uid://bx1w6d3tl7sjh"

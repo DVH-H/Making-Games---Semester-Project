@@ -12,7 +12,7 @@ class_name Bullet
 @export var ui_color: Color = Color.hex(0x6ec1e4ff)
 @export var ui_icon: Texture2D
 
-@export var explosive: bool = false
+#@export var explosive: bool = false
 @onready var movementComponent: MovementComponent = $MovementComponent
 var _direction: Vector2
 

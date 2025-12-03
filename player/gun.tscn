@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bn5px6qyvj2ja"]
+[gd_scene load_steps=8 format=3 uid="uid://bn5px6qyvj2ja"]
 
 [ext_resource type="Script" uid="uid://b5ysq20cxmhge" path="res://player/gun.gd" id="1_ybrg7"]
 [ext_resource type="Texture2D" uid="uid://c3t68dnfner8e" path="res://player/sprites/005_Sprite_Player.png" id="2_yknm8"]
@@ -7,13 +7,11 @@
 [ext_resource type="AudioStream" uid="uid://p5scu0jnvf8a" path="res://assets/sounds/reloading_sound.wav" id="5_83xil"]
 [ext_resource type="AudioStream" uid="uid://cpuhvd8ytnoaj" path="res://assets/sounds/gun_sound.mp3" id="6_twxxf"]
 [ext_resource type="AudioStream" uid="uid://8mghpqqmlrl5" path="res://assets/sounds/spin_sound.wav" id="7_twxxf"]
-[ext_resource type="AudioStream" uid="uid://dwvcbyq4hmkav" path="res://assets/sounds/Explosion.wav" id="8_tlr6c"]
 
-[node name="Gun" type="Node2D" node_paths=PackedStringArray("reloading_sound", "gun_sound", "explosion", "spin_sound")]
+[node name="Gun" type="Node2D" node_paths=PackedStringArray("reloading_sound", "gun_sound", "spin_sound")]
 script = ExtResource("1_ybrg7")
 reloading_sound = NodePath("ReloadingSound")
 gun_sound = NodePath("GunSound")
-explosion = NodePath("Explosion")
 spin_sound = NodePath("SpinSound")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -45,6 +43,3 @@ stream = ExtResource("7_twxxf")
 
 [node name="GunSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_twxxf")
-
-[node name="Explosion" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_tlr6c")
