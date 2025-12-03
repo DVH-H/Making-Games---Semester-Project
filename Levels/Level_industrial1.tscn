@@ -1,14 +1,14 @@
 [gd_scene load_steps=27 format=3 uid="uid://yf8beriq0pgu"]
 
-[ext_resource type="PackedScene" uid="uid://d2bjxyv4jkfuy" path="res://Levels/Tilemaps/Tilemap_Industrial1.tscn" id="1_1b1b1"]
+[ext_resource type="PackedScene" uid="uid://d2bjxyv4jkfuy" path="res://levels/Tilemaps/Tilemap_Industrial1.tscn" id="1_1b1b1"]
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="2_sahbs"]
-[ext_resource type="PackedScene" uid="uid://cht6xoj54fvc5" path="res://Levels/Prefabs/SignLeft.tscn" id="5_03vgu"]
-[ext_resource type="PackedScene" uid="uid://ccvirxqwljcfj" path="res://Levels/Prefabs/DevilSign.tscn" id="6_f7mfh"]
-[ext_resource type="PackedScene" uid="uid://dnbdq5rdocitq" path="res://Levels/Prefabs/SignUp.tscn" id="8_r3ut4"]
-[ext_resource type="PackedScene" uid="uid://c0xqdei221r46" path="res://Levels/Prefabs/Barrel.tscn" id="9_c8ijy"]
-[ext_resource type="PackedScene" uid="uid://co1iy5xnrtxwg" path="res://Levels/Prefabs/SignWarning.tscn" id="10_xgbf6"]
+[ext_resource type="PackedScene" uid="uid://cht6xoj54fvc5" path="res://levels/Prefabs/SignLeft.tscn" id="5_03vgu"]
+[ext_resource type="PackedScene" uid="uid://ccvirxqwljcfj" path="res://levels/Prefabs/DevilSign.tscn" id="6_f7mfh"]
+[ext_resource type="PackedScene" uid="uid://dnbdq5rdocitq" path="res://levels/Prefabs/SignUp.tscn" id="8_r3ut4"]
+[ext_resource type="PackedScene" uid="uid://c0xqdei221r46" path="res://levels/Prefabs/Barrel.tscn" id="9_c8ijy"]
+[ext_resource type="PackedScene" uid="uid://co1iy5xnrtxwg" path="res://levels/Prefabs/SignWarning.tscn" id="10_xgbf6"]
 [ext_resource type="PackedScene" uid="uid://1g43dvmxf5hh" path="res://enemy/enemy.tscn" id="11_orvb1"]
-[ext_resource type="PackedScene" uid="uid://byyrydbatwhxw" path="res://Levels/Prefabs/TrashCan.tscn" id="11_xgbf6"]
+[ext_resource type="PackedScene" uid="uid://byyrydbatwhxw" path="res://levels/Prefabs/TrashCan.tscn" id="11_xgbf6"]
 [ext_resource type="PackedScene" uid="uid://cvnfqpm4d7gxa" path="res://enemy/throw_enemy.tscn" id="12_orvb1"]
 [ext_resource type="PackedScene" uid="uid://dgoi0evox7so3" path="res://enemy/shield_enemy.tscn" id="13_bgc5n"]
 [ext_resource type="PackedScene" uid="uid://3ei6sbrmm6t4" path="res://interactable/Checkpoint.tscn" id="14_4lf3c"]
@@ -20,12 +20,12 @@
 [ext_resource type="PackedScene" uid="uid://blqppa5yn8smk" path="res://levels/Prefabs/SafetyFenceA.tscn" id="18_oxrhk"]
 [ext_resource type="PackedScene" uid="uid://7vpte4iqsdl7" path="res://levels/Prefabs/SafetyFenceB.tscn" id="19_mv4ll"]
 [ext_resource type="PackedScene" uid="uid://d28i7cm5npn33" path="res://levels/Prefabs/StreetLamp.tscn" id="20_76ig1"]
-[ext_resource type="PackedScene" uid="uid://bxolfqry5am5b" path="res://Levels/Prefabs/SignDown.tscn" id="21_vbr1y"]
+[ext_resource type="PackedScene" uid="uid://bxolfqry5am5b" path="res://levels/Prefabs/SignDown.tscn" id="21_vbr1y"]
 [ext_resource type="PackedScene" uid="uid://cll0cadbqhwj0" path="res://levels/Prefabs/BigWindow.tscn" id="22_2g3iq"]
 [ext_resource type="PackedScene" uid="uid://c1yv3rlvjbc7x" path="res://levels/Prefabs/ledgeType2.tscn" id="23_d12rh"]
-[ext_resource type="PackedScene" path="res://Levels/Prefabs/CelingLamp.tscn" id="24_0gduk"]
-[ext_resource type="PackedScene" path="res://Levels/Prefabs/StoneLamp.tscn" id="25_m171h"]
-[ext_resource type="PackedScene" uid="uid://c7mwi3i2ulybl" path="res://Levels/Prefabs/SignRight.tscn" id="26_jen1q"]
+[ext_resource type="PackedScene" uid="uid://c6vnm5w2oxnge" path="res://Levels/Prefabs/CelingLamp.tscn" id="24_0gduk"]
+[ext_resource type="PackedScene" uid="uid://c1sa3chmudwm8" path="res://Levels/Prefabs/StoneLamp.tscn" id="25_m171h"]
+[ext_resource type="PackedScene" uid="uid://c7mwi3i2ulybl" path="res://levels/Prefabs/SignRight.tscn" id="26_jen1q"]
 
 [node name="LevelIndustrial1" type="Node2D"]
 
@@ -331,10 +331,10 @@ position = Vector2(-69753, -26648)
 position = Vector2(-75150, -26648)
 
 [node name="StreetLamp18" parent="." instance=ExtResource("20_76ig1")]
-position = Vector2(-78561, -29888)
+position = Vector2(-79221, -29898)
 
 [node name="StreetLamp19" parent="." instance=ExtResource("20_76ig1")]
-position = Vector2(-82862, -29895)
+position = Vector2(-81591, -29895)
 
 [node name="DevilSign2" parent="." instance=ExtResource("6_f7mfh")]
 position = Vector2(-50960, -36205)
