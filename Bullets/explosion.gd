@@ -2,7 +2,7 @@ extends Node2D
 
 var collision_list: Array = []
 
-@export var duration = 1.3 #set this based on esxlosion sound duration
+@export var duration = 0.8 #set this based on esxlosion sound duration
 @export var push_time = 0.1
 var has_pushed: bool = false
 var _time_passed = 0.0
