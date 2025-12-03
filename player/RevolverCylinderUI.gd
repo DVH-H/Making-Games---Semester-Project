@@ -72,6 +72,7 @@ func _draw_image_mode() -> void:
 		if first:
 			first = false
 			var screen_center := get_viewport().get_visible_rect().size / 2
+			print(get_viewport().get_visible_rect())
 			if icon:
 				var icon_size := icon.get_size() * bullet_scale
 				var icon_pos := screen_center - icon_size * 0.5

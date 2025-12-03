@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://yf8beriq0pgu"]
+[gd_scene load_steps=27 format=3 uid="uid://yf8beriq0pgu"]
 
 [ext_resource type="PackedScene" uid="uid://d2bjxyv4jkfuy" path="res://Levels/Tilemaps/Tilemap_Industrial1.tscn" id="1_1b1b1"]
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="2_sahbs"]
@@ -11,19 +11,20 @@
 [ext_resource type="PackedScene" uid="uid://byyrydbatwhxw" path="res://Levels/Prefabs/TrashCan.tscn" id="11_xgbf6"]
 [ext_resource type="PackedScene" uid="uid://cvnfqpm4d7gxa" path="res://enemy/throw_enemy.tscn" id="12_orvb1"]
 [ext_resource type="PackedScene" uid="uid://dgoi0evox7so3" path="res://enemy/shield_enemy.tscn" id="13_bgc5n"]
+[ext_resource type="PackedScene" uid="uid://3ei6sbrmm6t4" path="res://interactable/Checkpoint.tscn" id="14_4lf3c"]
 [ext_resource type="Texture2D" uid="uid://bqjwrbgnbf5tn" path="res://icon.svg" id="14_f3m8y"]
 [ext_resource type="PackedScene" uid="uid://dcl7rkjay76kw" path="res://killzone.tscn" id="15_4077t"]
-[ext_resource type="PackedScene" uid="uid://cy482vtfjdebe" path="res://Levels/Prefabs/wallLamp.tscn" id="16_ii4iu"]
-[ext_resource type="PackedScene" uid="uid://5ss1vdg1uhk1" path="res://Levels/Prefabs/ledgeType1.tscn" id="17_g87c8"]
-[ext_resource type="PackedScene" uid="uid://blqppa5yn8smk" path="res://Levels/Prefabs/SafetyFenceA.tscn" id="18_oxrhk"]
-[ext_resource type="PackedScene" uid="uid://7vpte4iqsdl7" path="res://Levels/Prefabs/SafetyFenceB.tscn" id="19_mv4ll"]
-[ext_resource type="PackedScene" uid="uid://d28i7cm5npn33" path="res://Levels/Prefabs/StreetLamp.tscn" id="20_76ig1"]
+[ext_resource type="PackedScene" uid="uid://rfee3slpu563" path="res://player/Camera.tscn" id="15_gkes4"]
+[ext_resource type="PackedScene" uid="uid://cy482vtfjdebe" path="res://levels/Prefabs/wallLamp.tscn" id="16_ii4iu"]
+[ext_resource type="PackedScene" uid="uid://5ss1vdg1uhk1" path="res://levels/Prefabs/ledgeType1.tscn" id="17_g87c8"]
+[ext_resource type="PackedScene" uid="uid://blqppa5yn8smk" path="res://levels/Prefabs/SafetyFenceA.tscn" id="18_oxrhk"]
+[ext_resource type="PackedScene" uid="uid://7vpte4iqsdl7" path="res://levels/Prefabs/SafetyFenceB.tscn" id="19_mv4ll"]
+[ext_resource type="PackedScene" uid="uid://d28i7cm5npn33" path="res://levels/Prefabs/StreetLamp.tscn" id="20_76ig1"]
 [ext_resource type="PackedScene" uid="uid://bxolfqry5am5b" path="res://Levels/Prefabs/SignDown.tscn" id="21_vbr1y"]
-[ext_resource type="PackedScene" uid="uid://cll0cadbqhwj0" path="res://Levels/Prefabs/BigWindow.tscn" id="22_2g3iq"]
-[ext_resource type="PackedScene" uid="uid://c1yv3rlvjbc7x" path="res://Levels/Prefabs/ledgeType2.tscn" id="23_d12rh"]
-[ext_resource type="PackedScene" uid="uid://c6vnm5w2oxnge" path="res://Levels/Prefabs/CelingLamp.tscn" id="24_0gduk"]
-[ext_resource type="PackedScene" uid="uid://7yqd2masewrp" path="res://Levels/Prefabs/CheckpointPrefab.tscn" id="25_jen1q"]
-[ext_resource type="PackedScene" uid="uid://c1sa3chmudwm8" path="res://Levels/Prefabs/StoneLamp.tscn" id="25_m171h"]
+[ext_resource type="PackedScene" uid="uid://cll0cadbqhwj0" path="res://levels/Prefabs/BigWindow.tscn" id="22_2g3iq"]
+[ext_resource type="PackedScene" uid="uid://c1yv3rlvjbc7x" path="res://levels/Prefabs/ledgeType2.tscn" id="23_d12rh"]
+[ext_resource type="PackedScene" path="res://Levels/Prefabs/CelingLamp.tscn" id="24_0gduk"]
+[ext_resource type="PackedScene" path="res://Levels/Prefabs/StoneLamp.tscn" id="25_m171h"]
 [ext_resource type="PackedScene" uid="uid://c7mwi3i2ulybl" path="res://Levels/Prefabs/SignRight.tscn" id="26_jen1q"]
 
 [node name="LevelIndustrial1" type="Node2D"]
@@ -364,17 +365,19 @@ position = Vector2(-50590, -33288)
 position = Vector2(-66120, -28970)
 patrol_array = Array[Vector2]([Vector2(-63886, -28953), Vector2(-66120, -28970)])
 
-[node name="CheckpointSprite" parent="." instance=ExtResource("25_jen1q")]
-position = Vector2(-13766, -5911)
-
-[node name="CheckpointSprite2" parent="." instance=ExtResource("25_jen1q")]
-position = Vector2(-46995, -21573)
-
-[node name="CheckpointSprite3" parent="." instance=ExtResource("25_jen1q")]
-position = Vector2(-62385, -33855)
-
 [node name="DevilSign3" parent="." instance=ExtResource("6_f7mfh")]
 z_index = -4
 position = Vector2(-47731, -22556.002)
 rotation = -3.9043016
 scale = Vector2(1, -1)
+
+[node name="Camera" parent="." instance=ExtResource("15_gkes4")]
+
+[node name="Checkpoint" parent="." instance=ExtResource("14_4lf3c")]
+position = Vector2(-13766, -5911)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("14_4lf3c")]
+position = Vector2(-46995, -21573)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("14_4lf3c")]
+position = Vector2(-62385, -33855)
