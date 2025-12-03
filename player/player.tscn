@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dve8hfghfvdfr"]
+[gd_scene load_steps=39 format=3 uid="uid://dve8hfghfvdfr"]
 
 [ext_resource type="Script" uid="uid://xqq4q7ftp7cv" path="res://player/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c3t68dnfner8e" path="res://player/sprites/005_Sprite_Player.png" id="3_2ieo8"]
@@ -250,6 +250,7 @@ script = ExtResource("11_ebec5")
 
 [node name="FootstepsSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_yllr7")
+volume_db = -15.0
 pitch_scale = 1.5
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -260,13 +261,17 @@ scale = Vector2(11.539583, 10.906019)
 texture = ExtResource("17_tqiix")
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("19_65viv")
+stream = ExtResource("17_tqiix")
+volume_db = -15.0
 
 [node name="LandSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_e7oew")
+volume_db = -15.0
 
 [node name="DamageSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_x7c3f")
+volume_db = -15.0
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_bjvpn")
+volume_db = -15.0

@@ -37,9 +37,12 @@ metadata/_custom_type_script = "uid://bx1w6d3tl7sjh"
 
 [node name="ReloadingSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_83xil")
+volume_db = -10.0
 
 [node name="SpinSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_twxxf")
+volume_db = -5.0
 
 [node name="GunSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_twxxf")
+volume_db = -10.0

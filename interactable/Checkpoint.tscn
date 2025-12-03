@@ -26,7 +26,8 @@ texture = ExtResource("2_861ed")
 [node name="SoundComponent" parent="." instance=ExtResource("3_kd8um")]
 
 [node name="BarCheckpoint" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_jmmw4")
+stream = ExtResource("3_kd8um")
+volume_db = -10.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
