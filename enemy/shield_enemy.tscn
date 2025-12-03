@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dgoi0evox7so3"]
+[gd_scene load_steps=30 format=3 uid="uid://dgoi0evox7so3"]
 
 [ext_resource type="Script" uid="uid://byoevq1d10th2" path="res://enemy/shield_enemy.gd" id="1_jx0n0"]
 [ext_resource type="Texture2D" uid="uid://cjq0m67rc3bay" path="res://enemy/sprites/Protect2.png" id="2_ony4l"]
@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://dfmg46n8igsda" path="res://enemy/sprites/Hurt.png" id="4_ngw6c"]
 [ext_resource type="PackedScene" uid="uid://dtuwo2b8qi1nh" path="res://components/movement_component.tscn" id="4_w5twb"]
 [ext_resource type="PackedScene" uid="uid://dlamkgsuhj11y" path="res://enemy/Shield.tscn" id="7_f676e"]
+[ext_resource type="AudioStream" uid="uid://bakcoopb60rs6" path="res://assets/sounds/Enemy death.wav" id="10_axlaw"]
+[ext_resource type="Script" uid="uid://bx1w6d3tl7sjh" path="res://components/sound_component.gd" id="10_m8fsp"]
+[ext_resource type="AudioStream" uid="uid://cpug64pfv17s" path="res://assets/sounds/Enemy hurt.wav" id="11_m8fsp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f676e"]
 radius = 179.0
@@ -141,13 +144,15 @@ height = 11708.0
 radius = 277.0
 height = 2930.0
 
-[node name="ShieldEnemy" type="CharacterBody2D" groups=["Enemy"]]
+[node name="ShieldEnemy" type="CharacterBody2D" node_paths=PackedStringArray("damage_sound", "death_sound") groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_jx0n0")
 attack_build_up_duration = 0.5
 speed = 1500
 stop_at_edge = false
+damage_sound = NodePath("EnemyHurt")
+death_sound = NodePath("EnemyDeath")
 
 [node name="Hurtbox" type="CollisionShape2D" parent="."]
 position = Vector2(4, 0)
@@ -201,5 +206,15 @@ shape = SubResource("CapsuleShape2D_r6x2f")
 wait_time = 3.0
 
 [node name="Shield" parent="." instance=ExtResource("7_f676e")]
+
+[node name="SoundComponent" type="Node" parent="."]
+script = ExtResource("10_m8fsp")
+metadata/_custom_type_script = "uid://bx1w6d3tl7sjh"
+
+[node name="EnemyDeath" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_axlaw")
+
+[node name="EnemyHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_m8fsp")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

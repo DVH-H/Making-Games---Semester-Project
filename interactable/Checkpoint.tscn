@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://3ei6sbrmm6t4"]
+[gd_scene load_steps=6 format=3 uid="uid://3ei6sbrmm6t4"]
 
 [ext_resource type="Script" uid="uid://bxmi030axdqwy" path="res://interactable/checkpoint.gd" id="1_yt2a0"]
 [ext_resource type="Texture2D" uid="uid://bb3jyj7ujh2ta" path="res://assets/sprites/Assets_0013_Layer-39.png" id="2_861ed"]
+[ext_resource type="PackedScene" uid="uid://bo3uylfjwav7l" path="res://components/sound_component.tscn" id="3_kd8um"]
+[ext_resource type="AudioStream" uid="uid://b7ygmprosiw5t" path="res://assets/sounds/BarCheckpoint.wav" id="4_jmmw4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_861ed"]
 size = Vector2(46.5, 50)
 
-[node name="Checkpoint" type="Node2D"]
+[node name="Checkpoint" type="Node2D" node_paths=PackedStringArray("check_sound")]
 script = ExtResource("1_yt2a0")
+check_sound = NodePath("BarCheckpoint")
 
 [node name="Area2D" type="Area2D" parent="."]
 scale = Vector2(30, 30)
@@ -19,6 +22,11 @@ shape = SubResource("RectangleShape2D_861ed")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_861ed")
+
+[node name="SoundComponent" parent="." instance=ExtResource("3_kd8um")]
+
+[node name="BarCheckpoint" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jmmw4")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -21,6 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://b3ocxes7it3ri" path="res://assets/background.png" id="17_tqiix"]
 [ext_resource type="AudioStream" uid="uid://cu2sg3fiq14ay" path="res://assets/sounds/Land.wav" id="18_e7oew"]
 [ext_resource type="AudioStream" uid="uid://uuajdb26q3sp" path="res://assets/sounds/Jump.wav" id="19_65viv"]
+[ext_resource type="AudioStream" uid="uid://y0vocnqegsu1" path="res://assets/sounds/Play dmg.wav" id="20_x7c3f"]
+[ext_resource type="AudioStream" uid="uid://birybbc7t3sdd" path="res://assets/sounds/Player Death.wav" id="21_bjvpn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
 radius = 142.0
@@ -167,12 +169,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("footsteps_sound", "jump_sound", "land_sound")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("footsteps_sound", "jump_sound", "land_sound", "damage_sound", "death_sound")]
 collision_layer = 2
 script = ExtResource("1_onrkg")
 footsteps_sound = NodePath("FootstepsSound")
 jump_sound = NodePath("JumpSound")
 land_sound = NodePath("LandSound")
+damage_sound = NodePath("DamageSound")
+death_sound = NodePath("DeathSound")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_sh265")
@@ -260,3 +264,9 @@ stream = ExtResource("19_65viv")
 
 [node name="LandSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_e7oew")
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_x7c3f")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_bjvpn")

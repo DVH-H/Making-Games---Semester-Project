@@ -1,4 +1,6 @@
 extends Interactable
+@onready var sound_component: SoundComponent = $SoundComponent
+@export var check_sound: AudioStreamPlayer
 
 func interact():
 	#CheckpointManager.set_checkpoint(GameController.current_scene, position)
@@ -9,6 +11,7 @@ func interact():
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	CheckpointManager.set_checkpoint(GameController.current_scene, position)
+	sound_component.play_sound(check_sound)
 	if body.name == "Player":
 		body.set_interactable(self)
 

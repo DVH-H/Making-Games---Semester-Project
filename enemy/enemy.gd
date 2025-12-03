@@ -8,6 +8,7 @@ class_name enemy
 @onready var attack_timer: Timer = $attack_cd_timer #cooldown 
 @onready var animation_node: AnimatedSprite2D = $AnimatedSprite2D
 @onready var visibilityNotifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+@onready var sound_component: SoundComponent = $SoundComponent
 
 
 @export_subgroup("Movement")
@@ -19,6 +20,9 @@ var player_chase = false
 var attack_cd_ready = true
 var in_attack_range = false
 @onready var player = get_tree().current_scene.get_node("Player")
+
+@export var damage_sound: AudioStreamPlayer
+@export var death_sound: AudioStreamPlayer
 
 enum {
 	STANDBY,
@@ -115,10 +119,12 @@ func is_at_edge(direction: float) -> bool:
 func handle_animations(direction: float) -> void:
 	# Only do looping animations
 	if state == DYING:
+		sound_component.play_sound_noCheck(death_sound)
 		return
 	elif state == ATTACK:
 		return
 	elif  state == DAMAGED:
+		sound_component.play_sound_noCheck(damage_sound) #damage sound placeholder
 		return
 	#if not is_on_floor():
 		#if velocity.y > 0:

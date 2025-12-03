@@ -27,7 +27,6 @@ signal chamber_icons_updated(icons: Array[Texture2D])
 @onready var sound_component: SoundComponent = $SoundComponent
 @export var reloading_sound: AudioStreamPlayer
 @export var gun_sound: AudioStreamPlayer 
-@export var explosion: AudioStreamPlayer 
 @export var spin_sound: AudioStreamPlayer
 var spin_sound_flag: bool = true
 
@@ -95,10 +94,7 @@ func shoot(direction: Vector2) -> float:
 		var bullet := scene.instantiate()
 		get_tree().root.add_child(bullet)
 		
-		if not bullet.explosive:
-			sound_component.play_sound_noCheck(gun_sound)
-		else:
-			sound_component.play_sound_noCheck(explosion)
+		sound_component.play_sound_noCheck(gun_sound)
 		
 		if "global_position" in bullet:
 			bullet.global_position = muzzle.global_position
