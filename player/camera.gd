@@ -8,13 +8,13 @@ extends Camera2D
 var delay_timer = 0.0
 var use_velocity: bool = true
 var player_velocity: Vector2
+var direction: float
 
 
 func _process(delta: float) -> void:
 	var player_pos = player.position + Vector2(0, -1000)
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	var aim_dir = (mouse_pos - global_position).normalized()
-	#if not player.velocity == Vector2.ZERO: 
 	if player.velocity == Vector2.ZERO:
 		delay_timer += delta
 		if delay_timer > delay:
@@ -24,8 +24,15 @@ func _process(delta: float) -> void:
 		use_velocity = true
 		delay_timer = 0.0
 	var new_pos
+	var target_pos = player_pos
+	var current_speed = speed
 	if use_velocity:
-		new_pos = position.lerp(player_pos + (player_velocity.normalized() * length), speed * delta)
+		target_pos.x = player_pos.x + (player_velocity.normalized().x * length)
+		if position.distance_to(target_pos) > 500:
+			current_speed *= 5
 	else:
-		new_pos = position.lerp(player_pos + (aim_dir * length), speed * delta * 2)
+		current_speed *= 2
+		target_pos = player_pos + (aim_dir * length)
+		#new_pos = position.lerp(, speed * delta * 2)
+	new_pos = position.lerp(target_pos, current_speed * delta)
 	position = new_pos
