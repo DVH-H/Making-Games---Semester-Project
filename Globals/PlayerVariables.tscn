@@ -8,4 +8,4 @@ invulnerability_time = 1.0
 speed = 2000
 jump_velocity = 3000
 velocity_cap = 5000
-coyote_time = 2.0
+coyote_time = 0.5

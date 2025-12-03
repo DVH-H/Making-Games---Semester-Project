@@ -10,6 +10,7 @@ class_name Bullet
 @export var load_time: float = 0.2
 @export var fire_cooldown: float = 0.2
 @export var ui_color: Color = Color.hex(0x6ec1e4ff)
+@export var ui_icon: Texture2D
 
 @export var explosive: bool = false
 @onready var movementComponent: MovementComponent = $MovementComponent

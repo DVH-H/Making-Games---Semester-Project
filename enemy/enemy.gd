@@ -184,7 +184,9 @@ func STANDBY_behaviour(delta: float) -> float:
 
 func AGGRO_behaviour() -> float:
 	if player and player_chase:
-		var direction = 1 if player.position.x > position.x else -1
+		var direction = 0
+		if abs(player.position.x - position.x) >= 100:
+			direction = 1 if player.position.x > position.x else -1
 		attack_area_direction(direction)
 		if is_at_edge(direction) and is_on_floor():
 			if stop_at_edge:

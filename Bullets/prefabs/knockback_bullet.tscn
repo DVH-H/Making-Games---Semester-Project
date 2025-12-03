@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpvv8aw64dych"]
+[gd_scene load_steps=6 format=3 uid="uid://cpvv8aw64dych"]
 
 [ext_resource type="Script" uid="uid://pdrk2y1fy36t" path="res://Bullets/scripts/knockback_bullet.gd" id="1_xbsg4"]
+[ext_resource type="Texture2D" uid="uid://c1qpciaa1ken2" path="res://Bullets/Sprites/konckBack.png" id="2_0j06l"]
 [ext_resource type="Texture2D" uid="uid://bxejqij00ky5p" path="res://assets/sprites/gun_tileset.png" id="2_rkhar"]
 [ext_resource type="PackedScene" uid="uid://dtuwo2b8qi1nh" path="res://components/movement_component.tscn" id="3_fg8r7"]
 
@@ -18,6 +19,7 @@ knockback_force = 4000.0
 load_time = 0.5
 fire_cooldown = 0.5
 ui_color = Color(0.8542778, 0.6136127, 0.08999228, 1)
+ui_icon = ExtResource("2_0j06l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5707964

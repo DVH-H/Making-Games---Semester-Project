@@ -134,12 +134,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ony4l"]
-radius = 3772.0
-height = 7544.0
+radius = 2650.0
+height = 11708.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r6x2f"]
 radius = 277.0
-height = 1898.0
+height = 2930.0
 
 [node name="ShieldEnemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4
@@ -176,12 +176,13 @@ position = Vector2(0, -1)
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
-position = Vector2(0, -4)
-shape = SubResource("CapsuleShape2D_ony4l")
-
 [node name="chase_timer" type="Timer" parent="detection_area"]
 wait_time = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
+position = Vector2(0, -4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ony4l")
 
 [node name="MovementComponent" parent="." instance=ExtResource("4_w5twb")]
 ground_deacc = 256.0
@@ -192,7 +193,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_area"]
-position = Vector2(1240, 0)
+position = Vector2(1776, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_r6x2f")
 

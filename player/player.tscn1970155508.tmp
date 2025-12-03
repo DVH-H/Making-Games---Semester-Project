@@ -18,9 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://cj3q5f8wrucqo" path="res://assets/sprites/UI_0001_Layer-18.png" id="13_c35mf"]
 [ext_resource type="Texture2D" uid="uid://d0007c7mxfujf" path="res://assets/sprites/UI_0000_Layer-18-copy.png" id="14_65viv"]
 [ext_resource type="Texture2D" uid="uid://0jrvs8a0bfnu" path="res://assets/sprites/UI_0002_Layer-19.png" id="15_65viv"]
-[ext_resource type="Texture2D" uid="uid://b3ocxes7it3ri" path="res://assets/background.png" id="17_tqiix"]
+[ext_resource type="AudioStream" uid="uid://uuajdb26q3sp" path="res://assets/sounds/Jump.wav" id="17_tqiix"]
 [ext_resource type="AudioStream" uid="uid://cu2sg3fiq14ay" path="res://assets/sounds/Land.wav" id="18_e7oew"]
-[ext_resource type="AudioStream" uid="uid://uuajdb26q3sp" path="res://assets/sounds/Jump.wav" id="19_65viv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
 radius = 142.0
@@ -188,6 +187,10 @@ autoplay = "idle_left"
 [node name="AnimationController" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("5_sweqy")]
 sprite = NodePath("../AnimatedSprite2D")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+position_smoothing_speed = 10.0
+
 [node name="MovementComponent" parent="." instance=ExtResource("6_g6k8r")]
 ground_deacc = 256.0
 air_deacc = 48.0
@@ -195,7 +198,6 @@ air_deacc = 48.0
 [node name="Gravity" parent="." instance=ExtResource("6_boad6")]
 
 [node name="Gun" parent="." instance=ExtResource("7_boad6")]
-z_index = -1
 position = Vector2(-47, -44)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -206,16 +208,21 @@ gun_path = NodePath("../Gun")
 [node name="RevolverCylinderUI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 145.0
-offset_top = 207.0
-offset_right = 185.0
-offset_bottom = 247.0
-scale = Vector2(0.2, 0.2)
+offset_left = 400.0
+offset_top = 417.0
+offset_right = 440.0
+offset_bottom = 457.0
 mouse_filter = 1
 script = ExtResource("8_rgyib")
 cylinder_background = ExtResource("11_65viv")
+background_scale = 1.0
+bullet_scale = 0.17
 outer_radius = 335.0
+chamber_radius = 82.0
+ring_thickness = null
 gap_from_edge = 150.0
+show_center_pivot = null
+show_indices = null
 
 [node name="ReloadBar" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -227,15 +234,15 @@ offset_bottom = 395.0
 script = ExtResource("10_8t03j")
 player_path = NodePath("../..")
 gun_path = NodePath("../../Gun")
-size_px = Vector2i(66, 9)
-border_px = 3
+size_px = Vector2i(660, 90)
+border_px = 30
 
 [node name="HealthUI" type="HBoxContainer" parent="CanvasLayer"]
-offset_left = 27.0
-offset_top = 32.0
-offset_right = 67.0
-offset_bottom = 72.0
-scale = Vector2(2, 2)
+offset_left = 805.00006
+offset_top = 50.00003
+offset_right = 845.00006
+offset_bottom = 90.00003
+scale = Vector2(7.6737466, 7.6737466)
 script = ExtResource("11_32hag")
 heart_full_texture = ExtResource("13_c35mf")
 heart_half_texture = ExtResource("14_65viv")
@@ -249,14 +256,12 @@ stream = ExtResource("12_yllr7")
 pitch_scale = 1.5
 
 [node name="Background" type="Sprite2D" parent="."]
-modulate = Color(0.09265783, 1.4439226e-07, 0.53407574, 1)
 z_index = -15
-position = Vector2(165, -2723)
+position = Vector2(-650, -2134.0002)
 scale = Vector2(11.539583, 10.906019)
-texture = ExtResource("17_tqiix")
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("19_65viv")
+stream = ExtResource("17_tqiix")
 
 [node name="LandSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_e7oew")
