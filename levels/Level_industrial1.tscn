@@ -24,8 +24,8 @@
 [ext_resource type="PackedScene" uid="uid://c6vnm5w2oxnge" path="res://levels/Prefabs/CelingLamp.tscn" id="22_0j48l"]
 [ext_resource type="PackedScene" uid="uid://c1sa3chmudwm8" path="res://levels/Prefabs/StoneLamp.tscn" id="23_4e7aj"]
 [ext_resource type="PackedScene" uid="uid://c7mwi3i2ulybl" path="res://levels/Prefabs/SignRight.tscn" id="24_2q7s4"]
-[ext_resource type="PackedScene" uid="uid://rfee3slpu563" path="res://player/Camera.tscn" id="25_w58yr"]
 [ext_resource type="PackedScene" uid="uid://3ei6sbrmm6t4" path="res://interactable/Checkpoint.tscn" id="26_gd2rs"]
+[ext_resource type="PackedScene" uid="uid://c5s5kc4fk3snh" path="res://interactable/nextLevelArea.tscn" id="26_k03kb"]
 
 [node name="LevelIndustrial1" type="Node2D"]
 
@@ -371,8 +371,6 @@ position = Vector2(-47731, -22556.002)
 rotation = -3.9043016
 scale = Vector2(1, -1)
 
-[node name="Camera" parent="." instance=ExtResource("25_w58yr")]
-
 [node name="Checkpoint" parent="." instance=ExtResource("26_gd2rs")]
 position = Vector2(-13766, -5911)
 
@@ -381,3 +379,44 @@ position = Vector2(-46995, -21573)
 
 [node name="Checkpoint3" parent="." instance=ExtResource("26_gd2rs")]
 position = Vector2(-62385, -33855)
+
+[node name="BigWindow4" parent="." instance=ExtResource("20_ok3ye")]
+position = Vector2(-83278, -35976)
+
+[node name="BigWindow5" parent="." instance=ExtResource("20_ok3ye")]
+position = Vector2(-81251, -35973)
+
+[node name="BigWindow6" parent="." instance=ExtResource("20_ok3ye")]
+position = Vector2(-79288, -35972)
+
+[node name="CelingLamp10" parent="." instance=ExtResource("22_0j48l")]
+position = Vector2(-77565, -34307)
+
+[node name="LedgeType4" parent="." instance=ExtResource("15_lolgy")]
+position = Vector2(-70839, -31711)
+
+[node name="SignLeft8" parent="." instance=ExtResource("4_darc0")]
+position = Vector2(-82347, -29282)
+
+[node name="TrashCan5" parent="." instance=ExtResource("6_3q4vd")]
+position = Vector2(-77605, -25915)
+
+[node name="WallLamp7" parent="." instance=ExtResource("14_lxk4e")]
+position = Vector2(-75230, -31618)
+scale = Vector2(-1, 1)
+
+[node name="WallLamp8" parent="." instance=ExtResource("14_lxk4e")]
+position = Vector2(-79016, -39621)
+scale = Vector2(-1, 1)
+
+[node name="NextLevelArea" parent="." instance=ExtResource("26_k03kb")]
+position = Vector2(-84971, -31511)
+
+[node name="StreetLamp20" parent="." instance=ExtResource("18_6aa6y")]
+position = Vector2(-83547, -38531)
+
+[node name="SignDown3" parent="." instance=ExtResource("19_j43fe")]
+position = Vector2(-84309, -37935)
+
+[node name="TrashCan6" parent="." instance=ExtResource("6_3q4vd")]
+position = Vector2(-74742, -41048)
