@@ -73,6 +73,8 @@ func _ready() -> void:
 	visibilityNotifier.screen_entered.connect(_on_VisibilityNotifier2D_screen_entered)
 	set_process(false)
 	set_physics_process(false)
+	
+	animation_node.stop()
 	#visible = false   # optional
 
 func do_state_behaviour(delta):
@@ -126,11 +128,11 @@ func handle_animations(direction: float) -> void:
 	elif  state == DAMAGED:
 		sound_component.play_sound(damage_sound) #damage sound placeholder
 		return
-	#if not is_on_floor():
-		#if velocity.y > 0:
-			#animation_node.play("fall")
-		#else:
-			#animation_node.play("jump")
+	if not is_on_floor():
+		if velocity.y > 0:
+			animation_node.play("fall")
+		else:
+			animation_node.play("jump")
 	if direction != 0:
 		animation_node.flip_h = (direction < 0)
 		animation_node.play("walk")
@@ -277,6 +279,7 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 func _on_VisibilityNotifier2D_screen_exited():
 	set_process(false)
 	set_physics_process(false)
+	animation_node.stop()
 	#visible = false   # optional
 	
 func _on_VisibilityNotifier2D_screen_entered():
