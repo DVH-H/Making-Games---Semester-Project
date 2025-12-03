@@ -67,6 +67,9 @@ func _ready() -> void:
 	animation_node.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
 	visibilityNotifier.screen_exited.connect(_on_VisibilityNotifier2D_screen_exited)
 	visibilityNotifier.screen_entered.connect(_on_VisibilityNotifier2D_screen_entered)
+	set_process(false)
+	set_physics_process(false)
+	#visible = false   # optional
 
 func do_state_behaviour(delta):
 	var direction = 0.0
@@ -265,9 +268,9 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 func _on_VisibilityNotifier2D_screen_exited():
 	set_process(false)
 	set_physics_process(false)
-	visible = false   # optional
+	#visible = false   # optional
 	
 func _on_VisibilityNotifier2D_screen_entered():
 	set_process(true)
 	set_physics_process(true)
-	visible = true    # optional
+	#visible = true    # optional
