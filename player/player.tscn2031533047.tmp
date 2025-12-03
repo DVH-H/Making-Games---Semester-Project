@@ -215,8 +215,13 @@ offset_bottom = 457.0
 mouse_filter = 1
 script = ExtResource("8_rgyib")
 cylinder_background = ExtResource("11_65viv")
+bullet_scale = 0.17
 outer_radius = 335.0
+chamber_radius = 82.0
+ring_thickness = null
 gap_from_edge = 150.0
+show_center_pivot = null
+show_indices = null
 
 [node name="ReloadBar" type="Control" parent="CanvasLayer"]
 layout_mode = 3
