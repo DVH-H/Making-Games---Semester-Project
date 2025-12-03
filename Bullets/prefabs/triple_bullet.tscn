@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://rxx2ppsk52l8"]
 
 [ext_resource type="Script" uid="uid://bhwgsf86kf178" path="res://Bullets/scripts/triple_bullet.gd" id="1_lkaf5"]
-[ext_resource type="Texture2D" uid="uid://bxejqij00ky5p" path="res://assets/sprites/gun_tileset.png" id="2_52iso"]
 [ext_resource type="Texture2D" uid="uid://dtdjaihijvkf8" path="res://Bullets/Sprites/TripleBullet.png" id="2_bsyx4"]
+[ext_resource type="Texture2D" uid="uid://q2fba6qqqklf" path="res://Bullets/Sprites/tripple_ammo.png" id="3_52iso"]
 [ext_resource type="PackedScene" uid="uid://dtuwo2b8qi1nh" path="res://components/movement_component.tscn" id="3_bsyx4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jw33g"]
@@ -20,11 +20,9 @@ ui_color = Color(0, 1, 0, 1)
 ui_icon = ExtResource("2_bsyx4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 1.5707964
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_52iso")
-region_enabled = true
-region_rect = Rect2(671.9092, 163.09094, 16.363647, 60.909103)
+rotation = 3.1415927
+scale = Vector2(0.008, 0.008)
+texture = ExtResource("3_52iso")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-3, -1, 6, 2)
