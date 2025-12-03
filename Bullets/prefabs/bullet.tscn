@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://svellhavgwwc"]
 
 [ext_resource type="Script" uid="uid://c14sbclk7a5hk" path="res://Bullets/scripts/bullet.gd" id="1_olui7"]
-[ext_resource type="Texture2D" uid="uid://bxejqij00ky5p" path="res://assets/sprites/gun_tileset.png" id="2_ecmfp"]
+[ext_resource type="Texture2D" uid="uid://qqkyb14lah0m" path="res://Bullets/Sprites/normal_ammo.png" id="2_olui7"]
 [ext_resource type="PackedScene" uid="uid://dtuwo2b8qi1nh" path="res://components/movement_component.tscn" id="3_unv0v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_omyih"]
@@ -16,11 +16,9 @@ script = ExtResource("1_olui7")
 knockback_force = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 1.5707964
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_ecmfp")
-region_enabled = true
-region_rect = Rect2(671.9092, 163.09094, 16.363647, 60.909103)
+rotation = 3.1415927
+scale = Vector2(0.008, 0.008)
+texture = ExtResource("2_olui7")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-3, -1, 6, 2)
