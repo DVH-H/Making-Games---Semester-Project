@@ -112,12 +112,12 @@ func is_at_edge(direction: float) -> bool:
 func handle_animations(direction: float) -> void:
 	# Only do looping animations
 	if state == DYING:
-		sound_component.play_sound_noCheck(death_sound)
+		#sound_component.play_sound(death_sound)
 		return
 	elif state == ATTACK:
 		return
 	elif  state == DAMAGED:
-		sound_component.play_sound_noCheck(damage_sound) #damage sound placeholder
+		sound_component.play_sound(damage_sound) #damage sound placeholder
 		return
 	#if not is_on_floor():
 		#if velocity.y > 0:
@@ -160,6 +160,7 @@ func take_damage(dmg: int) -> void:
 
 func die():
 	animation_node.play("death")
+	sound_component.play_sound(death_sound)
 	state = DYING
 	velocity.x = 0
 	player_chase = false
