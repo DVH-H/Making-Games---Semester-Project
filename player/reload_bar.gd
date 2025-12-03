@@ -34,6 +34,8 @@ func _ready() -> void:
 		_gun.reload_started.connect(_on_reload_started)
 		if _gun.has_signal("fire_cooldown_started"):
 			_gun.fire_cooldown_started.connect(_on_fire_cooldown_started)
+		if _gun.has_signal("reload_cancelled"):
+			_gun.reload_cancelled.connect(_on_reload_cancelled)
 
 	custom_minimum_size = Vector2(size_px.x, size_px.y)
 	set_anchors_preset(Control.PRESET_TOP_LEFT)
@@ -108,3 +110,7 @@ func _on_reload_started(_idx: int, duration: float) -> void:
 
 func _on_fire_cooldown_started(duration: float) -> void:
 	_show_reload_bar(duration, color_cooldown)
+
+func _on_reload_cancelled() -> void:
+	_active = false
+	visible = false
