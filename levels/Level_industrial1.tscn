@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://yf8beriq0pgu"]
+[gd_scene load_steps=30 format=3 uid="uid://yf8beriq0pgu"]
 
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="1_k03kb"]
 [ext_resource type="PackedScene" uid="uid://d2bjxyv4jkfuy" path="res://levels/Tilemaps/Tilemap_Industrial1.tscn" id="2_vuf5g"]
@@ -25,7 +25,10 @@
 [ext_resource type="PackedScene" uid="uid://c1sa3chmudwm8" path="res://levels/Prefabs/StoneLamp.tscn" id="23_4e7aj"]
 [ext_resource type="PackedScene" uid="uid://c7mwi3i2ulybl" path="res://levels/Prefabs/SignRight.tscn" id="24_2q7s4"]
 [ext_resource type="PackedScene" uid="uid://3ei6sbrmm6t4" path="res://interactable/Checkpoint.tscn" id="26_gd2rs"]
-[ext_resource type="PackedScene" uid="uid://c5s5kc4fk3snh" path="res://interactable/nextLevelArea.tscn" id="26_k03kb"]
+[ext_resource type="PackedScene" path="res://enemy/explosive_thrower.tscn" id="26_k03kb"]
+[ext_resource type="PackedScene" uid="uid://od8c1g7qfox2" path="res://heal_consumable.tscn" id="27_vuf5g"]
+[ext_resource type="PackedScene" uid="uid://c5s5kc4fk3snh" path="res://interactable/nextLevelArea.tscn" id="28_vm6l7"]
+[ext_resource type="Texture2D" uid="uid://dvqb2b16pxy0w" path="res://assets/sprites/Layer 18.png" id="29_darc0"]
 
 [node name="LevelIndustrial1" type="Node2D"]
 
@@ -397,9 +400,6 @@ scale = Vector2(-1, 1)
 position = Vector2(-79016, -39621)
 scale = Vector2(-1, 1)
 
-[node name="NextLevelArea" parent="." instance=ExtResource("26_k03kb")]
-position = Vector2(-86978, -21286)
-
 [node name="StreetLamp20" parent="." instance=ExtResource("18_6aa6y")]
 position = Vector2(-83547, -38531)
 
@@ -421,3 +421,78 @@ position = Vector2(-62280, -33859)
 [node name="LedgeType4" parent="." instance=ExtResource("21_ctlip")]
 position = Vector2(-70860, -32208)
 scale = Vector2(0.8, 0.8)
+
+[node name="ExplosiveThrower" parent="." instance=ExtResource("26_k03kb")]
+position = Vector2(-82616, -38126)
+
+[node name="ShieldEnemy2" parent="." instance=ExtResource("11_qpv4i")]
+position = Vector2(-72607, -26232)
+patrol_array = Array[Vector2]([Vector2(-77374, -26173), Vector2(-67771, -26232)])
+
+[node name="health_pickup" parent="." instance=ExtResource("27_vuf5g")]
+position = Vector2(-4838, -16500)
+script = null
+
+[node name="health_pickup2" parent="." instance=ExtResource("27_vuf5g")]
+position = Vector2(-7037, -17750)
+script = null
+
+[node name="health_pickup3" parent="." instance=ExtResource("27_vuf5g")]
+position = Vector2(-33546, -12818)
+script = null
+
+[node name="health_pickup4" parent="." instance=ExtResource("27_vuf5g")]
+position = Vector2(-56956, -18256)
+script = null
+
+[node name="health_pickup5" parent="." instance=ExtResource("27_vuf5g")]
+position = Vector2(-56325, -18247)
+script = null
+
+[node name="health_pickup6" parent="." instance=ExtResource("27_vuf5g")]
+position = Vector2(-70887, -35263)
+script = null
+
+[node name="health_pickup7" parent="." instance=ExtResource("27_vuf5g")]
+position = Vector2(-77605, -41271)
+script = null
+
+[node name="health_pickup8" parent="." instance=ExtResource("27_vuf5g")]
+position = Vector2(-76908, -41268)
+script = null
+
+[node name="NextLevelArea" parent="." instance=ExtResource("28_vm6l7")]
+position = Vector2(-99470, -20222)
+
+[node name="Layer18" type="Sprite2D" parent="."]
+position = Vector2(-99529, -21833)
+scale = Vector2(3, 3)
+texture = ExtResource("29_darc0")
+
+[node name="SignLeft9" parent="." instance=ExtResource("4_darc0")]
+position = Vector2(-87043, -19536)
+
+[node name="WallLamp9" parent="." instance=ExtResource("14_lxk4e")]
+position = Vector2(-100763, -22966)
+
+[node name="WallLamp10" parent="." instance=ExtResource("14_lxk4e")]
+position = Vector2(-89253, -22362)
+scale = Vector2(-1, 1)
+
+[node name="CelingLamp11" parent="." instance=ExtResource("22_0j48l")]
+position = Vector2(-92098, -23634)
+
+[node name="CelingLamp12" parent="." instance=ExtResource("22_0j48l")]
+position = Vector2(-94300, -23661)
+
+[node name="CelingLamp13" parent="." instance=ExtResource("22_0j48l")]
+position = Vector2(-96018, -23490)
+
+[node name="CelingLamp14" parent="." instance=ExtResource("22_0j48l")]
+position = Vector2(-97748, -23923)
+
+[node name="CelingLamp15" parent="." instance=ExtResource("22_0j48l")]
+position = Vector2(-99374, -23464)
+
+[node name="CelingLamp16" parent="." instance=ExtResource("22_0j48l")]
+position = Vector2(-90406, -23936)
