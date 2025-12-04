@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://brg3fsegfg0e"]
+[gd_scene load_steps=14 format=3 uid="uid://brg3fsegfg0e"]
 
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="1_ad46j"]
 [ext_resource type="PackedScene" uid="uid://dai37nexjs0em" path="res://levels/Tilemaps/Tilemap_Industrial2.tscn" id="2_405r1"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://4n3a8mvv3bj6" path="res://levels/Prefabs/SpikesWire.tscn" id="9_inelk"]
 [ext_resource type="PackedScene" uid="uid://3ei6sbrmm6t4" path="res://interactable/Checkpoint.tscn" id="10_cygf2"]
 [ext_resource type="PackedScene" uid="uid://1g43dvmxf5hh" path="res://enemy/enemy.tscn" id="11_inelk"]
+[ext_resource type="PackedScene" uid="uid://cy482vtfjdebe" path="res://levels/Prefabs/wallLamp.tscn" id="12_cygf2"]
+[ext_resource type="PackedScene" uid="uid://rfee3slpu563" path="res://player/Camera.tscn" id="13_fk8aw"]
 
 [node name="LevelIndustrial2" type="Node2D"]
 
@@ -70,3 +72,23 @@ position = Vector2(2565, -430)
 [node name="Enemy" parent="." instance=ExtResource("11_inelk")]
 position = Vector2(-15027, 6307)
 patrol_array = Array[Vector2]([Vector2(-16902, 6393), Vector2(-12662, 6350)])
+
+[node name="WallLamp" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-15476, -956)
+
+[node name="WallLamp2" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-15476, 3698)
+
+[node name="WallLamp3" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-23171, 3305)
+scale = Vector2(-1, 1)
+
+[node name="CartEmpty3" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-11880, 1339)
+rotation = -0.7941248
+
+[node name="CartFull4" parent="." instance=ExtResource("5_sk2lv")]
+position = Vector2(-10609, 998)
+
+[node name="Camera" parent="." instance=ExtResource("13_fk8aw")]
+position = Vector2(9, -233)

@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkrf3syh3h5wu"]
+[gd_scene load_steps=6 format=3 uid="uid://deovbsam25l5r"]
 
 [ext_resource type="Script" path="res://enemy/thrown_explosive.gd" id="1_7xxco"]
-[ext_resource type="Texture2D" uid="uid://c7nc7mj60jvb4" path="res://assets/sprites/Layer 46Asset_.png" id="2_pgyik"]
+[ext_resource type="Texture2D" uid="uid://b4124j80puifa" path="res://assets/sprites/Layer 21.png" id="2_7xxco"]
 [ext_resource type="PackedScene" uid="uid://dtuwo2b8qi1nh" path="res://components/movement_component.tscn" id="3_cqbju"]
 [ext_resource type="PackedScene" uid="uid://dytqh10wawuk0" path="res://components/gravity_component.tscn" id="4_jajne"]
 
@@ -14,9 +14,9 @@ collision_mask = 11
 script = ExtResource("1_7xxco")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-50, 32)
+position = Vector2(2, -8.999999)
 scale = Vector2(0.838956, 0.77175415)
-texture = ExtResource("2_pgyik")
+texture = ExtResource("2_7xxco")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ea5ia")
