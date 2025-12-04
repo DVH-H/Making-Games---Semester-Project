@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://brg3fsegfg0e"]
+[gd_scene load_steps=21 format=3 uid="uid://brg3fsegfg0e"]
 
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="1_ad46j"]
 [ext_resource type="PackedScene" uid="uid://dai37nexjs0em" path="res://levels/Tilemaps/Tilemap_Industrial2.tscn" id="2_405r1"]
@@ -16,6 +16,10 @@
 [ext_resource type="PackedScene" uid="uid://7vpte4iqsdl7" path="res://levels/Prefabs/SafetyFenceB.tscn" id="14_lx4ll"]
 [ext_resource type="PackedScene" uid="uid://7yqd2masewrp" path="res://levels/Prefabs/CheckpointPrefab.tscn" id="15_d1xdu"]
 [ext_resource type="PackedScene" uid="uid://ccvirxqwljcfj" path="res://levels/Prefabs/DevilSign.tscn" id="16_gwjjh"]
+[ext_resource type="PackedScene" uid="uid://b30igfsw7m7iy" path="res://enemy/explosive_thrower.tscn" id="17_gwjjh"]
+[ext_resource type="PackedScene" uid="uid://co1iy5xnrtxwg" path="res://levels/Prefabs/SignWarning.tscn" id="18_i847x"]
+[ext_resource type="PackedScene" uid="uid://cvnfqpm4d7gxa" path="res://enemy/throw_enemy.tscn" id="19_ad46j"]
+[ext_resource type="PackedScene" uid="uid://dgoi0evox7so3" path="res://enemy/shield_enemy.tscn" id="20_i1wya"]
 
 [node name="LevelIndustrial2" type="Node2D"]
 
@@ -173,3 +177,82 @@ scale = Vector2(0.7, 1)
 
 [node name="SpikesWire2" parent="." instance=ExtResource("9_inelk")]
 position = Vector2(-52090, -6498)
+
+[node name="ExplosiveThrower" parent="." instance=ExtResource("17_gwjjh")]
+position = Vector2(-44586, -373)
+
+[node name="Enemy2" parent="." instance=ExtResource("11_inelk")]
+position = Vector2(-32585, -5866)
+stop_at_edge = false
+
+[node name="SpikesWire3" parent="." instance=ExtResource("9_inelk")]
+position = Vector2(-20111, -6732)
+
+[node name="SignWarning" parent="." instance=ExtResource("18_i847x")]
+position = Vector2(-18603, -7279)
+rotation = -0.2617994
+
+[node name="CartFull6" parent="." instance=ExtResource("5_sk2lv")]
+position = Vector2(-46726, -10816)
+
+[node name="CartEmpty6" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-40331, -1069)
+
+[node name="CartEmpty7" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-41200, -1063)
+
+[node name="CartFull7" parent="." instance=ExtResource("5_sk2lv")]
+position = Vector2(-29575, 465)
+
+[node name="CelingLamp12" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-30481, -1894)
+
+[node name="CelingLamp13" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-27736, -2278)
+
+[node name="CelingLamp14" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-51805, -2451)
+
+[node name="CelingLamp15" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-50020, -2777)
+
+[node name="CelingLamp16" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-46911, -2624)
+
+[node name="CelingLamp17" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-42976, -3756)
+
+[node name="CelingLamp18" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-56470, -4620)
+
+[node name="CelingLamp19" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-65702, 9450)
+
+[node name="CelingLamp20" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-68850, 8989)
+
+[node name="Barrel5" parent="." instance=ExtResource("7_7g3tq")]
+position = Vector2(-59522, 11369)
+
+[node name="SpikesWire4" parent="." instance=ExtResource("9_inelk")]
+position = Vector2(-62458, 16782)
+
+[node name="SignWarning2" parent="." instance=ExtResource("18_i847x")]
+position = Vector2(-64205, 14996.002)
+rotation = 0.5061455
+
+[node name="SignWarning3" parent="." instance=ExtResource("18_i847x")]
+position = Vector2(-60386, 13690.998)
+rotation = -0.7749262
+
+[node name="ThrowEnemy" parent="." instance=ExtResource("19_ad46j")]
+position = Vector2(-37512, -10828)
+
+[node name="ExplosiveThrower2" parent="." instance=ExtResource("17_gwjjh")]
+position = Vector2(-53677, -8954)
+
+[node name="ShieldEnemy" parent="." instance=ExtResource("20_i1wya")]
+position = Vector2(-53694, 843)
+
+[node name="CheckpointSprite2" parent="." instance=ExtResource("15_d1xdu")]
+position = Vector2(-66693, 11525)
