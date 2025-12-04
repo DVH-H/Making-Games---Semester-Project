@@ -21,7 +21,7 @@ GameController="*res://Globals/game_controller.gd"
 CheckpointManager="*res://Globals/CheckpointManager.gd"
 LoadoutManager="*res://Globals/LoadoutManager.gd"
 PlayerVariables="*res://Globals/PlayerVariables.tscn"
-Camera="*res://player/Camera.tscn"
+Camera="res://player/Camera.tscn"
 
 [display]
 
