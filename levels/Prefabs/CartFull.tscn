@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://haa3mak7nluw"]
+
+[ext_resource type="Texture2D" uid="uid://dkxs17mh4tpw4" path="res://assets/sprites/Layer 15.png" id="1_88fvg"]
+
+[node name="CartFull" type="Node2D"]
+
+[node name="Layer15" type="Sprite2D" parent="."]
+z_index = -2
+scale = Vector2(3, 3)
+texture = ExtResource("1_88fvg")
