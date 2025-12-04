@@ -80,21 +80,21 @@ region = Rect2(939, 3756, 939, 939)
 atlas = ExtResource("2_nafms")
 region = Rect2(0, 3756, 939, 939)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nafms"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rlxu"]
 atlas = ExtResource("2_nafms")
-region = Rect2(0, 6573, 939, 939)
+region = Rect2(2817, 6573, 939, 939)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0y0ss"]
 atlas = ExtResource("2_nafms")
 region = Rect2(939, 6573, 939, 939)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_nafms"]
+atlas = ExtResource("2_nafms")
+region = Rect2(0, 6573, 939, 939)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_4thj3"]
 atlas = ExtResource("2_nafms")
 region = Rect2(1878, 6573, 939, 939)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0rlxu"]
-atlas = ExtResource("2_nafms")
-region = Rect2(2817, 6573, 939, 939)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6unu1"]
 atlas = ExtResource("2_nafms")
@@ -221,16 +221,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nafms")
+"texture": SubResource("AtlasTexture_0rlxu")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0y0ss")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4thj3")
+"texture": SubResource("AtlasTexture_nafms")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0rlxu")
+"texture": SubResource("AtlasTexture_4thj3")
 }],
 "loop": false,
 "name": &"fall",
@@ -323,7 +323,7 @@ shape = SubResource("CapsuleShape2D_aj34y")
 position = Vector2(0, -2)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_knn6d")
-animation = &"fall"
+animation = &"attack"
 autoplay = "idle"
 offset = Vector2(0, -6)
 

@@ -380,8 +380,3 @@ volume_db = -15.0
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_y5vj3")
 volume_db = -15.0
-
-[connection signal="timeout" from="detection_area/chase_timer" to="." method="_on_chase_tiimer_timeout"]
-[connection signal="body_entered" from="attack_area" to="." method="_on_attack_area_body_entered"]
-[connection signal="body_exited" from="attack_area" to="." method="_on_attack_area_body_exited"]
-[connection signal="timeout" from="attack_cd_timer" to="." method="_on_attack_timer_timeout"]
