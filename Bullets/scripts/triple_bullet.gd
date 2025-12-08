@@ -18,7 +18,7 @@ func initialize(dir: Vector2):
 		get_tree().root.add_child(b2)
 		b1.global_position = global_position
 		b2.global_position = global_position
-		var dir1 = Vector2.from_angle(dir.angle() + PI * 0.1)
-		var dir2 = Vector2.from_angle(dir.angle() - PI * 0.1)
+		var dir1 = Vector2.from_angle(dir.angle() + PI * 0.01)
+		var dir2 = Vector2.from_angle(dir.angle() - PI * 0.01)
 		b1.initialize(dir1)
 		b2.initialize(dir2)

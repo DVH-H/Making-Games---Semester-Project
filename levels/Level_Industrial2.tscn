@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://brg3fsegfg0e"]
+[gd_scene load_steps=25 format=3 uid="uid://brg3fsegfg0e"]
 
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="1_ad46j"]
 [ext_resource type="PackedScene" uid="uid://dai37nexjs0em" path="res://levels/Tilemaps/Tilemap_Industrial2.tscn" id="2_405r1"]
@@ -20,6 +20,10 @@
 [ext_resource type="PackedScene" uid="uid://co1iy5xnrtxwg" path="res://levels/Prefabs/SignWarning.tscn" id="18_i847x"]
 [ext_resource type="PackedScene" uid="uid://cvnfqpm4d7gxa" path="res://enemy/throw_enemy.tscn" id="19_ad46j"]
 [ext_resource type="PackedScene" uid="uid://dgoi0evox7so3" path="res://enemy/shield_enemy.tscn" id="20_i1wya"]
+[ext_resource type="PackedScene" uid="uid://5ss1vdg1uhk1" path="res://levels/Prefabs/ledgeType1.tscn" id="21_i1wya"]
+[ext_resource type="PackedScene" uid="uid://byyrydbatwhxw" path="res://levels/Prefabs/TrashCan.tscn" id="22_q7ygl"]
+[ext_resource type="PackedScene" uid="uid://cht6xoj54fvc5" path="res://levels/Prefabs/SignLeft.tscn" id="23_wjguh"]
+[ext_resource type="PackedScene" uid="uid://c1yv3rlvjbc7x" path="res://levels/Prefabs/ledgeType2.tscn" id="24_wjguh"]
 
 [node name="LevelIndustrial2" type="Node2D"]
 
@@ -108,21 +112,20 @@ position = Vector2(-32347, -10205)
 scale = Vector2(-1, 1)
 
 [node name="SafetyFenceB" parent="." instance=ExtResource("14_lx4ll")]
-position = Vector2(-37873, -11065)
+position = Vector2(-37303, -10454)
 
 [node name="WallLamp6" parent="." instance=ExtResource("12_cygf2")]
 position = Vector2(-39592, -2865)
 scale = Vector2(-1, 1)
 
 [node name="CartFull5" parent="." instance=ExtResource("5_sk2lv")]
-position = Vector2(-37988, -10692.998)
-rotation = 0.5358161
+position = Vector2(-37923, -10588)
 
 [node name="CartEmpty4" parent="." instance=ExtResource("4_emcq5")]
 position = Vector2(-38761, -10814)
 
 [node name="CartEmpty5" parent="." instance=ExtResource("4_emcq5")]
-position = Vector2(-39617, -10801)
+position = Vector2(-39593, -10809)
 
 [node name="CheckpointSprite" parent="." instance=ExtResource("15_d1xdu")]
 position = Vector2(-27965, 172)
@@ -246,7 +249,7 @@ position = Vector2(-60386, 13690.998)
 rotation = -0.7749262
 
 [node name="ThrowEnemy" parent="." instance=ExtResource("19_ad46j")]
-position = Vector2(-37512, -10828)
+position = Vector2(-37939, -11388)
 
 [node name="ExplosiveThrower2" parent="." instance=ExtResource("17_gwjjh")]
 position = Vector2(-53677, -8954)
@@ -254,11 +257,14 @@ position = Vector2(-53677, -8954)
 [node name="ShieldEnemy" parent="." instance=ExtResource("20_i1wya")]
 position = Vector2(-53694, 843)
 
+[node name="WallLamp13" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-62527, 2787)
+
 [node name="CheckpointSprite2" parent="." instance=ExtResource("15_d1xdu")]
 position = Vector2(-66693, 11525)
 
 [node name="WallLamp10" parent="." instance=ExtResource("12_cygf2")]
-position = Vector2(-64106, 3524)
+position = Vector2(-73673, 7734)
 
 [node name="WallLamp11" parent="." instance=ExtResource("12_cygf2")]
 position = Vector2(-64089, -2269)
@@ -266,3 +272,25 @@ position = Vector2(-64089, -2269)
 [node name="WallLamp12" parent="." instance=ExtResource("12_cygf2")]
 position = Vector2(-60669, 540)
 scale = Vector2(-1, 1)
+
+[node name="SignWarning4" parent="." instance=ExtResource("18_i847x")]
+position = Vector2(-17628, 6521)
+rotation = 0.059341196
+
+[node name="LedgeType1" parent="." instance=ExtResource("21_i1wya")]
+modulate = Color(0.6027457, 0.52886075, 0.483509, 1)
+position = Vector2(-74698, 10048)
+
+[node name="TrashCan" parent="." instance=ExtResource("22_q7ygl")]
+position = Vector2(-74537, 11393)
+
+[node name="TrashCan2" parent="." instance=ExtResource("22_q7ygl")]
+position = Vector2(-74125, 11449)
+scale = Vector2(0.7, 0.7)
+
+[node name="SignLeft" parent="." instance=ExtResource("23_wjguh")]
+position = Vector2(-76418, 6913)
+
+[node name="LedgeType2" parent="." instance=ExtResource("24_wjguh")]
+modulate = Color(0.6068102, 0.53283805, 0.4874385, 1)
+position = Vector2(-63717, 5625)
