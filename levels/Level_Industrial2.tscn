@@ -77,7 +77,7 @@ position = Vector2(-11434, 943)
 position = Vector2(-19067, 6730)
 
 [node name="Checkpoint" parent="." instance=ExtResource("10_cygf2")]
-z_index = -1
+z_index = -2
 position = Vector2(2565, -430)
 
 [node name="Enemy" parent="." instance=ExtResource("11_inelk")]
@@ -238,7 +238,7 @@ position = Vector2(-68850, 8989)
 position = Vector2(-59522, 11369)
 
 [node name="SpikesWire4" parent="." instance=ExtResource("9_inelk")]
-position = Vector2(-62458, 16782)
+position = Vector2(-63498, 16755)
 
 [node name="SignWarning2" parent="." instance=ExtResource("18_i847x")]
 position = Vector2(-64205, 14996.002)
@@ -255,7 +255,7 @@ position = Vector2(-37939, -11388)
 position = Vector2(-53677, -8954)
 
 [node name="ShieldEnemy" parent="." instance=ExtResource("20_i1wya")]
-position = Vector2(-53694, 843)
+position = Vector2(-53939, 828)
 
 [node name="WallLamp13" parent="." instance=ExtResource("12_cygf2")]
 position = Vector2(-62527, 2787)
@@ -294,3 +294,22 @@ position = Vector2(-76418, 6913)
 [node name="LedgeType2" parent="." instance=ExtResource("24_wjguh")]
 modulate = Color(0.6068102, 0.53283805, 0.4874385, 1)
 position = Vector2(-63717, 5625)
+
+[node name="SpikesWire5" parent="." instance=ExtResource("9_inelk")]
+position = Vector2(-61215, 16746)
+
+[node name="ThrowEnemy3" parent="." instance=ExtResource("19_ad46j")]
+position = Vector2(-97883, 3270)
+stop_at_edge = false
+
+[node name="ThrowEnemy4" parent="." instance=ExtResource("19_ad46j")]
+position = Vector2(-88619, 3327)
+stop_at_edge = false
+
+[node name="ExplosiveThrower3" parent="." instance=ExtResource("17_gwjjh")]
+position = Vector2(-92754, 5354)
+patrol_array = Array[Vector2]([Vector2(-95638, 5414), Vector2(-92754, 5354)])
+
+[node name="ThrowEnemy2" parent="." instance=ExtResource("19_ad46j")]
+position = Vector2(-93027, 10404)
+patrol_array = Array[Vector2]([Vector2(-96021, 10366), Vector2(-93027, 10404)])
