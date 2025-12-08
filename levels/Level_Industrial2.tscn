@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://brg3fsegfg0e"]
+[gd_scene load_steps=26 format=3 uid="uid://brg3fsegfg0e"]
 
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="1_ad46j"]
 [ext_resource type="PackedScene" uid="uid://dai37nexjs0em" path="res://levels/Tilemaps/Tilemap_Industrial2.tscn" id="2_405r1"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://5ss1vdg1uhk1" path="res://levels/Prefabs/ledgeType1.tscn" id="21_i1wya"]
 [ext_resource type="PackedScene" uid="uid://byyrydbatwhxw" path="res://levels/Prefabs/TrashCan.tscn" id="22_q7ygl"]
 [ext_resource type="PackedScene" uid="uid://cht6xoj54fvc5" path="res://levels/Prefabs/SignLeft.tscn" id="23_wjguh"]
+[ext_resource type="Texture2D" uid="uid://blgi5gh4ymye" path="res://assets/sprites/Layer 14.png" id="24_dtaic"]
 [ext_resource type="PackedScene" uid="uid://c1yv3rlvjbc7x" path="res://levels/Prefabs/ledgeType2.tscn" id="24_wjguh"]
 
 [node name="LevelIndustrial2" type="Node2D"]
@@ -75,10 +76,6 @@ position = Vector2(-11434, 943)
 
 [node name="SpikesWire" parent="." instance=ExtResource("9_inelk")]
 position = Vector2(-19067, 6730)
-
-[node name="Checkpoint" parent="." instance=ExtResource("10_cygf2")]
-z_index = -2
-position = Vector2(2565, -430)
 
 [node name="Enemy" parent="." instance=ExtResource("11_inelk")]
 position = Vector2(-15027, 6307)
@@ -313,3 +310,63 @@ patrol_array = Array[Vector2]([Vector2(-95638, 5414), Vector2(-92754, 5354)])
 [node name="ThrowEnemy2" parent="." instance=ExtResource("19_ad46j")]
 position = Vector2(-93027, 10404)
 patrol_array = Array[Vector2]([Vector2(-96021, 10366), Vector2(-93027, 10404)])
+
+[node name="Enemy3" parent="." instance=ExtResource("11_inelk")]
+position = Vector2(-102299, 16906)
+stop_at_edge = false
+
+[node name="Barrel6" parent="." instance=ExtResource("7_7g3tq")]
+position = Vector2(-104073, 18924)
+
+[node name="CartFull8" parent="." instance=ExtResource("5_sk2lv")]
+position = Vector2(-100892, 18818)
+
+[node name="CartEmpty8" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-100884, 18416)
+
+[node name="CartEmpty9" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-98380, 18890)
+
+[node name="CartFull9" parent="." instance=ExtResource("5_sk2lv")]
+position = Vector2(-100070, 18832)
+
+[node name="CelingLamp21" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-106394, 15079)
+
+[node name="CelingLamp22" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-104840, 15435)
+
+[node name="WallLamp14" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-103480, 6872)
+
+[node name="WallLamp15" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-88028, 4882.998)
+rotation = -0.4171337
+scale = Vector2(-1, 1)
+
+[node name="Layer14" type="Sprite2D" parent="."]
+position = Vector2(3550, -2352)
+scale = Vector2(3, 3)
+texture = ExtResource("24_dtaic")
+
+[node name="Layer15" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(3551, -3379)
+scale = Vector2(3, 3)
+texture = ExtResource("24_dtaic")
+
+[node name="Checkpoint" parent="." instance=ExtResource("10_cygf2")]
+position = Vector2(-109983, 17440)
+
+[node name="LedgeType3" parent="." instance=ExtResource("21_i1wya")]
+modulate = Color(0.72, 0.60012007, 0.5256, 1)
+position = Vector2(-113917, -14863)
+scale = Vector2(-1, 1)
+
+[node name="LedgeType4" parent="." instance=ExtResource("24_wjguh")]
+modulate = Color(0.72, 0.57792, 0.48960003, 1)
+position = Vector2(-117114, 9544)
+
+[node name="LedgeType5" parent="." instance=ExtResource("21_i1wya")]
+modulate = Color(0.72, 0.60456, 0.5328, 1)
+position = Vector2(-103187, 11330)
