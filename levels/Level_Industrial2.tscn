@@ -360,7 +360,7 @@ position = Vector2(-109983, 17440)
 
 [node name="LedgeType3" parent="." instance=ExtResource("21_i1wya")]
 modulate = Color(0.72, 0.60012007, 0.5256, 1)
-position = Vector2(-113917, -14863)
+position = Vector2(-113917, -14530)
 scale = Vector2(-1, 1)
 
 [node name="LedgeType4" parent="." instance=ExtResource("24_wjguh")]
