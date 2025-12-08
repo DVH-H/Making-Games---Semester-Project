@@ -1,6 +1,6 @@
 [gd_scene load_steps=48 format=3 uid="uid://b30igfsw7m7iy"]
 
-[ext_resource type="Script" path="res://enemy/explosive_thrower.gd" id="1_nafms"]
+[ext_resource type="Script" uid="uid://s3ipk4bxmpeu" path="res://enemy/explosive_thrower.gd" id="1_nafms"]
 [ext_resource type="Texture2D" uid="uid://dc1h7hlgsii8n" path="res://assets/sprites/Throw and slash enemies.png" id="2_nafms"]
 [ext_resource type="PackedScene" uid="uid://dytqh10wawuk0" path="res://components/gravity_component.tscn" id="3_mr4lu"]
 [ext_resource type="PackedScene" uid="uid://dtuwo2b8qi1nh" path="res://components/movement_component.tscn" id="4_ho3je"]
@@ -377,3 +377,5 @@ stream = ExtResource("6_45ewy")
 
 [node name="EnemyHurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_dq1j0")
+
+[node name="Load_timer" type="Timer" parent="."]

@@ -386,3 +386,5 @@ stream = ExtResource("5_er6ey")
 
 [node name="EnemyHurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_v4lge")
+
+[node name="Load_timer" type="Timer" parent="."]

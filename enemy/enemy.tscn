@@ -380,3 +380,5 @@ volume_db = -15.0
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_y5vj3")
 volume_db = -15.0
+
+[node name="Load_timer" type="Timer" parent="."]

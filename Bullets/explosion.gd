@@ -17,10 +17,11 @@ func _physics_process(delta: float) -> void:
 	_time_passed += delta
 	if _time_passed > push_time and not has_pushed:
 		for body in collision_list:
-			var direction = body.global_position - global_position
-			body.velocity = force * direction
-			if not body == source:
-				body.take_damage(damage)
+			if is_instance_valid(body):
+				var direction = body.global_position - global_position
+				body.velocity = force * direction
+				if not body == source:
+					body.take_damage(damage)
 			#if body.is_in_group("Enemy"):
 			#	body.take_damage(damage)
 		has_pushed = true
