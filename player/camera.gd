@@ -12,6 +12,8 @@ var direction: float
 
 
 func _process(delta: float) -> void:
+	if get_tree().current_scene.name == "MainMenu":
+		return
 	var player_pos
 	if player:
 		player_pos = player.position + Vector2(0, -1000)
