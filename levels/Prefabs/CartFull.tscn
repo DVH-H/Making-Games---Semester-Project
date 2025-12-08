@@ -8,3 +8,8 @@
 z_index = -2
 scale = Vector2(3, 3)
 texture = ExtResource("1_88fvg")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(419, -138, -417, -136, -396, 340, 406, 339)

@@ -256,3 +256,13 @@ position = Vector2(-53694, 843)
 
 [node name="CheckpointSprite2" parent="." instance=ExtResource("15_d1xdu")]
 position = Vector2(-66693, 11525)
+
+[node name="WallLamp10" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-64106, 3524)
+
+[node name="WallLamp11" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-64089, -2269)
+
+[node name="WallLamp12" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-60669, 540)
+scale = Vector2(-1, 1)
