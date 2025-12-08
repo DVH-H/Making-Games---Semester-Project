@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5s5kc4fk3snh"]
+[gd_scene load_steps=4 format=3 uid="uid://c5s5kc4fk3snh"]
 
 [ext_resource type="Script" uid="uid://t0ywjvdowuly" path="res://interactable/next_level_area.gd" id="1_pg3fc"]
-[ext_resource type="Texture2D" uid="uid://bqjwrbgnbf5tn" path="res://icon.svg" id="2_ctrj8"]
 [ext_resource type="Texture2D" uid="uid://dar0hgftuiv7j" path="res://assets/sprites/Layer 9.png" id="3_56cq8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56cq8"]
@@ -9,10 +8,6 @@ size = Vector2(61.56667, 70.600006)
 
 [node name="NextLevelArea" type="Node2D"]
 script = ExtResource("1_pg3fc")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_ctrj8")
 
 [node name="Area2D" type="Area2D" parent="."]
 scale = Vector2(30, 30)

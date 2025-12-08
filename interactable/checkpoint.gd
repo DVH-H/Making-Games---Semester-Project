@@ -10,7 +10,7 @@ func interact():
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	CheckpointManager.set_checkpoint(GameController.current_scene, position)
+	CheckpointManager.set_checkpoint(GameController.get_current_scene_path(), position)
 	sound_component.play_sound(check_sound)
 	if body.name == "Player":
 		body.set_interactable(self)
