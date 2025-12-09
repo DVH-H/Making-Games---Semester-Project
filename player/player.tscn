@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dve8hfghfvdfr"]
+[gd_scene load_steps=40 format=3 uid="uid://dve8hfghfvdfr"]
 
 [ext_resource type="Script" uid="uid://xqq4q7ftp7cv" path="res://player/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c3t68dnfner8e" path="res://player/sprites/005_Sprite_Player.png" id="3_2ieo8"]
@@ -11,8 +11,9 @@
 [ext_resource type="Script" uid="uid://7k643xcc4b1k" path="res://player/canvas_layer.gd" id="8_hg6s5"]
 [ext_resource type="Script" uid="uid://dbafatust4pbo" path="res://player/RevolverCylinderUI.gd" id="8_rgyib"]
 [ext_resource type="Script" uid="uid://brbg6b6cmb837" path="res://player/reload_bar.gd" id="10_8t03j"]
-[ext_resource type="Script" uid="uid://ckb87mxw5yw8h" path="res://player/HealthUI.gd" id="11_32hag"]
-[ext_resource type="Texture2D" uid="uid://bleai8viwij7o" path="res://player/sprites/318a54ca-a410-4a05-b380-cd834ea41a23.png" id="11_65viv"]
+[ext_resource type="Texture2D" uid="uid://bew4ffqv3nmcp" path="res://assets/sprites/ui_background.png" id="10_s7qer"]
+[ext_resource type="Script" path="res://player/HealthUI.gd" id="11_32hag"]
+[ext_resource type="Texture2D" uid="uid://ct0ylviuyt2t8" path="res://assets/sprites/UI_revolver.png" id="11_bjvpn"]
 [ext_resource type="Script" uid="uid://bx1w6d3tl7sjh" path="res://components/sound_component.gd" id="11_ebec5"]
 [ext_resource type="AudioStream" uid="uid://b50du138nw0ma" path="res://assets/sounds/footsteps_sound.wav" id="12_yllr7"]
 [ext_resource type="Texture2D" uid="uid://cj3q5f8wrucqo" path="res://assets/sprites/UI_0001_Layer-18.png" id="13_c35mf"]
@@ -20,7 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://0jrvs8a0bfnu" path="res://assets/sprites/UI_0002_Layer-19.png" id="15_65viv"]
 [ext_resource type="Texture2D" uid="uid://b3ocxes7it3ri" path="res://assets/background.png" id="17_tqiix"]
 [ext_resource type="AudioStream" uid="uid://cu2sg3fiq14ay" path="res://assets/sounds/Land.wav" id="18_e7oew"]
-[ext_resource type="AudioStream" uid="uid://uuajdb26q3sp" path="res://assets/sounds/Jump.wav" id="19_65viv"]
 [ext_resource type="AudioStream" uid="uid://y0vocnqegsu1" path="res://assets/sounds/Play dmg.wav" id="20_x7c3f"]
 [ext_resource type="AudioStream" uid="uid://birybbc7t3sdd" path="res://assets/sounds/Player Death.wav" id="21_bjvpn"]
 
@@ -207,27 +207,36 @@ script = ExtResource("8_hg6s5")
 player_path = NodePath("..")
 gun_path = NodePath("../Gun")
 
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.84705883)
+position = Vector2(376.00003, 116)
+rotation = -0.019339742
+scale = Vector2(1.1563593, 1.1563593)
+texture = ExtResource("10_s7qer")
+flip_v = true
+
 [node name="RevolverCylinderUI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 145.0
-offset_top = 207.0
-offset_right = 145.0
-offset_bottom = 207.0
-scale = Vector2(0.3, 0.3)
+offset_left = 97.63522
+offset_top = 118.217834
+offset_right = 97.63522
+offset_bottom = 118.217834
+scale = Vector2(0.31363595, 0.31363595)
 mouse_filter = 1
 script = ExtResource("8_rgyib")
-cylinder_background = ExtResource("11_65viv")
+cylinder_background = ExtResource("11_bjvpn")
 outer_radius = 335.0
 gap_from_edge = 150.0
 
 [node name="ReloadBar" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 826.0
-offset_top = 355.0
-offset_right = 866.0
-offset_bottom = 395.0
+offset_left = 670.0
+offset_top = 289.0
+offset_right = 710.0
+offset_bottom = 329.0
+scale = Vector2(0.9090901, 0.9090901)
 script = ExtResource("10_8t03j")
 player_path = NodePath("../..")
 gun_path = NodePath("../../Gun")
@@ -235,11 +244,11 @@ size_px = Vector2i(66, 9)
 border_px = 3
 
 [node name="HealthUI" type="HBoxContainer" parent="CanvasLayer"]
-offset_left = 27.0
-offset_top = 32.0
-offset_right = 67.0
-offset_bottom = 72.0
-scale = Vector2(2, 2)
+offset_left = 196.0
+offset_top = 53.0
+offset_right = 235.99998
+offset_bottom = 92.99999
+scale = Vector2(2.2799976, 2.2799976)
 script = ExtResource("11_32hag")
 heart_full_texture = ExtResource("13_c35mf")
 heart_half_texture = ExtResource("14_65viv")
@@ -256,12 +265,11 @@ pitch_scale = 1.5
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(0.09265783, 1.4439226e-07, 0.53407574, 1)
 z_index = -15
-position = Vector2(165, -2723)
+position = Vector2(714.00006, -2647)
 scale = Vector2(11.539583, 10.906019)
 texture = ExtResource("17_tqiix")
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("17_tqiix")
 volume_db = -15.0
 
 [node name="LandSound" type="AudioStreamPlayer" parent="."]
