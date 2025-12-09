@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://brg3fsegfg0e"]
+[gd_scene load_steps=28 format=3 uid="uid://brg3fsegfg0e"]
 
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="1_ad46j"]
 [ext_resource type="PackedScene" uid="uid://dai37nexjs0em" path="res://levels/Tilemaps/Tilemap_Industrial2.tscn" id="2_405r1"]
@@ -24,12 +24,14 @@
 [ext_resource type="PackedScene" uid="uid://cht6xoj54fvc5" path="res://levels/Prefabs/SignLeft.tscn" id="23_wjguh"]
 [ext_resource type="Texture2D" uid="uid://blgi5gh4ymye" path="res://assets/sprites/Layer 14.png" id="24_dtaic"]
 [ext_resource type="PackedScene" uid="uid://c1yv3rlvjbc7x" path="res://levels/Prefabs/ledgeType2.tscn" id="24_wjguh"]
+[ext_resource type="Texture2D" uid="uid://u0iwn8on3b1o" path="res://assets/sprites/gliph.png" id="26_wee2a"]
+[ext_resource type="PackedScene" uid="uid://bvlu3g63b1p2h" path="res://levels/Prefabs/explosion_stain.tscn" id="27_w6sy8"]
 
 [node name="LevelIndustrial2" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ad46j")]
 z_index = 1
-position = Vector2(2225, -224)
+position = Vector2(-112198, 16710)
 
 [node name="TilemapIndustrial2" parent="." instance=ExtResource("2_405r1")]
 z_index = -2
@@ -257,7 +259,8 @@ position = Vector2(-62527, 2787)
 position = Vector2(-66693, 11525)
 
 [node name="WallLamp10" parent="." instance=ExtResource("12_cygf2")]
-position = Vector2(-73673, 7734)
+position = Vector2(-73682, 8197.002)
+rotation = 0.23736478
 
 [node name="WallLamp11" parent="." instance=ExtResource("12_cygf2")]
 position = Vector2(-64089, -2269)
@@ -272,7 +275,7 @@ rotation = 0.059341196
 
 [node name="LedgeType1" parent="." instance=ExtResource("21_i1wya")]
 modulate = Color(0.6027457, 0.52886075, 0.483509, 1)
-position = Vector2(-74698, 10048)
+position = Vector2(-74757, 10422)
 
 [node name="TrashCan" parent="." instance=ExtResource("22_q7ygl")]
 position = Vector2(-74537, 11393)
@@ -356,13 +359,44 @@ position = Vector2(-109983, 17440)
 
 [node name="LedgeType3" parent="." instance=ExtResource("21_i1wya")]
 modulate = Color(0.72, 0.60012007, 0.5256, 1)
-position = Vector2(-113917, -14530)
+position = Vector2(-113882, -14513)
 scale = Vector2(-1, 1)
 
 [node name="LedgeType4" parent="." instance=ExtResource("24_wjguh")]
 modulate = Color(0.72, 0.57792, 0.48960003, 1)
-position = Vector2(-117114, 9544)
+position = Vector2(-117114, 10945)
 
 [node name="LedgeType5" parent="." instance=ExtResource("21_i1wya")]
 modulate = Color(0.72, 0.60456, 0.5328, 1)
 position = Vector2(-103187, 11330)
+
+[node name="CartFull10" parent="." instance=ExtResource("5_sk2lv")]
+position = Vector2(-116397, 14512)
+
+[node name="CartEmpty10" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-114631, 17832)
+
+[node name="CartEmpty11" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-113821, 17835)
+
+[node name="LedgeType7" parent="." instance=ExtResource("21_i1wya")]
+modulate = Color(0.72156864, 0.5764706, 0.49019608, 1)
+position = Vector2(-112745.99, 1464)
+rotation = -0.17802358
+scale = Vector2(-1, 1)
+
+[node name="Gliph" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.078431375)
+position = Vector2(-115366.99, -38330)
+scale = Vector2(4.5652776, 4.830514)
+texture = ExtResource("26_wee2a")
+
+[node name="ExplosionStain" parent="." instance=ExtResource("27_w6sy8")]
+position = Vector2(-119173, -40728)
+
+[node name="ExplosionStain2" parent="." instance=ExtResource("27_w6sy8")]
+position = Vector2(-111964, -45595)
+scale = Vector2(-1, 1)
+
+[node name="ExplosionStain3" parent="." instance=ExtResource("27_w6sy8")]
+position = Vector2(-119188, -49873)
