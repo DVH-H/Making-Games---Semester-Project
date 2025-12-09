@@ -8,11 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://c6vnm5w2oxnge" path="res://levels/Prefabs/CelingLamp.tscn" id="6_dlhqv"]
 [ext_resource type="PackedScene" uid="uid://c0xqdei221r46" path="res://levels/Prefabs/Barrel.tscn" id="7_7g3tq"]
 [ext_resource type="PackedScene" uid="uid://bxolfqry5am5b" path="res://levels/Prefabs/SignDown.tscn" id="8_1nwxb"]
-[ext_resource type="PackedScene" uid="uid://4n3a8mvv3bj6" path="res://levels/Prefabs/SpikesWire.tscn" id="9_inelk"]
+[ext_resource type="PackedScene" path="res://levels/Prefabs/SpikesWire.tscn" id="9_inelk"]
 [ext_resource type="PackedScene" uid="uid://3ei6sbrmm6t4" path="res://interactable/Checkpoint.tscn" id="10_cygf2"]
 [ext_resource type="PackedScene" uid="uid://1g43dvmxf5hh" path="res://enemy/enemy.tscn" id="11_inelk"]
 [ext_resource type="PackedScene" uid="uid://cy482vtfjdebe" path="res://levels/Prefabs/wallLamp.tscn" id="12_cygf2"]
-[ext_resource type="PackedScene" uid="uid://rfee3slpu563" path="res://player/Camera.tscn" id="13_fk8aw"]
 [ext_resource type="PackedScene" uid="uid://7vpte4iqsdl7" path="res://levels/Prefabs/SafetyFenceB.tscn" id="14_lx4ll"]
 [ext_resource type="PackedScene" uid="uid://7yqd2masewrp" path="res://levels/Prefabs/CheckpointPrefab.tscn" id="15_d1xdu"]
 [ext_resource type="PackedScene" uid="uid://ccvirxqwljcfj" path="res://levels/Prefabs/DevilSign.tscn" id="16_gwjjh"]
@@ -97,9 +96,6 @@ rotation = -0.7941248
 
 [node name="CartFull4" parent="." instance=ExtResource("5_sk2lv")]
 position = Vector2(-10609, 998)
-
-[node name="Camera" parent="." instance=ExtResource("13_fk8aw")]
-position = Vector2(9, -233)
 
 [node name="WallLamp4" parent="." instance=ExtResource("12_cygf2")]
 position = Vector2(-34396, -2648)
