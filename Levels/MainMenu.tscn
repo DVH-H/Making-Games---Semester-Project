@@ -25,12 +25,12 @@ z_index = 1
 
 [node name="BigWindow" parent="." instance=ExtResource("4_17ajd")]
 modulate = Color(0.645741, 0.6977698, 0.8781363, 1)
-position = Vector2(3011, 199)
+position = Vector2(3011, 580)
 scale = Vector2(2.519998, 2.519998)
 
 [node name="BigWindow2" parent="." instance=ExtResource("4_17ajd")]
 modulate = Color(0.645741, 0.6977698, 0.8781363, 1)
-position = Vector2(-2937, 199)
+position = Vector2(-2937, 580)
 scale = Vector2(2.519998, 2.519998)
 
 [node name="CelingLamp2" parent="." instance=ExtResource("5_xun1b")]

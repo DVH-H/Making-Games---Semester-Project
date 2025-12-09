@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://c7mwi3i2ulybl" path="res://levels/Prefabs/SignRight.tscn" id="24_2q7s4"]
 [ext_resource type="PackedScene" uid="uid://3ei6sbrmm6t4" path="res://interactable/Checkpoint.tscn" id="26_gd2rs"]
 [ext_resource type="PackedScene" uid="uid://b30igfsw7m7iy" path="res://enemy/explosive_thrower.tscn" id="26_k03kb"]
-[ext_resource type="PackedScene" uid="uid://od8c1g7qfox2" path="res://heal_consumable.tscn" id="27_vuf5g"]
+[ext_resource type="PackedScene" uid="uid://dyfjarln2ph88" path="res://heal_consumable.tscn" id="27_vuf5g"]
 [ext_resource type="PackedScene" uid="uid://c5s5kc4fk3snh" path="res://interactable/nextLevelArea.tscn" id="28_vm6l7"]
 [ext_resource type="PackedScene" uid="uid://brg3fsegfg0e" path="res://levels/Level_Industrial2.tscn" id="29_0sjl5"]
 [ext_resource type="Texture2D" uid="uid://dvqb2b16pxy0w" path="res://assets/sprites/Layer 18.png" id="29_darc0"]
@@ -463,7 +463,7 @@ position = Vector2(-76908, -41268)
 script = null
 
 [node name="NextLevelArea" parent="." instance=ExtResource("28_vm6l7")]
-position = Vector2(-99470, -20222)
+position = Vector2(882, -1278)
 next_level = ExtResource("29_0sjl5")
 
 [node name="Layer18" type="Sprite2D" parent="."]
@@ -503,4 +503,7 @@ position = Vector2(-90406, -23936)
 position = Vector2(-23305, -22498)
 
 [node name="health_pickup10" parent="." instance=ExtResource("27_vuf5g")]
-position = Vector2(-24141, -22494)
+position = Vector2(-845, -2782)
+
+[node name="ShieldEnemy3" parent="." instance=ExtResource("11_qpv4i")]
+position = Vector2(-7516, -1334)

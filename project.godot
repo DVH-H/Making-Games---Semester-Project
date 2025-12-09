@@ -21,7 +21,11 @@ GameController="*res://Globals/game_controller.gd"
 CheckpointManager="*res://Globals/CheckpointManager.gd"
 LoadoutManager="*res://Globals/LoadoutManager.gd"
 PlayerVariables="*res://Globals/PlayerVariables.tscn"
-Camera="res://player/Camera.tscn"
+Camera="*res://player/Camera.tscn"
+
+[debug]
+
+settings/stdout/print_gpu_profile=true
 
 [display]
 
@@ -141,7 +145,3 @@ rotate_cylinder_backward={
 
 common/physics_jitter_fix=1.0
 common/physics_interpolation=true
-
-[rendering]
-
-viewport/hdr_2d=true

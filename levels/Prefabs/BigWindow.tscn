@@ -1,10 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://cll0cadbqhwj0"]
 
-[ext_resource type="Texture2D" uid="uid://cslujif2e020v" path="res://assets/sprites/Layer 41Asset_.png" id="1_r380g"]
+[ext_resource type="Texture2D" uid="uid://nj4ufmp0112y" path="res://assets/sprites/Layer 41Asset_compressed.png" id="1_r380g"]
 
 [node name="BigWindow" type="Node2D"]
 
 [node name="Layer41Asset" type="Sprite2D" parent="."]
 position = Vector2(-3, 0)
-scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_r380g")
