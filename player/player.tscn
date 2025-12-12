@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://7k643xcc4b1k" path="res://player/canvas_layer.gd" id="8_hg6s5"]
 [ext_resource type="Script" uid="uid://dbafatust4pbo" path="res://player/RevolverCylinderUI.gd" id="8_rgyib"]
 [ext_resource type="Script" uid="uid://brbg6b6cmb837" path="res://player/reload_bar.gd" id="10_8t03j"]
-[ext_resource type="Texture2D" uid="uid://bew4ffqv3nmcp" path="res://assets/sprites/ui_background.png" id="10_s7qer"]
+[ext_resource type="Texture2D" uid="uid://cw8vyw3so7a1j" path="res://assets/sprites/ui_background.png" id="10_s7qer"]
 [ext_resource type="Script" path="res://player/HealthUI.gd" id="11_32hag"]
 [ext_resource type="Texture2D" uid="uid://ct0ylviuyt2t8" path="res://assets/sprites/UI_revolver.png" id="11_bjvpn"]
 [ext_resource type="Script" uid="uid://bx1w6d3tl7sjh" path="res://components/sound_component.gd" id="11_ebec5"]
@@ -170,6 +170,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("footsteps_sound", "jump_sound", "land_sound", "damage_sound", "death_sound")]
+z_index = 11
 collision_layer = 2
 script = ExtResource("1_onrkg")
 footsteps_sound = NodePath("FootstepsSound")
@@ -264,7 +265,7 @@ pitch_scale = 1.5
 
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(0.09265783, 1.4439226e-07, 0.53407574, 1)
-z_index = -15
+z_index = -1500
 position = Vector2(714.00006, -2647)
 scale = Vector2(11.539583, 10.906019)
 texture = ExtResource("17_tqiix")
