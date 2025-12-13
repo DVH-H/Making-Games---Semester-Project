@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://brg3fsegfg0e"]
+[gd_scene load_steps=27 format=3 uid="uid://brg3fsegfg0e"]
 
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="1_ad46j"]
 [ext_resource type="PackedScene" uid="uid://dai37nexjs0em" path="res://levels/Tilemaps/Tilemap_Industrial2.tscn" id="2_405r1"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c6vnm5w2oxnge" path="res://levels/Prefabs/CelingLamp.tscn" id="6_dlhqv"]
 [ext_resource type="PackedScene" uid="uid://c0xqdei221r46" path="res://levels/Prefabs/Barrel.tscn" id="7_7g3tq"]
 [ext_resource type="PackedScene" uid="uid://bxolfqry5am5b" path="res://levels/Prefabs/SignDown.tscn" id="8_1nwxb"]
-[ext_resource type="PackedScene" path="res://levels/Prefabs/SpikesWire.tscn" id="9_inelk"]
+[ext_resource type="PackedScene" uid="uid://4n3a8mvv3bj6" path="res://levels/Prefabs/SpikesWire.tscn" id="9_inelk"]
 [ext_resource type="PackedScene" uid="uid://3ei6sbrmm6t4" path="res://interactable/Checkpoint.tscn" id="10_cygf2"]
 [ext_resource type="PackedScene" uid="uid://1g43dvmxf5hh" path="res://enemy/enemy.tscn" id="11_inelk"]
 [ext_resource type="PackedScene" uid="uid://cy482vtfjdebe" path="res://levels/Prefabs/wallLamp.tscn" id="12_cygf2"]
@@ -236,15 +236,17 @@ position = Vector2(-59522, 11369)
 position = Vector2(-63498, 16755)
 
 [node name="SignWarning2" parent="." instance=ExtResource("18_i847x")]
-position = Vector2(-64205, 14996.002)
+z_index = -2
+position = Vector2(-64269, 15001)
 rotation = 0.5061455
 
 [node name="SignWarning3" parent="." instance=ExtResource("18_i847x")]
+z_index = -2
 position = Vector2(-60386, 13690.998)
 rotation = -0.7749262
 
 [node name="ThrowEnemy" parent="." instance=ExtResource("19_ad46j")]
-position = Vector2(-37939, -11388)
+position = Vector2(-37925, -11474)
 
 [node name="ExplosiveThrower2" parent="." instance=ExtResource("17_gwjjh")]
 position = Vector2(-53677, -8954)
