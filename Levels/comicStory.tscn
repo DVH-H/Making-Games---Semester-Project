@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfod6k1ncd6h5"]
+
+[ext_resource type="Texture2D" uid="uid://bqjwrbgnbf5tn" path="res://icon.svg" id="1_4k4ju"]
+[ext_resource type="Script" uid="uid://dwldv10c4gl8s" path="res://Levels/comic_story.gd" id="1_ju6im"]
+[ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="2_pfup4"]
+[ext_resource type="PackedScene" uid="uid://yf8beriq0pgu" path="res://levels/Level_industrial1.tscn" id="2_qyxbp"]
+
+[node name="ComicStory" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_ju6im")
+next_scene = ExtResource("2_qyxbp")
+
+[node name="Player" parent="." instance=ExtResource("2_pfup4")]
+visible = false
+position = Vector2(-506, 135)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4k4ju")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+visible = false
+modulate = Color(1, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4k4ju")
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer"]
+visible = false
+modulate = Color(0, 0, 1, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4k4ju")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
