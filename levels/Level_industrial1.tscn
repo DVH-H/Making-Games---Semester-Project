@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://yf8beriq0pgu"]
+[gd_scene load_steps=29 format=3 uid="uid://yf8beriq0pgu"]
 
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="1_k03kb"]
 [ext_resource type="PackedScene" uid="uid://d2bjxyv4jkfuy" path="res://levels/Tilemaps/Tilemap_Industrial1.tscn" id="2_vuf5g"]
@@ -26,14 +26,13 @@
 [ext_resource type="PackedScene" uid="uid://c7mwi3i2ulybl" path="res://levels/Prefabs/SignRight.tscn" id="24_2q7s4"]
 [ext_resource type="PackedScene" uid="uid://3ei6sbrmm6t4" path="res://interactable/Checkpoint.tscn" id="26_gd2rs"]
 [ext_resource type="PackedScene" uid="uid://b30igfsw7m7iy" path="res://enemy/explosive_thrower.tscn" id="26_k03kb"]
-[ext_resource type="PackedScene" uid="uid://dyfjarln2ph88" path="res://heal_consumable.tscn" id="27_vuf5g"]
 [ext_resource type="PackedScene" uid="uid://c5s5kc4fk3snh" path="res://interactable/nextLevelArea.tscn" id="28_vm6l7"]
-[ext_resource type="PackedScene" uid="uid://brg3fsegfg0e" path="res://levels/Level_Industrial2.tscn" id="29_0sjl5"]
 [ext_resource type="Texture2D" uid="uid://dvqb2b16pxy0w" path="res://assets/sprites/Layer 18.png" id="29_darc0"]
 
 [node name="LevelIndustrial1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_k03kb")]
+z_index = 0
 position = Vector2(4000, -3000)
 
 [node name="TilemapIndustrial1" parent="." instance=ExtResource("2_vuf5g")]
@@ -48,7 +47,7 @@ position = Vector2(-3340.9998, -2257)
 rotation = -0.27925268
 
 [node name="SignUp" parent="." instance=ExtResource("5_0sjl5")]
-position = Vector2(-12787, -1912)
+position = Vector2(-12865, -1868)
 
 [node name="TrashCan2" parent="." instance=ExtResource("6_3q4vd")]
 position = Vector2(2485, -543)
@@ -95,19 +94,19 @@ position = Vector2(-30855, -14632.001)
 scale = Vector2(0.7, 0.7)
 
 [node name="SignUp2" parent="." instance=ExtResource("5_0sjl5")]
-position = Vector2(-30468.002, -6596.9985)
+position = Vector2(-30489.002, -6589)
 rotation = -0.28797933
 
 [node name="SignUp3" parent="." instance=ExtResource("5_0sjl5")]
-position = Vector2(-29444, -6581)
+position = Vector2(-29468.998, -6556)
 rotation = 0.12217305
 
 [node name="SignUp4" parent="." instance=ExtResource("5_0sjl5")]
-position = Vector2(-27938, -5504.999)
+position = Vector2(-27987.998, -5487.9995)
 rotation = -0.12217305
 
 [node name="SignLeft" parent="." instance=ExtResource("4_darc0")]
-position = Vector2(-27198.998, -12612.998)
+position = Vector2(-27175, -12633.998)
 rotation = 0.36651915
 
 [node name="Icon" type="Sprite2D" parent="."]
@@ -121,10 +120,10 @@ stop_at_edge = false
 patrol_array = Array[Vector2]([Vector2(-8448, -14453), Vector2(-12053, -14424)])
 
 [node name="SignLeft3" parent="." instance=ExtResource("4_darc0")]
-position = Vector2(-17710, -23562)
+position = Vector2(-17698, -23616)
 
 [node name="SignLeft4" parent="." instance=ExtResource("4_darc0")]
-position = Vector2(-1102, -23583)
+position = Vector2(-1133.0001, -23608)
 rotation = -0.36651915
 
 [node name="KillZone" parent="." instance=ExtResource("13_3nlv6")]
@@ -191,7 +190,7 @@ position = Vector2(4659, -19573)
 position = Vector2(18786, -18500)
 
 [node name="TrashCan4" parent="." instance=ExtResource("6_3q4vd")]
-position = Vector2(8058, -9925)
+position = Vector2(8042.0005, -9990.001)
 scale = Vector2(6.635, 6.635)
 
 [node name="SignDown" parent="." instance=ExtResource("19_j43fe")]
@@ -225,10 +224,11 @@ position = Vector2(-3558, -9383)
 position = Vector2(-295, -9364)
 
 [node name="SignLeft6" parent="." instance=ExtResource("4_darc0")]
-position = Vector2(5323, -2271)
+position = Vector2(5402, -2285)
 
 [node name="SignWarning2" parent="." instance=ExtResource("8_h6lg5")]
-position = Vector2(6886, -2344)
+z_index = -2
+position = Vector2(6834.0005, -2306)
 rotation = 0.2443461
 
 [node name="LedgeType2" parent="." instance=ExtResource("21_ctlip")]
@@ -356,10 +356,10 @@ position = Vector2(-60424, -28468)
 rotation = 1.8308504
 
 [node name="Barrel4" parent="." instance=ExtResource("7_3eovg")]
-position = Vector2(-61892, -17773)
+position = Vector2(-61885, -17773)
 
 [node name="Barrel5" parent="." instance=ExtResource("7_3eovg")]
-position = Vector2(-61355, -17703)
+position = Vector2(-61545, -17696)
 scale = Vector2(0.6, 0.6)
 
 [node name="ThrowEnemy4" parent="." instance=ExtResource("10_ecy85")]
@@ -388,7 +388,7 @@ position = Vector2(-79288, -35972)
 position = Vector2(-77565, -34307)
 
 [node name="SignLeft8" parent="." instance=ExtResource("4_darc0")]
-position = Vector2(-82347, -29282)
+position = Vector2(-82096, -29278)
 
 [node name="TrashCan5" parent="." instance=ExtResource("6_3q4vd")]
 position = Vector2(-77605, -25915)
@@ -405,7 +405,7 @@ scale = Vector2(-1, 1)
 position = Vector2(-83547, -38531)
 
 [node name="SignDown3" parent="." instance=ExtResource("19_j43fe")]
-position = Vector2(-84309, -37935)
+position = Vector2(-84303, -37902)
 
 [node name="TrashCan6" parent="." instance=ExtResource("6_3q4vd")]
 position = Vector2(-74742, -41048)
@@ -420,51 +420,15 @@ position = Vector2(-46766, -21556)
 position = Vector2(-62280, -33859)
 
 [node name="LedgeType4" parent="." instance=ExtResource("21_ctlip")]
-position = Vector2(-70860, -32208)
+position = Vector2(-70819, -31915)
 scale = Vector2(0.8, 0.8)
 
 [node name="ExplosiveThrower" parent="." instance=ExtResource("26_k03kb")]
-position = Vector2(-82616, -38126)
+position = Vector2(-80362, -38080)
 
 [node name="ShieldEnemy2" parent="." instance=ExtResource("11_qpv4i")]
 position = Vector2(-72607, -26232)
 patrol_array = Array[Vector2]([Vector2(-77374, -26173), Vector2(-67771, -26232)])
-
-[node name="health_pickup" parent="." instance=ExtResource("27_vuf5g")]
-position = Vector2(-4838, -16500)
-script = null
-
-[node name="health_pickup2" parent="." instance=ExtResource("27_vuf5g")]
-position = Vector2(-7037, -17750)
-script = null
-
-[node name="health_pickup3" parent="." instance=ExtResource("27_vuf5g")]
-position = Vector2(-33546, -12818)
-script = null
-
-[node name="health_pickup4" parent="." instance=ExtResource("27_vuf5g")]
-position = Vector2(-56956, -18256)
-script = null
-
-[node name="health_pickup5" parent="." instance=ExtResource("27_vuf5g")]
-position = Vector2(-56325, -18247)
-script = null
-
-[node name="health_pickup6" parent="." instance=ExtResource("27_vuf5g")]
-position = Vector2(-70887, -35263)
-script = null
-
-[node name="health_pickup7" parent="." instance=ExtResource("27_vuf5g")]
-position = Vector2(-77605, -41271)
-script = null
-
-[node name="health_pickup8" parent="." instance=ExtResource("27_vuf5g")]
-position = Vector2(-76908, -41268)
-script = null
-
-[node name="NextLevelArea" parent="." instance=ExtResource("28_vm6l7")]
-position = Vector2(882, -1278)
-next_level = ExtResource("29_0sjl5")
 
 [node name="Layer18" type="Sprite2D" parent="."]
 position = Vector2(-99529, -21833)
@@ -499,11 +463,5 @@ position = Vector2(-99374, -23464)
 [node name="CelingLamp16" parent="." instance=ExtResource("22_0j48l")]
 position = Vector2(-90406, -23936)
 
-[node name="health_pickup9" parent="." instance=ExtResource("27_vuf5g")]
-position = Vector2(-23305, -22498)
-
-[node name="health_pickup10" parent="." instance=ExtResource("27_vuf5g")]
-position = Vector2(-845, -2782)
-
-[node name="ShieldEnemy3" parent="." instance=ExtResource("11_qpv4i")]
-position = Vector2(-7516, -1334)
+[node name="NextLevelArea" parent="." instance=ExtResource("28_vm6l7")]
+position = Vector2(-99495, -20210)
