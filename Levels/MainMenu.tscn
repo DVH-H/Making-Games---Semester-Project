@@ -1,32 +1,26 @@
-[gd_scene load_steps=17 format=3 uid="uid://1pxxuf8l0ahq"]
+[gd_scene load_steps=11 format=3 uid="uid://1pxxuf8l0ahq"]
 
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="1_2k6u6"]
 [ext_resource type="Script" uid="uid://copa7t2il3dqe" path="res://Levels/main_menu.gd" id="1_pdswe"]
 [ext_resource type="PackedScene" uid="uid://cn8mbga6ff51c" path="res://Levels/Tilemaps/Tilemap_MainMenu.tscn" id="3_2ld8x"]
-[ext_resource type="PackedScene" uid="uid://cll0cadbqhwj0" path="res://Levels/Prefabs/BigWindow.tscn" id="4_17ajd"]
-[ext_resource type="PackedScene" uid="uid://c6vnm5w2oxnge" path="res://Levels/Prefabs/CelingLamp.tscn" id="5_xun1b"]
-[ext_resource type="PackedScene" uid="uid://c1yv3rlvjbc7x" path="res://Levels/Prefabs/ledgeType2.tscn" id="6_uty7f"]
+[ext_resource type="PackedScene" uid="uid://cll0cadbqhwj0" path="res://levels/Prefabs/BigWindow.tscn" id="4_17ajd"]
+[ext_resource type="PackedScene" uid="uid://c6vnm5w2oxnge" path="res://levels/Prefabs/CelingLamp.tscn" id="5_xun1b"]
+[ext_resource type="PackedScene" uid="uid://c1yv3rlvjbc7x" path="res://levels/Prefabs/ledgeType2.tscn" id="6_uty7f"]
 [ext_resource type="PackedScene" uid="uid://c5s5kc4fk3snh" path="res://interactable/nextLevelArea.tscn" id="7_pdswe"]
 [ext_resource type="Texture2D" uid="uid://blgi5gh4ymye" path="res://assets/sprites/Layer 14.png" id="8_283cj"]
-[ext_resource type="PackedScene" uid="uid://yf8beriq0pgu" path="res://Levels/Level_industrial1.tscn" id="8_uty7f"]
-[ext_resource type="PackedScene" uid="uid://d28i7cm5npn33" path="res://Levels/Prefabs/StreetLamp.tscn" id="9_xun1b"]
-[ext_resource type="Texture2D" uid="uid://c638hm534arcg" path="res://assets/sprites/UI_Button_2.png" id="11_283cj"]
-[ext_resource type="Texture2D" uid="uid://cw8vyw3so7a1j" path="res://assets/sprites/UI_Background.png" id="11_e0awu"]
-[ext_resource type="Texture2D" uid="uid://n8m51xojyixu" path="res://assets/sprites/UI_Button_1.png" id="12_em503"]
-[ext_resource type="Texture2D" uid="uid://cc1wgvbpvlbvu" path="res://assets/sprites/UI_MenuBack.png" id="12_ne6lp"]
-[ext_resource type="Texture2D" uid="uid://c60g0pk0a3qcs" path="res://assets/sprites/UI_LogoBack.png" id="15_3yxcj"]
-[ext_resource type="Texture2D" uid="uid://dmisgprpox3qo" path="res://assets/sprites/UI_Logo.png" id="16_6g53u"]
+[ext_resource type="PackedScene" uid="uid://yf8beriq0pgu" path="res://levels/Level_industrial1.tscn" id="8_uty7f"]
+[ext_resource type="PackedScene" uid="uid://d28i7cm5npn33" path="res://levels/Prefabs/StreetLamp.tscn" id="9_xun1b"]
 
 [node name="MainMenu" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_pdswe")
 player = NodePath("Player")
-level_1 = ExtResource("8_uty7f")
 
 [node name="TilemapMainMenu" parent="." instance=ExtResource("3_2ld8x")]
 z_index = -12
 
 [node name="Player" parent="." instance=ExtResource("1_2k6u6")]
 z_index = 1
+position = Vector2(1704, 2086)
 
 [node name="BigWindow" parent="." instance=ExtResource("4_17ajd")]
 modulate = Color(0.645741, 0.6977698, 0.8781363, 1)
@@ -74,71 +68,3 @@ position = Vector2(-904, 1398)
 [node name="StreetLamp2" parent="." instance=ExtResource("9_xun1b")]
 z_index = 7
 position = Vector2(879, 1398)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 100
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-theme_override_constants/margin_left = 120
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 120
-theme_override_constants/margin_bottom = 80
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
-layout_mode = 2
-
-[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Control/MarginContainer/HBoxContainer"]
-position = Vector2(324, 458)
-scale = Vector2(1.04, 1.04)
-texture = ExtResource("11_e0awu")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control/MarginContainer/HBoxContainer"]
-position = Vector2(422, 461)
-scale = Vector2(1.0278311, 1.0278311)
-texture = ExtResource("12_ne6lp")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="playButton" type="TextureButton" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource("11_283cj")
-
-[node name="Button2" type="TextureButton" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource("12_em503")
-
-[node name="Button3" type="TextureButton" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource("12_em503")
-
-[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Control/MarginContainer/HBoxContainer"]
-position = Vector2(300.00003, 189)
-scale = Vector2(0.84610116, 0.84610116)
-texture = ExtResource("15_3yxcj")
-
-[node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer/Control/MarginContainer/HBoxContainer"]
-position = Vector2(343, 178)
-scale = Vector2(0.9600018, 0.9600018)
-texture = ExtResource("16_6g53u")
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/HBoxContainer"]
-layout_mode = 2

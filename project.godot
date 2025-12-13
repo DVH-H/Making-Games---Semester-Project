@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="platformer"
-run/main_scene="uid://yf8beriq0pgu"
+run/main_scene="uid://1pxxuf8l0ahq"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -22,10 +22,7 @@ CheckpointManager="*res://Globals/CheckpointManager.gd"
 LoadoutManager="*res://Globals/LoadoutManager.gd"
 PlayerVariables="*res://Globals/PlayerVariables.tscn"
 Camera="*res://player/Camera.tscn"
-
-[debug]
-
-settings/stdout/print_gpu_profile=true
+Menu="*res://Levels/Menu.tscn"
 
 [display]
 
