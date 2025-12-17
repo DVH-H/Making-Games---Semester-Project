@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://dbafatust4pbo" path="res://player/RevolverCylinderUI.gd" id="8_rgyib"]
 [ext_resource type="Script" uid="uid://brbg6b6cmb837" path="res://player/reload_bar.gd" id="10_8t03j"]
 [ext_resource type="Texture2D" uid="uid://cw8vyw3so7a1j" path="res://assets/sprites/ui_background.png" id="10_s7qer"]
-[ext_resource type="Script" path="res://player/HealthUI.gd" id="11_32hag"]
+[ext_resource type="Script" uid="uid://ckb87mxw5yw8h" path="res://player/HealthUI.gd" id="11_32hag"]
 [ext_resource type="Texture2D" uid="uid://ct0ylviuyt2t8" path="res://assets/sprites/UI_revolver.png" id="11_bjvpn"]
 [ext_resource type="Script" uid="uid://bx1w6d3tl7sjh" path="res://components/sound_component.gd" id="11_ebec5"]
 [ext_resource type="AudioStream" uid="uid://b50du138nw0ma" path="res://assets/sounds/footsteps_sound.wav" id="12_yllr7"]
@@ -209,6 +209,7 @@ player_path = NodePath("..")
 gun_path = NodePath("../Gun")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+visible = false
 modulate = Color(1, 1, 1, 0.84705883)
 position = Vector2(376.00003, 116)
 rotation = -0.019339742
