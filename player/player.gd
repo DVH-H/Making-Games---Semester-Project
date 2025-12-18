@@ -28,7 +28,8 @@ var _aim_direction: Vector2 = Vector2(-0.01,1)
 var _interactable: Interactable = null
 
 @export var footsteps_sound: AudioStreamPlayer
-@export var jump_sound: AudioStreamPlayer
+@export var jump_sound1: AudioStreamPlayer
+@export var jump_sound2: AudioStreamPlayer
 @export var land_sound: AudioStreamPlayer
 @export var damage_sound: AudioStreamPlayer
 @export var death_sound: AudioStreamPlayer
@@ -65,7 +66,11 @@ func _physics_process(delta: float) -> void:
 	if input_controller.get_jump_input() and (is_on_floor() or coyote_time_counter > 0.0):
 		movement_component.handle_jump(self)
 		coyote_time_counter = 0.0  # consume coyote time so it can't be reused mid-air
-		sound_component.play_sound(jump_sound)
+		var rng = RandomNumberGenerator.new()
+		if rng.randi_range(0, 1) == 0:
+			sound_component.play_sound(jump_sound1)
+		else:
+			sound_component.play_sound(jump_sound2)
 	
 	# Aiming and shooting
 	

@@ -7,3 +7,4 @@ func _ready() -> void:
 	#	if child.name == "CanvasLayer":
 	#		child.visible = false
 	get_tree().paused = true
+	Menu.visible = true

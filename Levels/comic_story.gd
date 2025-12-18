@@ -4,8 +4,9 @@ extends Node2D
 @onready var timer = $Timer
 @export var next_scene: PackedScene
 @export var list_of_images: Array[Texture]
-@export var timer_length: float = 1
+@export var timer_lengths: Array[float]
 @export var player: CharacterBody2D
+@export var soundFile: AudioStreamPlayer
 var index = 0
 
 func _ready() -> void:
@@ -17,10 +18,13 @@ func _ready() -> void:
 			tRect.set_anchors_preset(Control.PRESET_FULL_RECT)
 			$CanvasLayer.add_child(tRect)
 		$CanvasLayer.get_children()[0].visible = true
+		$SoundComponent.play_sound(soundFile)
 		image_list = $CanvasLayer.get_children()
-		timer.wait_time = timer_length
+		timer.wait_time = timer_lengths[0]
 		timer.start()
 		timer.timeout.connect(_on_timer)
+		Camera.position_smoothing_enabled = false
+		Camera.position = Vector2.ZERO
 		get_tree().paused = true
 		for child in player.get_children():
 			if child.name == "CanvasLayer":
@@ -32,8 +36,15 @@ func _ready() -> void:
 func _on_timer():
 	image_list[index].visible = false
 	index += 1
+	print(get_tree().current_scene.name )
 	if index == len(image_list):
+		if get_tree().current_scene.name == "EndScene":
+			next_scene = load("res://Levels/MainMenu.tscn")
+		CheckpointManager.set_checkpoint(next_scene.resource_path, Vector2.ZERO)
 		GameController.goto_scene(next_scene.resource_path)
 		get_tree().paused = false
+		Camera.position_smoothing_enabled = true
 	else:
 		image_list[index].visible = true
+		timer.wait_time = timer_lengths[index]
+		timer.start()

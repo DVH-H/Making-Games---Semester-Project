@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://brg3fsegfg0e"]
+[gd_scene load_steps=30 format=3 uid="uid://brg3fsegfg0e"]
 
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="1_ad46j"]
 [ext_resource type="PackedScene" uid="uid://dai37nexjs0em" path="res://levels/Tilemaps/Tilemap_Industrial2.tscn" id="2_405r1"]
@@ -26,6 +26,9 @@
 [ext_resource type="PackedScene" uid="uid://c1yv3rlvjbc7x" path="res://levels/Prefabs/ledgeType2.tscn" id="24_wjguh"]
 [ext_resource type="Texture2D" uid="uid://u0iwn8on3b1o" path="res://assets/sprites/gliph.png" id="26_wee2a"]
 [ext_resource type="PackedScene" uid="uid://bvlu3g63b1p2h" path="res://levels/Prefabs/explosion_stain.tscn" id="27_w6sy8"]
+[ext_resource type="PackedScene" uid="uid://c5s5kc4fk3snh" path="res://interactable/nextLevelArea.tscn" id="27_ytfh5"]
+[ext_resource type="PackedScene" uid="uid://gq0vmrtwmvom" path="res://Levels/end_scene.tscn" id="28_rqiug"]
+[ext_resource type="Texture2D" uid="uid://dvqb2b16pxy0w" path="res://assets/sprites/Layer 18.png" id="28_svukn"]
 
 [node name="LevelIndustrial2" type="Node2D"]
 
@@ -389,7 +392,7 @@ scale = Vector2(-1, 1)
 
 [node name="Gliph" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.078431375)
-position = Vector2(-115366.99, -38330)
+position = Vector2(-115473, -40484)
 scale = Vector2(4.5652776, 4.830514)
 texture = ExtResource("26_wee2a")
 
@@ -413,3 +416,22 @@ scale = Vector2(-1, 1)
 [node name="ExplosionStain6" parent="." instance=ExtResource("27_w6sy8")]
 position = Vector2(-113012, -39513)
 scale = Vector2(-1, 1)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("10_cygf2")]
+position = Vector2(-115820, -37096)
+
+[node name="NextLevelArea" parent="." instance=ExtResource("27_ytfh5")]
+position = Vector2(-115417, -56953)
+next_level = ExtResource("28_rqiug")
+
+[node name="Layer16" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-115449, -58520.004)
+scale = Vector2(3, 3)
+texture = ExtResource("24_dtaic")
+
+[node name="Layer18" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(-114513, -56021)
+scale = Vector2(3, 3)
+texture = ExtResource("28_svukn")
