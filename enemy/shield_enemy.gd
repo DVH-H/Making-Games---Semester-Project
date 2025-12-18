@@ -19,6 +19,12 @@ func aim_shield() -> void:
 	else:
 		shield.look_at(global_position + (dir))
 		
+		
+func take_damage(dmg):
+	super(dmg)
+	if health <= 0:
+		shield.queue_free()
+
 func AGGRO_behaviour() -> float:
 	if player and player_chase:
 		aim_shield()

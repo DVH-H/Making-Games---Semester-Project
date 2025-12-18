@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://4n3a8mvv3bj6"]
+
+[ext_resource type="Texture2D" uid="uid://dos7wdancetby" path="res://assets/sprites/Layer 49Asset_.png" id="1_0uctw"]
+[ext_resource type="PackedScene" uid="uid://dcl7rkjay76kw" path="res://killzone.tscn" id="2_1kgwx"]
+
+[node name="SpikesWire" type="Node2D"]
+
+[node name="Layer49Asset" type="Sprite2D" parent="."]
+position = Vector2(-1, 2)
+rotation = -3.1415927
+texture = ExtResource("1_0uctw")
+
+[node name="KillZone" parent="." instance=ExtResource("2_1kgwx")]
+position = Vector2(5, 18)
+scale = Vector2(0.345, 1.58)

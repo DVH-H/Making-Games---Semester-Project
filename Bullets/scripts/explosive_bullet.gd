@@ -16,5 +16,6 @@ func on_collision(collider):
 		bullet.global_position = global_position
 		explosion_sound = bullet.sound
 		sound_component.play_sound(explosion_sound)
+		bullet.source = get_tree().current_scene.get_node("Player")
 		#queue_free()
 	# do damage here

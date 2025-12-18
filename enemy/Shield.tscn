@@ -1,20 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlamkgsuhj11y"]
+[gd_scene load_steps=7 format=3 uid="uid://dlamkgsuhj11y"]
 
-[ext_resource type="Texture2D" uid="uid://bqjwrbgnbf5tn" path="res://icon.svg" id="1_10xir"]
+[ext_resource type="Texture2D" uid="uid://c66dybfh5ad25" path="res://enemy/sprites/Shield Sparks.png" id="1_oxajn"]
+[ext_resource type="Texture2D" uid="uid://da0pyk0qr11b8" path="res://enemy/sprites/Shield.png" id="2_nmx3q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efp11"]
+atlas = ExtResource("1_oxajn")
+region = Rect2(0, 0, 2160, 2160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_csvl4"]
+atlas = ExtResource("2_nmx3q")
+region = Rect2(0, 0, 2160, 2160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oxajn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efp11")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_csvl4")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 1.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ks4co"]
-size = Vector2(23, 658)
+size = Vector2(564.25, 602.0001)
 
 [node name="Shield" type="StaticBody2D"]
 collision_layer = 4
 collision_mask = 10
 
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(199, 80)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_oxajn")
+animation = &"idle"
+autoplay = "idle"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(259, -23)
+position = Vector2(348, 92.00001)
 scale = Vector2(1, 0.99999994)
 shape = SubResource("RectangleShape2D_ks4co")
-
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-position = Vector2(-1.25, -2.2499847)
-scale = Vector2(0.18359369, 5.160157)
-texture = ExtResource("1_10xir")

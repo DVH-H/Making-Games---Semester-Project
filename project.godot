@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="platformer"
-run/main_scene="uid://yf8beriq0pgu"
+run/main_scene="uid://1pxxuf8l0ahq"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,15 +21,15 @@ GameController="*res://Globals/game_controller.gd"
 CheckpointManager="*res://Globals/CheckpointManager.gd"
 LoadoutManager="*res://Globals/LoadoutManager.gd"
 PlayerVariables="*res://Globals/PlayerVariables.tscn"
+Camera="*res://player/Camera.tscn"
+Menu="*res://Levels/Menu.tscn"
 
 [display]
 
-window/size/viewport_width=7680
-window/size/viewport_height=4320
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/size/mode=3
 window/size/borderless=true
-window/size/window_width_override=1280
-window/size/window_height_override=720
 window/stretch/mode="viewport"
 
 [global_group]
@@ -138,8 +138,7 @@ rotate_cylinder_backward={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Bullet"
 
-[rendering]
+[physics]
 
-textures/canvas_textures/default_texture_filter=0
-viewport/hdr_2d=true
-2d/snap/snap_2d_transforms_to_pixel=true
+common/physics_jitter_fix=1.0
+common/physics_interpolation=true

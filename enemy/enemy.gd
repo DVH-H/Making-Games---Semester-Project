@@ -6,8 +6,11 @@ class_name enemy
 @onready var movement_component: MovementComponent = $MovementComponent
 @onready var chase_timer: Timer = $detection_area/chase_timer
 @onready var attack_timer: Timer = $attack_cd_timer #cooldown 
+@onready var load_timer: Timer = $Load_timer
 @onready var animation_node: AnimatedSprite2D = $AnimatedSprite2D
+@onready var visibilityNotifier: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 @onready var sound_component: SoundComponent = $SoundComponent
+
 
 @export_subgroup("Movement")
 @export var speed = 60
@@ -61,12 +64,21 @@ func _ready() -> void:
 	movement_component.set_speed(speed)
 	movement_component.set_jump_velocity(jump_force)
 	chase_timer.timeout.connect(_on_chase_timer_timeout)
+	load_timer.timeout.connect(_on_load_timer_timeout)
 	attack_timer.timeout.connect(_on_attack_timer_timeout)
 	detection_area.body_entered.connect(_on_detection_area_body_entered)
 	detection_area.body_exited.connect(_on_detection_area_body_exited)
 	attack_area.body_entered.connect(_on_attack_area_body_entered)
 	attack_area.body_exited.connect(_on_attack_area_body_exited)
 	animation_node.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
+	visibilityNotifier.screen_exited.connect(_on_VisibilityNotifier2D_screen_exited)
+	visibilityNotifier.screen_entered.connect(_on_VisibilityNotifier2D_screen_entered)
+	
+	set_process(false)
+	set_physics_process(false)
+	
+	animation_node.stop()
+	#visible = false   # optional
 
 func do_state_behaviour(delta):
 	var direction = 0.0
@@ -119,11 +131,11 @@ func handle_animations(direction: float) -> void:
 	elif  state == DAMAGED:
 		sound_component.play_sound(damage_sound) #damage sound placeholder
 		return
-	#if not is_on_floor():
-		#if velocity.y > 0:
-			#animation_node.play("fall")
-		#else:
-			#animation_node.play("jump")
+	if not is_on_floor():
+		if velocity.y > 0:
+			animation_node.play("fall")
+		else:
+			animation_node.play("jump")
 	if direction != 0:
 		animation_node.flip_h = (direction < 0)
 		animation_node.play("walk")
@@ -184,7 +196,9 @@ func STANDBY_behaviour(delta: float) -> float:
 
 func AGGRO_behaviour() -> float:
 	if player and player_chase:
-		var direction = 1 if player.position.x > position.x else -1
+		var direction = 0
+		if abs(player.position.x - position.x) >= 100:
+			direction = 1 if player.position.x > position.x else -1
 		attack_area_direction(direction)
 		if is_at_edge(direction) and is_on_floor():
 			if stop_at_edge:
@@ -264,3 +278,22 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 func _on_attack_area_body_exited(body: Node2D) -> void:
 	if not state == DYING:
 		in_attack_range = false
+
+func _on_VisibilityNotifier2D_screen_exited():
+	load_timer.start()
+	#print("not visible anymore")
+	
+func _on_load_timer_timeout():
+	#print("load timer done")
+	set_process(false)
+	set_physics_process(false)
+	animation_node.stop()
+	load_timer.stop()
+	#visible = false   # optional
+	
+func _on_VisibilityNotifier2D_screen_entered():
+	load_timer.stop()
+	#print("visible")
+	set_process(true)
+	set_physics_process(true)
+	#visible = true    # optional

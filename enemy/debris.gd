@@ -1,8 +1,10 @@
 extends CharacterBody2D
+class_name Debris
 
 @onready var movement_component: MovementComponent = $MovementComponent
 @onready var gravity: GravityComponent = $Gravity
 
+var source
 var direction: float
 var speed: float
 var damage: float
@@ -25,10 +27,15 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i).get_collider()
-		if collision.name == "Player":
-			collision.take_damage(damage)
-		#print(collision.name)
-		queue_free()
+		on_collision(collision)
+		
+		
+	
+func on_collision(collision):
+	if collision.name == "Player":
+		collision.take_damage(damage)
+	#print(collision.name)
+	queue_free()
 	
 func destroy():
 	queue_free()

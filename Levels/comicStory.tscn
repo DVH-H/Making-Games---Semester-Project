@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfod6k1ncd6h5"]
+
+[ext_resource type="Script" uid="uid://dwldv10c4gl8s" path="res://Levels/comic_story.gd" id="1_ju6im"]
+
+[node name="ComicStory" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_ju6im")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0

@@ -1,6 +1,7 @@
 extends enemy
+class_name Throw_enemy
 
-var debris_scene = preload("res://enemy/debris.tscn")
+@export var debris_scene = preload("res://enemy/debris.tscn")
 
 
 func AGGRO_behaviour() -> float:
@@ -17,6 +18,7 @@ func ATTACK_behaviour(_delta):
 		debris.global_position = global_position
 		debris.initialize(player.global_position.x, damage)
 		attack_cd_ready = false
+		debris.source = self
 		#state = AGGRO
 	return 0
 	

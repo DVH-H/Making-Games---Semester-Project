@@ -54,7 +54,7 @@ func _ready() -> void:
 		LoadoutManager.loadout_changed.connect(_on_loadout_changed)
 		_sync_with_loadout_manager()
 	else:
-		print("Gun: LoadoutManager not available, using default loadout")
+		#print("Gun: LoadoutManager not available, using default loadout")
 		_set_default_alternating_loadout()
 	
 	_fill_all_from_loadout()  # start full; remove if you want to start empty

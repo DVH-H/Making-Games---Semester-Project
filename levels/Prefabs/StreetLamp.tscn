@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d28i7cm5npn33"]
+
+[ext_resource type="Texture2D" uid="uid://cqjlaavlubold" path="res://assets/sprites/Layer 43Asset_.png" id="1_4w2ya"]
+
+[node name="StreetLamp" type="Node2D"]
+
+[node name="Layer43Asset" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(19, 3)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_4w2ya")

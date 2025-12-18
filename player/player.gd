@@ -130,19 +130,19 @@ func _physics_process(delta: float) -> void:
 	if _interactable != null and input_controller.get_interact_input():
 		_interactable.interact()
 		
-	if Input.is_action_pressed("reset"):
-		_reset_timer += delta
-		if _reset_timer >= reset_hold_time and not _reset_held:
-			_reset_held = true
-			_reset_full()
-	elif Input.is_action_just_released("reset"):
-		if not _reset_held:
-			_reset_to_checkpoint()
-		_reset_timer = 0.0
-		_reset_held = false
-	else:
-		if _reset_timer > 0.0 and not _reset_held:
-			_reset_timer = 0.0
+	#if Input.is_action_pressed("reset"):
+	#	_reset_timer += delta
+	#	if _reset_timer >= reset_hold_time and not _reset_held:
+	#		_reset_held = true
+	#		_reset_full()
+	#elif Input.is_action_just_released("reset"):
+	#	if not _reset_held:
+	#		_reset_to_checkpoint()
+	#	_reset_timer = 0.0
+	#	_reset_held = false
+	#else:
+	#	if _reset_timer > 0.0 and not _reset_held:
+	#		_reset_timer = 0.0
 	movement_component.velocity_cap(self)
 	move_and_slide()
 	

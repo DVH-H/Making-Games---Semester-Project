@@ -1,0 +1,415 @@
+[gd_scene load_steps=27 format=3 uid="uid://brg3fsegfg0e"]
+
+[ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="1_ad46j"]
+[ext_resource type="PackedScene" uid="uid://dai37nexjs0em" path="res://levels/Tilemaps/Tilemap_Industrial2.tscn" id="2_405r1"]
+[ext_resource type="Texture2D" uid="uid://dar0hgftuiv7j" path="res://assets/sprites/Layer 9.png" id="3_1a7fu"]
+[ext_resource type="PackedScene" uid="uid://b6e6r7m5qwgso" path="res://levels/Prefabs/CartEmpty.tscn" id="4_emcq5"]
+[ext_resource type="PackedScene" uid="uid://haa3mak7nluw" path="res://levels/Prefabs/CartFull.tscn" id="5_sk2lv"]
+[ext_resource type="PackedScene" uid="uid://c6vnm5w2oxnge" path="res://levels/Prefabs/CelingLamp.tscn" id="6_dlhqv"]
+[ext_resource type="PackedScene" uid="uid://c0xqdei221r46" path="res://levels/Prefabs/Barrel.tscn" id="7_7g3tq"]
+[ext_resource type="PackedScene" uid="uid://bxolfqry5am5b" path="res://levels/Prefabs/SignDown.tscn" id="8_1nwxb"]
+[ext_resource type="PackedScene" uid="uid://4n3a8mvv3bj6" path="res://levels/Prefabs/SpikesWire.tscn" id="9_inelk"]
+[ext_resource type="PackedScene" uid="uid://3ei6sbrmm6t4" path="res://interactable/Checkpoint.tscn" id="10_cygf2"]
+[ext_resource type="PackedScene" uid="uid://1g43dvmxf5hh" path="res://enemy/enemy.tscn" id="11_inelk"]
+[ext_resource type="PackedScene" uid="uid://cy482vtfjdebe" path="res://levels/Prefabs/wallLamp.tscn" id="12_cygf2"]
+[ext_resource type="PackedScene" uid="uid://7vpte4iqsdl7" path="res://levels/Prefabs/SafetyFenceB.tscn" id="14_lx4ll"]
+[ext_resource type="PackedScene" uid="uid://7yqd2masewrp" path="res://levels/Prefabs/CheckpointPrefab.tscn" id="15_d1xdu"]
+[ext_resource type="PackedScene" uid="uid://ccvirxqwljcfj" path="res://levels/Prefabs/DevilSign.tscn" id="16_gwjjh"]
+[ext_resource type="PackedScene" uid="uid://b30igfsw7m7iy" path="res://enemy/explosive_thrower.tscn" id="17_gwjjh"]
+[ext_resource type="PackedScene" uid="uid://co1iy5xnrtxwg" path="res://levels/Prefabs/SignWarning.tscn" id="18_i847x"]
+[ext_resource type="PackedScene" uid="uid://cvnfqpm4d7gxa" path="res://enemy/throw_enemy.tscn" id="19_ad46j"]
+[ext_resource type="PackedScene" uid="uid://dgoi0evox7so3" path="res://enemy/shield_enemy.tscn" id="20_i1wya"]
+[ext_resource type="PackedScene" uid="uid://5ss1vdg1uhk1" path="res://levels/Prefabs/ledgeType1.tscn" id="21_i1wya"]
+[ext_resource type="PackedScene" uid="uid://byyrydbatwhxw" path="res://levels/Prefabs/TrashCan.tscn" id="22_q7ygl"]
+[ext_resource type="PackedScene" uid="uid://cht6xoj54fvc5" path="res://levels/Prefabs/SignLeft.tscn" id="23_wjguh"]
+[ext_resource type="Texture2D" uid="uid://blgi5gh4ymye" path="res://assets/sprites/Layer 14.png" id="24_dtaic"]
+[ext_resource type="PackedScene" uid="uid://c1yv3rlvjbc7x" path="res://levels/Prefabs/ledgeType2.tscn" id="24_wjguh"]
+[ext_resource type="Texture2D" uid="uid://u0iwn8on3b1o" path="res://assets/sprites/gliph.png" id="26_wee2a"]
+[ext_resource type="PackedScene" uid="uid://bvlu3g63b1p2h" path="res://levels/Prefabs/explosion_stain.tscn" id="27_w6sy8"]
+
+[node name="LevelIndustrial2" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ad46j")]
+z_index = 1
+position = Vector2(2792, -13)
+
+[node name="TilemapIndustrial2" parent="." instance=ExtResource("2_405r1")]
+z_index = -2
+
+[node name="Layer9" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(3585, -766)
+scale = Vector2(3, 3)
+texture = ExtResource("3_1a7fu")
+
+[node name="CartEmpty" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-1496, -13)
+
+[node name="CartFull" parent="." instance=ExtResource("5_sk2lv")]
+position = Vector2(-2361, -91)
+
+[node name="CartEmpty2" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-3213, -13)
+
+[node name="CartFull2" parent="." instance=ExtResource("5_sk2lv")]
+position = Vector2(-4065, -78)
+
+[node name="CartFull3" parent="." instance=ExtResource("5_sk2lv")]
+position = Vector2(-4904, -78)
+
+[node name="CelingLamp" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-4248, -2923)
+
+[node name="CelingLamp2" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-2451, -2909)
+
+[node name="CelingLamp3" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-775, -2910)
+
+[node name="Barrel" parent="." instance=ExtResource("7_7g3tq")]
+position = Vector2(4600, 40)
+
+[node name="Barrel2" parent="." instance=ExtResource("7_7g3tq")]
+position = Vector2(-12823, 5295)
+
+[node name="SignDown" parent="." instance=ExtResource("8_1nwxb")]
+position = Vector2(-11434, 943)
+
+[node name="SpikesWire" parent="." instance=ExtResource("9_inelk")]
+position = Vector2(-19067, 6730)
+
+[node name="Enemy" parent="." instance=ExtResource("11_inelk")]
+position = Vector2(-15027, 6307)
+patrol_array = Array[Vector2]([Vector2(-16902, 6393), Vector2(-12662, 6350)])
+
+[node name="WallLamp" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-15476, -956)
+
+[node name="WallLamp2" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-15476, 3698)
+
+[node name="WallLamp3" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-23171, 3305)
+scale = Vector2(-1, 1)
+
+[node name="CartEmpty3" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-11880, 1339)
+rotation = -0.7941248
+
+[node name="CartFull4" parent="." instance=ExtResource("5_sk2lv")]
+position = Vector2(-10609, 998)
+
+[node name="WallLamp4" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-34396, -2648)
+
+[node name="WallLamp5" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-32347, -10205)
+scale = Vector2(-1, 1)
+
+[node name="SafetyFenceB" parent="." instance=ExtResource("14_lx4ll")]
+position = Vector2(-37303, -10454)
+
+[node name="WallLamp6" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-39592, -2865)
+scale = Vector2(-1, 1)
+
+[node name="CartFull5" parent="." instance=ExtResource("5_sk2lv")]
+position = Vector2(-37923, -10588)
+
+[node name="CartEmpty4" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-38761, -10814)
+
+[node name="CartEmpty5" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-39593, -10809)
+
+[node name="CheckpointSprite" parent="." instance=ExtResource("15_d1xdu")]
+position = Vector2(-27965, 172)
+
+[node name="DevilSign" parent="." instance=ExtResource("16_gwjjh")]
+z_index = -3
+position = Vector2(-27142, -495)
+rotation = -5.532694
+scale = Vector2(-1, 1)
+
+[node name="CelingLamp4" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-40837, -12507)
+
+[node name="CelingLamp5" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-43634, -12251)
+
+[node name="CelingLamp6" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-46254, -12497)
+
+[node name="CelingLamp7" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-48559, -12103)
+
+[node name="CelingLamp8" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-51572, -12179)
+
+[node name="CelingLamp9" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-54274, -12598)
+
+[node name="CelingLamp10" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-56858, -12157)
+
+[node name="CelingLamp11" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-59639, -12463)
+
+[node name="WallLamp7" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-61916, -10059)
+
+[node name="WallLamp8" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-59600, -5263)
+scale = Vector2(-1, 1)
+
+[node name="WallLamp9" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-47686, -7824)
+scale = Vector2(-1, 1)
+
+[node name="Barrel3" parent="." instance=ExtResource("7_7g3tq")]
+position = Vector2(-47892, -6428)
+
+[node name="Barrel4" parent="." instance=ExtResource("7_7g3tq")]
+position = Vector2(-48438.004, -6392)
+scale = Vector2(0.7, 1)
+
+[node name="SpikesWire2" parent="." instance=ExtResource("9_inelk")]
+position = Vector2(-52090, -6498)
+
+[node name="ExplosiveThrower" parent="." instance=ExtResource("17_gwjjh")]
+position = Vector2(-44586, -373)
+
+[node name="Enemy2" parent="." instance=ExtResource("11_inelk")]
+position = Vector2(-32585, -5866)
+stop_at_edge = false
+
+[node name="SpikesWire3" parent="." instance=ExtResource("9_inelk")]
+position = Vector2(-20111, -6732)
+
+[node name="SignWarning" parent="." instance=ExtResource("18_i847x")]
+position = Vector2(-18603, -7279)
+rotation = -0.2617994
+
+[node name="CartFull6" parent="." instance=ExtResource("5_sk2lv")]
+position = Vector2(-46726, -10816)
+
+[node name="CartEmpty6" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-40331, -1069)
+
+[node name="CartEmpty7" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-41200, -1063)
+
+[node name="CartFull7" parent="." instance=ExtResource("5_sk2lv")]
+position = Vector2(-29575, 465)
+
+[node name="CelingLamp12" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-30481, -1894)
+
+[node name="CelingLamp13" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-27736, -2278)
+
+[node name="CelingLamp14" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-51805, -2451)
+
+[node name="CelingLamp15" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-50020, -2777)
+
+[node name="CelingLamp16" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-46911, -2624)
+
+[node name="CelingLamp17" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-42976, -3756)
+
+[node name="CelingLamp18" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-56470, -4620)
+
+[node name="CelingLamp19" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-65702, 9450)
+
+[node name="CelingLamp20" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-68850, 8989)
+
+[node name="Barrel5" parent="." instance=ExtResource("7_7g3tq")]
+position = Vector2(-59522, 11369)
+
+[node name="SpikesWire4" parent="." instance=ExtResource("9_inelk")]
+position = Vector2(-63498, 16755)
+
+[node name="SignWarning2" parent="." instance=ExtResource("18_i847x")]
+z_index = -2
+position = Vector2(-64269, 15001)
+rotation = 0.5061455
+
+[node name="SignWarning3" parent="." instance=ExtResource("18_i847x")]
+z_index = -2
+position = Vector2(-60386, 13690.998)
+rotation = -0.7749262
+
+[node name="ThrowEnemy" parent="." instance=ExtResource("19_ad46j")]
+position = Vector2(-37925, -11474)
+
+[node name="ExplosiveThrower2" parent="." instance=ExtResource("17_gwjjh")]
+position = Vector2(-53677, -8954)
+
+[node name="ShieldEnemy" parent="." instance=ExtResource("20_i1wya")]
+position = Vector2(-53939, 828)
+
+[node name="WallLamp13" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-62527, 2787)
+
+[node name="CheckpointSprite2" parent="." instance=ExtResource("15_d1xdu")]
+position = Vector2(-66693, 11525)
+
+[node name="WallLamp10" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-73682, 8197.002)
+rotation = 0.23736478
+
+[node name="WallLamp11" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-64089, -2269)
+
+[node name="WallLamp12" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-60669, 540)
+scale = Vector2(-1, 1)
+
+[node name="SignWarning4" parent="." instance=ExtResource("18_i847x")]
+position = Vector2(-17628, 6521)
+rotation = 0.059341196
+
+[node name="LedgeType1" parent="." instance=ExtResource("21_i1wya")]
+modulate = Color(0.6027457, 0.52886075, 0.483509, 1)
+position = Vector2(-74757, 10422)
+
+[node name="TrashCan" parent="." instance=ExtResource("22_q7ygl")]
+position = Vector2(-74537, 11393)
+
+[node name="TrashCan2" parent="." instance=ExtResource("22_q7ygl")]
+position = Vector2(-74125, 11449)
+scale = Vector2(0.7, 0.7)
+
+[node name="SignLeft" parent="." instance=ExtResource("23_wjguh")]
+position = Vector2(-76418, 6913)
+
+[node name="LedgeType2" parent="." instance=ExtResource("24_wjguh")]
+modulate = Color(0.6068102, 0.53283805, 0.4874385, 1)
+position = Vector2(-63717, 5625)
+
+[node name="SpikesWire5" parent="." instance=ExtResource("9_inelk")]
+position = Vector2(-61215, 16746)
+
+[node name="ThrowEnemy3" parent="." instance=ExtResource("19_ad46j")]
+position = Vector2(-97883, 3270)
+stop_at_edge = false
+
+[node name="ThrowEnemy4" parent="." instance=ExtResource("19_ad46j")]
+position = Vector2(-88619, 3327)
+stop_at_edge = false
+
+[node name="ExplosiveThrower3" parent="." instance=ExtResource("17_gwjjh")]
+position = Vector2(-92754, 5354)
+patrol_array = Array[Vector2]([Vector2(-95638, 5414), Vector2(-92754, 5354)])
+
+[node name="ThrowEnemy2" parent="." instance=ExtResource("19_ad46j")]
+position = Vector2(-93027, 10404)
+patrol_array = Array[Vector2]([Vector2(-96021, 10366), Vector2(-93027, 10404)])
+
+[node name="Enemy3" parent="." instance=ExtResource("11_inelk")]
+position = Vector2(-102299, 16906)
+stop_at_edge = false
+
+[node name="Barrel6" parent="." instance=ExtResource("7_7g3tq")]
+position = Vector2(-104073, 18924)
+
+[node name="CartFull8" parent="." instance=ExtResource("5_sk2lv")]
+position = Vector2(-100892, 18818)
+
+[node name="CartEmpty8" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-100884, 18416)
+
+[node name="CartEmpty9" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-98380, 18890)
+
+[node name="CartFull9" parent="." instance=ExtResource("5_sk2lv")]
+position = Vector2(-100070, 18832)
+
+[node name="CelingLamp21" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-106394, 15079)
+
+[node name="CelingLamp22" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-104840, 15435)
+
+[node name="WallLamp14" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-103480, 6872)
+
+[node name="WallLamp15" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-88028, 4882.998)
+rotation = -0.4171337
+scale = Vector2(-1, 1)
+
+[node name="Layer14" type="Sprite2D" parent="."]
+position = Vector2(3550, -2352)
+scale = Vector2(3, 3)
+texture = ExtResource("24_dtaic")
+
+[node name="Layer15" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(3551, -3379)
+scale = Vector2(3, 3)
+texture = ExtResource("24_dtaic")
+
+[node name="Checkpoint" parent="." instance=ExtResource("10_cygf2")]
+position = Vector2(-109983, 17440)
+
+[node name="LedgeType3" parent="." instance=ExtResource("21_i1wya")]
+modulate = Color(0.72, 0.60012007, 0.5256, 1)
+position = Vector2(-113882, -14513)
+scale = Vector2(-1, 1)
+
+[node name="LedgeType4" parent="." instance=ExtResource("24_wjguh")]
+modulate = Color(0.72, 0.57792, 0.48960003, 1)
+position = Vector2(-117114, 10945)
+
+[node name="LedgeType5" parent="." instance=ExtResource("21_i1wya")]
+modulate = Color(0.72, 0.60456, 0.5328, 1)
+position = Vector2(-103187, 11330)
+
+[node name="CartFull10" parent="." instance=ExtResource("5_sk2lv")]
+position = Vector2(-116397, 14512)
+
+[node name="CartEmpty10" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-114631, 17832)
+
+[node name="CartEmpty11" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-113821, 17835)
+
+[node name="LedgeType7" parent="." instance=ExtResource("21_i1wya")]
+modulate = Color(0.72156864, 0.5764706, 0.49019608, 1)
+position = Vector2(-112745.99, 1464)
+rotation = -0.17802358
+scale = Vector2(-1, 1)
+
+[node name="Gliph" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.078431375)
+position = Vector2(-115366.99, -38330)
+scale = Vector2(4.5652776, 4.830514)
+texture = ExtResource("26_wee2a")
+
+[node name="ExplosionStain" parent="." instance=ExtResource("27_w6sy8")]
+position = Vector2(-118098, -45834)
+
+[node name="ExplosionStain2" parent="." instance=ExtResource("27_w6sy8")]
+position = Vector2(-113000, -47649)
+scale = Vector2(-1, 1)
+
+[node name="ExplosionStain3" parent="." instance=ExtResource("27_w6sy8")]
+position = Vector2(-118056, -50027)
+
+[node name="ExplosionStain4" parent="." instance=ExtResource("27_w6sy8")]
+position = Vector2(-118079, -41950)
+
+[node name="ExplosionStain5" parent="." instance=ExtResource("27_w6sy8")]
+position = Vector2(-112973, -43715)
+scale = Vector2(-1, 1)
+
+[node name="ExplosionStain6" parent="." instance=ExtResource("27_w6sy8")]
+position = Vector2(-113012, -39513)
+scale = Vector2(-1, 1)

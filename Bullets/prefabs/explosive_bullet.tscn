@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b17bk3uhod7ph"]
+[gd_scene load_steps=8 format=3 uid="uid://b17bk3uhod7ph"]
 
 [ext_resource type="Script" uid="uid://cjyvf6tkmf0bf" path="res://Bullets/scripts/explosive_bullet.gd" id="1_0k6ku"]
 [ext_resource type="PackedScene" uid="uid://cbboxn7ew4lqk" path="res://Bullets/explosion.tscn" id="2_plxq6"]
@@ -20,7 +20,6 @@ explosion = ExtResource("2_plxq6")
 display_name = "Explosive Bullet"
 ui_color = Color(1, 0, 0, 1)
 ui_icon = ExtResource("3_wtmpj")
-explosive = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.1415927

@@ -27,13 +27,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1946.0
-offset_top = -971.9999
-offset_right = -746.0
-offset_bottom = -271.99988
+offset_left = -579.0
+offset_top = -361.0
+offset_right = 621.0
+offset_bottom = 339.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(3, 3)
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2

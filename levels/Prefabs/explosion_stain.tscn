@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvlu3g63b1p2h"]
+
+[ext_resource type="Texture2D" uid="uid://co10l6ln4ggb0" path="res://assets/sprites/explosion_res.png" id="1_5834u"]
+
+[node name="ExplosionStain" type="Node2D"]
+
+[node name="ExplosionRes" type="Sprite2D" parent="."]
+modulate = Color(0.78352344, 0.7835234, 0.7835234, 0.58431375)
+scale = Vector2(3, 3)
+texture = ExtResource("1_5834u")
