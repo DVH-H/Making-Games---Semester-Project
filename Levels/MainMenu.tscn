@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://1pxxuf8l0ahq"]
+[gd_scene load_steps=11 format=3 uid="uid://1pxxuf8l0ahq"]
 
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="1_2k6u6"]
 [ext_resource type="Script" uid="uid://copa7t2il3dqe" path="res://Levels/main_menu.gd" id="1_pdswe"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://c1yv3rlvjbc7x" path="res://levels/Prefabs/ledgeType2.tscn" id="6_uty7f"]
 [ext_resource type="PackedScene" uid="uid://c5s5kc4fk3snh" path="res://interactable/nextLevelArea.tscn" id="7_pdswe"]
 [ext_resource type="Texture2D" uid="uid://blgi5gh4ymye" path="res://assets/sprites/Layer 14.png" id="8_283cj"]
-[ext_resource type="PackedScene" uid="uid://cimsyv3c8nacq" path="res://Levels/intro_cutscene.tscn" id="8_uty7f"]
 [ext_resource type="PackedScene" uid="uid://d28i7cm5npn33" path="res://levels/Prefabs/StreetLamp.tscn" id="9_xun1b"]
 [ext_resource type="Texture2D" uid="uid://dvqb2b16pxy0w" path="res://assets/sprites/Layer 18.png" id="11_pdswe"]
 
@@ -50,7 +49,7 @@ scale = Vector2(-0.7616995, 0.7616995)
 
 [node name="NextLevelArea" parent="." instance=ExtResource("7_pdswe")]
 position = Vector2(43, 1390)
-next_level = ExtResource("8_uty7f")
+path = "res://Levels/intro_cutscene.tscn"
 
 [node name="Layer14" type="Sprite2D" parent="."]
 position = Vector2(3.6800537, -380.75854)

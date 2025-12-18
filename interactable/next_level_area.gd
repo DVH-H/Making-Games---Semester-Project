@@ -1,10 +1,11 @@
 extends Interactable
 
-@export var next_level: PackedScene
+#@export var next_level: PackedScene
+@export var path: String
 
 func interact():
-	CheckpointManager.set_checkpoint(next_level.resource_path, Vector2.ZERO)
-	GameController.goto_scene(next_level.resource_path)
+	CheckpointManager.set_checkpoint(path, Vector2.ZERO)
+	GameController.goto_scene(path)
 	#print(CheckpointManager._scene_path)
 
 

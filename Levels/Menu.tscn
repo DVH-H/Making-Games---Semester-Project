@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvd50l4vwkgg1"]
+[gd_scene load_steps=10 format=3 uid="uid://bvd50l4vwkgg1"]
 
 [ext_resource type="Texture2D" uid="uid://cw8vyw3so7a1j" path="res://assets/sprites/ui_background.png" id="1_ajojk"]
 [ext_resource type="Script" uid="uid://djofoe4nv22qt" path="res://Levels/menuUI.gd" id="1_k1aj7"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://n8m51xojyixu" path="res://assets/sprites/UI_Button_1.png" id="5_qm8e0"]
 [ext_resource type="Texture2D" uid="uid://c60g0pk0a3qcs" path="res://assets/sprites/UI_LogoBack.png" id="6_wilrv"]
 [ext_resource type="Texture2D" uid="uid://dmisgprpox3qo" path="res://assets/sprites/UI_Logo.png" id="7_so85s"]
+[ext_resource type="Texture2D" uid="uid://jeo83i2ct4sq" path="res://assets/sprites/UI_Control.png" id="9_j0r6d"]
 
 [node name="Menu" type="CanvasLayer"]
 process_mode = 3
@@ -21,6 +22,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+visible = false
+layout_mode = 0
+offset_right = 1919.0
+offset_bottom = 1079.0
+texture = ExtResource("9_j0r6d")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 0
