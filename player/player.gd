@@ -67,10 +67,7 @@ func _physics_process(delta: float) -> void:
 		movement_component.handle_jump(self)
 		coyote_time_counter = 0.0  # consume coyote time so it can't be reused mid-air
 		var rng = RandomNumberGenerator.new()
-		if rng.randi_range(0, 1) == 0:
-			sound_component.play_sound(jump_sound1)
-		else:
-			sound_component.play_sound(jump_sound2)
+		sound_component.play_sound(jump_sound1)
 	
 	# Aiming and shooting
 	
@@ -103,7 +100,7 @@ func _physics_process(delta: float) -> void:
 	# State machine. Also setting animations
 	if is_on_floor():
 		if state == FALLING: 
-			sound_component.play_sound(land_sound)
+			sound_component.play_sound(jump_sound2)
 		if velocity.x != 0:
 			state = RUNNING
 			sound_component.play_sound(footsteps_sound)
