@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dve8hfghfvdfr"]
+[gd_scene load_steps=43 format=3 uid="uid://dve8hfghfvdfr"]
 
 [ext_resource type="Script" uid="uid://xqq4q7ftp7cv" path="res://player/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c3t68dnfner8e" path="res://player/sprites/005_Sprite_Player.png" id="3_2ieo8"]
@@ -21,8 +21,11 @@
 [ext_resource type="Texture2D" uid="uid://0jrvs8a0bfnu" path="res://assets/sprites/UI_0002_Layer-19.png" id="15_65viv"]
 [ext_resource type="Texture2D" uid="uid://b3ocxes7it3ri" path="res://assets/background.png" id="17_tqiix"]
 [ext_resource type="AudioStream" uid="uid://cu2sg3fiq14ay" path="res://assets/sounds/Land.wav" id="18_e7oew"]
-[ext_resource type="AudioStream" uid="uid://y0vocnqegsu1" path="res://assets/sounds/Play dmg.wav" id="20_x7c3f"]
+[ext_resource type="AudioStream" uid="uid://cq55k4jw3wywk" path="res://assets/sounds/meow1.ogg" id="21_7pqkx"]
 [ext_resource type="AudioStream" uid="uid://birybbc7t3sdd" path="res://assets/sounds/Player Death.wav" id="21_bjvpn"]
+[ext_resource type="AudioStream" uid="uid://spfkw40bqcgl" path="res://assets/sounds/meow2.ogg" id="22_uw77l"]
+[ext_resource type="AudioStream" uid="uid://dt6r0oiwgcivf" path="res://assets/sounds/hiss1.ogg" id="23_knn7v"]
+[ext_resource type="AudioStream" uid="uid://lt6exxufe5iu" path="res://assets/sounds/BcgMusic.ogg" id="24_g4c7l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sh265"]
 radius = 142.0
@@ -169,26 +172,27 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("footsteps_sound", "jump_sound", "land_sound", "damage_sound", "death_sound")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("footsteps_sound", "jump_sound1", "jump_sound2", "land_sound", "damage_sound", "death_sound")]
 z_index = 11
 collision_layer = 2
 script = ExtResource("1_onrkg")
 footsteps_sound = NodePath("FootstepsSound")
-jump_sound = NodePath("JumpSound")
+jump_sound1 = NodePath("Meow1")
+jump_sound2 = NodePath("Meow2")
 land_sound = NodePath("LandSound")
-damage_sound = NodePath("DamageSound")
+damage_sound = NodePath("Hiss1")
 death_sound = NodePath("DeathSound")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_sh265")
+
+[node name="InputController" parent="." instance=ExtResource("4_hqtel")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -50)
 sprite_frames = SubResource("SpriteFrames_i3pqv")
 animation = &"idle_left"
 autoplay = "idle_left"
-
-[node name="InputController" parent="." instance=ExtResource("4_hqtel")]
 
 [node name="AnimationController" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("5_sweqy")]
 sprite = NodePath("../AnimatedSprite2D")
@@ -273,14 +277,23 @@ texture = ExtResource("17_tqiix")
 [node name="JumpSound" type="AudioStreamPlayer" parent="."]
 volume_db = -15.0
 
+[node name="Meow1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_7pqkx")
+
+[node name="Meow2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_uw77l")
+
 [node name="LandSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_e7oew")
 volume_db = -15.0
 
-[node name="DamageSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("20_x7c3f")
-volume_db = -15.0
+[node name="Hiss1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_knn7v")
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_bjvpn")
 volume_db = -15.0
+
+[node name="BcgMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_g4c7l")
+autoplay = true
