@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://brg3fsegfg0e"]
+[gd_scene load_steps=30 format=3 uid="uid://brg3fsegfg0e"]
 
 [ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="1_ad46j"]
 [ext_resource type="PackedScene" uid="uid://dai37nexjs0em" path="res://levels/Tilemaps/Tilemap_Industrial2.tscn" id="2_405r1"]
@@ -26,7 +26,9 @@
 [ext_resource type="Texture2D" uid="uid://u0iwn8on3b1o" path="res://assets/sprites/gliph.png" id="26_wee2a"]
 [ext_resource type="PackedScene" uid="uid://bvlu3g63b1p2h" path="res://levels/Prefabs/explosion_stain.tscn" id="27_w6sy8"]
 [ext_resource type="PackedScene" uid="uid://c5s5kc4fk3snh" path="res://interactable/nextLevelArea.tscn" id="27_ytfh5"]
+[ext_resource type="PackedScene" uid="uid://dnbdq5rdocitq" path="res://levels/Prefabs/SignUp.tscn" id="28_rqiug"]
 [ext_resource type="Texture2D" uid="uid://dvqb2b16pxy0w" path="res://assets/sprites/Layer 18.png" id="28_svukn"]
+[ext_resource type="PackedScene" uid="uid://c7mwi3i2ulybl" path="res://levels/Prefabs/SignRight.tscn" id="29_n543u"]
 
 [node name="LevelIndustrial2" type="Node2D"]
 
@@ -389,25 +391,25 @@ scale = Vector2(4.5652776, 4.830514)
 texture = ExtResource("26_wee2a")
 
 [node name="ExplosionStain" parent="." instance=ExtResource("27_w6sy8")]
-position = Vector2(-118098, -45834)
+position = Vector2(-113020, -45956)
+scale = Vector2(-1, 1)
 
 [node name="ExplosionStain2" parent="." instance=ExtResource("27_w6sy8")]
-position = Vector2(-113000, -47649)
-scale = Vector2(-1, 1)
+position = Vector2(-118060, -47684)
 
 [node name="ExplosionStain3" parent="." instance=ExtResource("27_w6sy8")]
-position = Vector2(-118056, -50027)
+position = Vector2(-113013, -50114)
+scale = Vector2(-1, 1)
 
 [node name="ExplosionStain4" parent="." instance=ExtResource("27_w6sy8")]
-position = Vector2(-118079, -41950)
+position = Vector2(-113001, -41967)
+scale = Vector2(-1, 1)
 
 [node name="ExplosionStain5" parent="." instance=ExtResource("27_w6sy8")]
-position = Vector2(-112973, -43715)
-scale = Vector2(-1, 1)
+position = Vector2(-118051, -43837)
 
 [node name="ExplosionStain6" parent="." instance=ExtResource("27_w6sy8")]
-position = Vector2(-113012, -39513)
-scale = Vector2(-1, 1)
+position = Vector2(-118072, -39618)
 
 [node name="Checkpoint2" parent="." instance=ExtResource("10_cygf2")]
 position = Vector2(-115820, -37096)
@@ -433,3 +435,90 @@ position = Vector2(-27964, 160)
 
 [node name="Checkpoint4" parent="." instance=ExtResource("10_cygf2")]
 position = Vector2(-66690, 11521)
+
+[node name="CelingLamp23" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-114491, -48377)
+
+[node name="CelingLamp24" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-124296, -24043)
+
+[node name="CelingLamp25" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-123202, -24005)
+
+[node name="WallLamp16" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-105121, -24830)
+
+[node name="WallLamp17" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-105121, -30934)
+
+[node name="CartFull11" parent="." instance=ExtResource("5_sk2lv")]
+position = Vector2(-123279, -31951)
+
+[node name="CartEmpty12" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-107885, -32373)
+
+[node name="CartEmpty13" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-109440, -32393)
+
+[node name="CartFull12" parent="." instance=ExtResource("5_sk2lv")]
+position = Vector2(-111288, -18399)
+
+[node name="WallLamp18" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-118639, -11662)
+
+[node name="WallLamp19" parent="." instance=ExtResource("12_cygf2")]
+position = Vector2(-118658, -3850)
+
+[node name="CelingLamp26" parent="." instance=ExtResource("6_dlhqv")]
+z_index = -1
+position = Vector2(-113904, -337)
+
+[node name="SignUp" parent="." instance=ExtResource("28_rqiug")]
+position = Vector2(-119231, -5013)
+
+[node name="SignUp2" parent="." instance=ExtResource("28_rqiug")]
+position = Vector2(-115828.99, 14515.998)
+rotation = 0.17802358
+
+[node name="SignRight" parent="." instance=ExtResource("29_n543u")]
+position = Vector2(-112973, 3999)
+rotation = -1.6667894
+
+[node name="Barrel7" parent="." instance=ExtResource("7_7g3tq")]
+position = Vector2(-119274, -56125)
+
+[node name="Barrel8" parent="." instance=ExtResource("7_7g3tq")]
+position = Vector2(-118830, -56125)
+
+[node name="CartEmpty14" parent="." instance=ExtResource("4_emcq5")]
+position = Vector2(-112406, -56141)
+
+[node name="CelingLamp27" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-119003, -58198)
+
+[node name="CelingLamp28" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-117865, -58382)
+
+[node name="CelingLamp29" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-113402, -58274)
+
+[node name="CelingLamp30" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-112643, -58209)
+
+[node name="CelingLamp31" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-115482, -54373)
+
+[node name="CelingLamp32" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-119642, -54763)
+
+[node name="CelingLamp33" parent="." instance=ExtResource("6_dlhqv")]
+position = Vector2(-111267, -54493)
+
+[node name="SignUp3" parent="." instance=ExtResource("28_rqiug")]
+position = Vector2(-114682, -36844)
+
+[node name="SignRight2" parent="." instance=ExtResource("29_n543u")]
+position = Vector2(-124803, -31986)
+
+[node name="SignLeft2" parent="." instance=ExtResource("23_wjguh")]
+position = Vector2(-105707, -32513)
