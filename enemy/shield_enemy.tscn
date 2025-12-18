@@ -221,3 +221,4 @@ stream = ExtResource("11_m8fsp")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="Load_timer" type="Timer" parent="."]
+one_shot = true

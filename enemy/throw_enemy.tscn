@@ -388,3 +388,4 @@ stream = ExtResource("5_er6ey")
 stream = ExtResource("6_v4lge")
 
 [node name="Load_timer" type="Timer" parent="."]
+one_shot = true
