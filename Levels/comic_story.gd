@@ -23,6 +23,8 @@ func _ready() -> void:
 		timer.wait_time = timer_lengths[0]
 		timer.start()
 		timer.timeout.connect(_on_timer)
+		Camera.position_smoothing_enabled = false
+		Camera.position = Vector2.ZERO
 		get_tree().paused = true
 		for child in player.get_children():
 			if child.name == "CanvasLayer":
@@ -41,6 +43,7 @@ func _on_timer():
 		CheckpointManager.set_checkpoint(next_scene.resource_path, Vector2.ZERO)
 		GameController.goto_scene(next_scene.resource_path)
 		get_tree().paused = false
+		Camera.position_smoothing_enabled = true
 	else:
 		image_list[index].visible = true
 		timer.wait_time = timer_lengths[index]
