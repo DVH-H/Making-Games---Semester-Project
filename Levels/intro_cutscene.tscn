@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cimsyv3c8nacq"]
+
+[ext_resource type="PackedScene" uid="uid://cfod6k1ncd6h5" path="res://Levels/comicStory.tscn" id="1_ikw7r"]
+[ext_resource type="PackedScene" uid="uid://yf8beriq0pgu" path="res://levels/Level_industrial1.tscn" id="2_c5b70"]
+[ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="4_c5b70"]
+
+[node name="IntroCutscene" type="Node2D"]
+
+[node name="ComicStory" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_ikw7r")]
+next_scene = ExtResource("2_c5b70")
+timer_length = 2.0
+player = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("4_c5b70")]
+visible = false
