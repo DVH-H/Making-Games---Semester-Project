@@ -6,6 +6,8 @@
 [node name="ComicStory" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_ju6im")
+list_of_images = null
+timer_lengths = null
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

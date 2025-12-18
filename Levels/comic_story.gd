@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var image_list 
 @onready var timer = $Timer
-@export var next_scene: PackedScene
+var next_scene: PackedScene
 @export var list_of_images: Array[Texture]
 @export var timer_lengths: Array[float]
 @export var player: CharacterBody2D
@@ -36,10 +36,11 @@ func _ready() -> void:
 func _on_timer():
 	image_list[index].visible = false
 	index += 1
-	print(get_tree().current_scene.name )
 	if index == len(image_list):
 		if get_tree().current_scene.name == "EndScene":
 			next_scene = load("res://Levels/MainMenu.tscn")
+		else:
+			next_scene = load("res://levels/Level_industrial1.tscn")
 		CheckpointManager.set_checkpoint(next_scene.resource_path, Vector2.ZERO)
 		GameController.goto_scene(next_scene.resource_path)
 		get_tree().paused = false
