@@ -18,7 +18,7 @@ func _ready() -> void:
 	# Sync RevolverCylinderUI capacity with gun capacity
 	if wheel:
 		wheel.capacity = gun.capacity
-		print("HUD: Synced wheel capacity to gun capacity: ", gun.capacity)
+		#print("HUD: Synced wheel capacity to gun capacity: ", gun.capacity)
 
 	# --- Initial sync ---
 	_on_chamber_changed(gun.current_index)
@@ -45,7 +45,7 @@ func _ready() -> void:
 	
 	# Connect player health signals
 	if player and player.has_signal("health_changed"):
-		print("HUD: Connecting to player health_changed signal")
+		#print("HUD: Connecting to player health_changed signal")
 		player.health_changed.connect(_on_health_changed)
 		if not health_ui:
 			push_error("HUD: health_ui node not found!")
@@ -68,7 +68,7 @@ func _on_health_changed(new_health: int, max_health_value: int) -> void:
 	if health_ui:
 		# First time, set max health
 		if health_ui.max_health != max_health_value:
-			print("HUD: Initializing health UI with max_health=", max_health_value)
+			#print("HUD: Initializing health UI with max_health=", max_health_value)
 			health_ui.set_max_health(max_health_value)
-		print("HUD: Updating health to ", new_health)
+		#print("HUD: Updating health to ", new_health)
 		health_ui.set_health(new_health)

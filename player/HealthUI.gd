@@ -11,8 +11,8 @@ var current_health: int = 0
 var hearts_per_health: int = 20  # Each heart represents 20 health (5 hearts for 100 health)
 var heart_sprites: Array[TextureRect] = []
 
-func _ready() -> void:
-	print("HealthUI: _ready called")
+#func _ready() -> void:
+	#print("HealthUI: _ready called")
 	# Don't create hearts yet - wait for set_max_health to be called
 
 func _create_hearts() -> void:
@@ -23,7 +23,7 @@ func _create_hearts() -> void:
 	
 	# Calculate number of hearts needed
 	var num_hearts = ceili(float(max_health) / float(hearts_per_health))
-	print("HealthUI: Creating ", num_hearts, " hearts for max_health=", max_health)
+	#print("HealthUI: Creating ", num_hearts, " hearts for max_health=", max_health)
 	
 	# Create heart sprites
 	for i in range(num_hearts):
@@ -34,18 +34,18 @@ func _create_hearts() -> void:
 		heart.texture = heart_full_texture if heart_full_texture else null
 		add_child(heart)
 		heart_sprites.append(heart)
-		print("HealthUI: Created heart ", i, " with texture: ", heart.texture != null)
+		#print("HealthUI: Created heart ", i, " with texture: ", heart.texture != null)
 	
 	# Update to show current health
 	update_hearts()
 
 func set_max_health(new_max_health: int) -> void:
-	print("HealthUI: set_max_health called with: ", new_max_health)
+	#print("HealthUI: set_max_health called with: ", new_max_health)
 	max_health = new_max_health
 	_create_hearts()
 
 func set_health(new_health: int) -> void:
-	print("HealthUI: set_health called with: ", new_health, " (max: ", max_health, ")")
+	#print("HealthUI: set_health called with: ", new_health, " (max: ", max_health, ")")
 	current_health = clampi(new_health, 0, max_health)
 	update_hearts()
 

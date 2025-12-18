@@ -281,10 +281,10 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 
 func _on_VisibilityNotifier2D_screen_exited():
 	load_timer.start()
-	print("not visible anymore")
+	#print("not visible anymore")
 	
 func _on_load_timer_timeout():
-	print("load timer done")
+	#print("load timer done")
 	set_process(false)
 	set_physics_process(false)
 	animation_node.stop()
@@ -293,7 +293,7 @@ func _on_load_timer_timeout():
 	
 func _on_VisibilityNotifier2D_screen_entered():
 	load_timer.stop()
-	print("visible")
+	#print("visible")
 	set_process(true)
 	set_physics_process(true)
 	#visible = true    # optional
