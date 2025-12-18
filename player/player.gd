@@ -90,13 +90,7 @@ func _physics_process(delta: float) -> void:
 		gun._advance_cylinder()
 	if Input.is_action_just_pressed("rotate_cylinder_backward"):
 		gun._de_advance_cylinder()
-	if Input.is_action_just_pressed("loadout_menu") and not _is_loadout_menu_open():
-		_open_loadout_menu()
-	elif Input.is_action_just_pressed("loadout_menu") and _is_loadout_menu_open():
-		# Close the menu if it's already open
-		var loadout_menu = get_tree().get_first_node_in_group("LoadoutMenu")
-		if loadout_menu:
-			loadout_menu.close_menu()
+
 	# State machine. Also setting animations
 	if is_on_floor():
 		if state == FALLING: 

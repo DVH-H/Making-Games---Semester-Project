@@ -310,10 +310,12 @@ height = 11708.0
 radius = 1748.0
 height = 11648.0
 
-[node name="ExplosiveThrower" type="CharacterBody2D"]
+[node name="ExplosiveThrower" type="CharacterBody2D" node_paths=PackedStringArray("damage_sound", "death_sound") groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_nafms")
+damage_sound = NodePath("EnemyHurt")
+death_sound = NodePath("EnemyDeath")
 
 [node name="Hurtbox" type="CollisionShape2D" parent="."]
 position = Vector2(4, 0)
@@ -378,5 +380,5 @@ stream = ExtResource("6_45ewy")
 [node name="EnemyHurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_dq1j0")
 
-[node name="Load_timer" type="Timer" parent="."]
+[node name="Load_timer" type="Timer" parent="." groups=["Enemy"]]
 one_shot = true

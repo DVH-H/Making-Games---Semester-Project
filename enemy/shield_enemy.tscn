@@ -162,7 +162,7 @@ death_sound = NodePath("EnemyDeath")
 position = Vector2(11, -154)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_ngw6c")
-animation = &"death"
+animation = &"attack"
 autoplay = "idle"
 offset = Vector2(0, -6)
 
@@ -220,5 +220,5 @@ stream = ExtResource("11_m8fsp")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
-[node name="Load_timer" type="Timer" parent="."]
+[node name="Load_timer" type="Timer" parent="." groups=["Enemy"]]
 one_shot = true
