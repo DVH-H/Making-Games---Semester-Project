@@ -24,6 +24,7 @@ func reload_scene():
 	goto_scene(get_current_scene_path())
 
 func reload_from_checkpoint():
+	CheckpointManager._respawn_at_checkpoint = true
 	PlayerVariables.current_health = PlayerVariables.max_health
 	goto_scene(CheckpointManager._scene_path)
 
