@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://5ss1vdg1uhk1"]
+
+[ext_resource type="Texture2D" uid="uid://bjar4uyrsdyfu" path="res://assets/sprites/Layer 6Assets.png" id="1_j0kdo"]
+
+[node name="LedgeType1" type="Node2D"]
+
+[node name="Layer6Assets" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(11, -1)
+scale = Vector2(2, 2)
+texture = ExtResource("1_j0kdo")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+visible = false
+position = Vector2(-16.500076, 31.999878)
+scale = Vector2(83.450005, 280.2)
+polygon = PackedVector2Array(9.976035, -9.942898, 9.269025, -9.100642, 7.7351723, -8.957887, 7.7351723, -8.254818, 3.9484732, -7.305496, 1.4799291, -7.2019987, -3.4811258, -5.3747325, -3.0137799, 0.0035693124, -3.2414613, 5.453248, -1.947273, 7.983584, -4.547632, 9.039972, -9.496704, 9.8465395, -9.496704, -10.014276)

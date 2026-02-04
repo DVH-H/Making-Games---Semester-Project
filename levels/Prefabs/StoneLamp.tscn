@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1sa3chmudwm8"]
+
+[ext_resource type="Texture2D" uid="uid://dmngub2we2ff" path="res://assets/sprites/Layer 47Asset_.png" id="1_qqd8n"]
+
+[node name="StoneLamp" type="Node2D"]
+
+[node name="Layer47Asset" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(0, -1)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_qqd8n")

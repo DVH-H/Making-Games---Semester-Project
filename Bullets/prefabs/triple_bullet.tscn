@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://rxx2ppsk52l8"]
+
+[ext_resource type="Script" uid="uid://bhwgsf86kf178" path="res://Bullets/scripts/triple_bullet.gd" id="1_lkaf5"]
+[ext_resource type="Texture2D" uid="uid://dtdjaihijvkf8" path="res://Bullets/Sprites/TripleBullet.png" id="2_bsyx4"]
+[ext_resource type="Texture2D" uid="uid://q2fba6qqqklf" path="res://Bullets/Sprites/tripple_ammo.png" id="3_52iso"]
+[ext_resource type="PackedScene" uid="uid://dtuwo2b8qi1nh" path="res://components/movement_component.tscn" id="3_bsyx4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jw33g"]
+radius = 1.0
+height = 6.0
+
+[node name="TripleBullet" type="CharacterBody2D" groups=["Bullet"]]
+scale = Vector2(30, 30)
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_lkaf5")
+display_name = "Triple Bullet"
+knockback_force = 175.0
+ui_color = Color(0, 1, 0, 1)
+ui_icon = ExtResource("2_bsyx4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.1415927
+scale = Vector2(0.008, 0.008)
+texture = ExtResource("3_52iso")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-3, -1, 6, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_jw33g")
+
+[node name="MovementComponent" parent="." instance=ExtResource("3_bsyx4")]

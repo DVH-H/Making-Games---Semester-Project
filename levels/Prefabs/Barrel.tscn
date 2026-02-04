@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0xqdei221r46"]
+
+[ext_resource type="Texture2D" uid="uid://b46bt65eyeb22" path="res://assets/sprites/Assets_0009_Layer-48.png" id="1_kkrmu"]
+
+[node name="Barrel" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -2
+texture = ExtResource("1_kkrmu")

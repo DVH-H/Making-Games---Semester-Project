@@ -3,12 +3,16 @@ extends CharacterBody2D
 class_name Bullet
 
 @export_subgroup("Settings")
+@export var display_name: String = "Normal Bullet"
 @export var knockback_force: float = 200
 @export var damage: float = 5
-@export var SPEED: int = 300
+@export var SPEED: int = 8000
 @export var load_time: float = 0.2
+@export var fire_cooldown: float = 0.2
 @export var ui_color: Color = Color.hex(0x6ec1e4ff)
+@export var ui_icon: Texture2D
 
+#@export var explosive: bool = false
 @onready var movementComponent: MovementComponent = $MovementComponent
 var _direction: Vector2
 
@@ -26,11 +30,14 @@ func _physics_process(delta: float) -> void:
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i).get_collider()
 		on_collision(collision)
-		#if collision.name == "Enemy":
-		#	print("do somthing")
 	
 func on_collision(collider):
-	queue_free()
+	if collider.is_in_group("Enemy"):
+		collider.take_damage(damage)
+	if collider.is_in_group("Breakable"):
+		collider.destroy()
+	if collider.name != "Player":
+		queue_free()
  
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfod6k1ncd6h5"]
+
+[ext_resource type="Script" uid="uid://dwldv10c4gl8s" path="res://Levels/comic_story.gd" id="1_ju6im"]
+[ext_resource type="PackedScene" uid="uid://bo3uylfjwav7l" path="res://components/sound_component.tscn" id="2_pfup4"]
+
+[node name="ComicStory" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_ju6im")
+list_of_images = null
+timer_lengths = null
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="SoundComponent" parent="." instance=ExtResource("2_pfup4")]

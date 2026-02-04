@@ -1,24 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpvv8aw64dych"]
+[gd_scene load_steps=6 format=3 uid="uid://cpvv8aw64dych"]
 
 [ext_resource type="Script" uid="uid://pdrk2y1fy36t" path="res://Bullets/scripts/knockback_bullet.gd" id="1_xbsg4"]
-[ext_resource type="Texture2D" uid="uid://bxejqij00ky5p" path="res://assets/sprites/gun_tileset.png" id="2_rkhar"]
+[ext_resource type="Texture2D" uid="uid://c1qpciaa1ken2" path="res://Bullets/Sprites/konckBack.png" id="2_0j06l"]
+[ext_resource type="Texture2D" uid="uid://bksuvkbory8wb" path="res://Bullets/Sprites/knockBack_Ammo.png" id="3_0j06l"]
 [ext_resource type="PackedScene" uid="uid://dtuwo2b8qi1nh" path="res://components/movement_component.tscn" id="3_fg8r7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0j06l"]
 radius = 1.0
 height = 12.0
 
-[node name="KnockbackBullet" type="CharacterBody2D"]
+[node name="KnockbackBullet" type="CharacterBody2D" groups=["Bullet"]]
+scale = Vector2(30, 30)
+collision_layer = 8
+collision_mask = 5
 script = ExtResource("1_xbsg4")
+display_name = "Knockback Bullet"
+knockback_force = 4000.0
 load_time = 0.5
+fire_cooldown = 0.5
 ui_color = Color(0.8542778, 0.6136127, 0.08999228, 1)
+ui_icon = ExtResource("2_0j06l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 1.5707964
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_rkhar")
-region_enabled = true
-region_rect = Rect2(671.9092, 163.09094, 16.363647, 60.909103)
+rotation = 3.1415927
+scale = Vector2(0.008, 0.008)
+texture = ExtResource("3_0j06l")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-3, -1, 6, 2)

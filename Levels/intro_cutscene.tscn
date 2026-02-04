@@ -1,0 +1,24 @@
+[gd_scene load_steps=8 format=3 uid="uid://cimsyv3c8nacq"]
+
+[ext_resource type="PackedScene" uid="uid://cfod6k1ncd6h5" path="res://Levels/comicStory.tscn" id="1_ikw7r"]
+[ext_resource type="Texture2D" uid="uid://c0toyxk1p00up" path="res://assets/cutscene/BAR1.png" id="3_p2vtl"]
+[ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="4_c5b70"]
+[ext_resource type="Texture2D" uid="uid://6r1pqr82x2ys" path="res://assets/cutscene/BAR2.png" id="4_y2fch"]
+[ext_resource type="Texture2D" uid="uid://dbqmdut1pubia" path="res://assets/cutscene/HAND1.png" id="5_jksuv"]
+[ext_resource type="Texture2D" uid="uid://nkjoqtmm68u8" path="res://assets/cutscene/HAND2.png" id="6_5bjeu"]
+[ext_resource type="AudioStream" uid="uid://djqyayckmlw1a" path="res://assets/sounds/introNarrationFullMusicSyncExample.ogg" id="8_y2fch"]
+
+[node name="IntroCutscene" type="Node2D"]
+
+[node name="ComicStory" parent="." node_paths=PackedStringArray("player", "soundFile") instance=ExtResource("1_ikw7r")]
+list_of_images = Array[Texture]([ExtResource("3_p2vtl"), ExtResource("4_y2fch"), ExtResource("5_jksuv"), ExtResource("6_5bjeu")])
+timer_lengths = Array[float]([11.2, 14.0, 10.4, 3.6])
+player = NodePath("../Player")
+soundFile = NodePath("../IntroNarrationFullMusicSyncExample")
+
+[node name="Player" parent="." instance=ExtResource("4_c5b70")]
+visible = false
+
+[node name="IntroNarrationFullMusicSyncExample" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("8_y2fch")

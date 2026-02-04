@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://gq0vmrtwmvom"]
+
+[ext_resource type="PackedScene" uid="uid://cfod6k1ncd6h5" path="res://Levels/comicStory.tscn" id="1_iq5u3"]
+[ext_resource type="PackedScene" uid="uid://b5xgwq7y3w5v4" path="res://game.tscn" id="2_q1071"]
+[ext_resource type="PackedScene" uid="uid://dve8hfghfvdfr" path="res://player/player.tscn" id="3_j0ro3"]
+[ext_resource type="Texture2D" uid="uid://dkfy3svtm6iyl" path="res://assets/cutscene/END.png" id="3_wjkmu"]
+[ext_resource type="AudioStream" uid="uid://uswq6peqx4t3" path="res://assets/sounds/outroNarration.ogg" id="5_q1071"]
+
+[node name="EndScene" type="Node2D"]
+
+[node name="ComicStory" parent="." node_paths=PackedStringArray("player", "soundFile") instance=ExtResource("1_iq5u3")]
+next_scene = ExtResource("2_q1071")
+list_of_images = Array[Texture]([ExtResource("3_wjkmu")])
+timer_lengths = Array[float]([9.3])
+player = NodePath("../Player")
+soundFile = NodePath("../OutroNarration")
+
+[node name="Player" parent="." instance=ExtResource("3_j0ro3")]
+visible = false
+
+[node name="OutroNarration" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("5_q1071")

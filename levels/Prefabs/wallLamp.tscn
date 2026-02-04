@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy482vtfjdebe"]
+
+[ext_resource type="Texture2D" uid="uid://crja8g7xgkpah" path="res://assets/sprites/Layer 45Asset_.png" id="1_4d6jd"]
+
+[node name="WallLamp" type="Node2D"]
+
+[node name="Layer45Asset" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(-2, -4)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_4d6jd")

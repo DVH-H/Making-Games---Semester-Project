@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://co1iy5xnrtxwg"]
+
+[ext_resource type="Texture2D" uid="uid://cwj52s8e7syv0" path="res://assets/sprites/Assets_0004_Layer-40.png" id="1_w84nx"]
+
+[node name="SignWarning" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_w84nx")

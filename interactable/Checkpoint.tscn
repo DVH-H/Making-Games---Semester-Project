@@ -1,79 +1,32 @@
-[gd_scene load_steps=12 format=3 uid="uid://3ei6sbrmm6t4"]
+[gd_scene load_steps=5 format=3 uid="uid://3ei6sbrmm6t4"]
 
-[ext_resource type="Texture2D" uid="uid://c33d4hp60bw4r" path="res://assets/Flag.png" id="1_ir6d7"]
 [ext_resource type="Script" uid="uid://bxmi030axdqwy" path="res://interactable/checkpoint.gd" id="1_yt2a0"]
+[ext_resource type="Texture2D" uid="uid://bb3jyj7ujh2ta" path="res://assets/sprites/Assets_0013_Layer-39.png" id="2_861ed"]
+[ext_resource type="PackedScene" uid="uid://bo3uylfjwav7l" path="res://components/sound_component.tscn" id="3_kd8um"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_861ed"]
 size = Vector2(46.5, 50)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yt2a0"]
-atlas = ExtResource("1_ir6d7")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j5qqt"]
-atlas = ExtResource("1_ir6d7")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m6gyp"]
-atlas = ExtResource("1_ir6d7")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jrtbj"]
-atlas = ExtResource("1_ir6d7")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7h2d7"]
-atlas = ExtResource("1_ir6d7")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_88cbg"]
-atlas = ExtResource("1_ir6d7")
-region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ie6u5"]
-atlas = ExtResource("1_ir6d7")
-region = Rect2(384, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_2kbmt"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yt2a0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j5qqt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m6gyp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jrtbj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7h2d7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_88cbg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ie6u5")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[node name="Checkpoint" type="Node2D"]
+[node name="Checkpoint" type="Node2D" node_paths=PackedStringArray("check_sound")]
 script = ExtResource("1_yt2a0")
+check_sound = NodePath("BarCheckpoint")
 
 [node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(30, 30)
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_861ed")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(23, -5)
-sprite_frames = SubResource("SpriteFrames_2kbmt")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -2
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_861ed")
+
+[node name="SoundComponent" parent="." instance=ExtResource("3_kd8um")]
+
+[node name="BarCheckpoint" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

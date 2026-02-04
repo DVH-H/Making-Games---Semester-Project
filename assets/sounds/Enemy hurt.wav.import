@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cpug64pfv17s"
+path="res://.godot/imported/Enemy hurt.wav-7ea3192ac2224910043b6f0be682e6c0.sample"
+
+[deps]
+
+source_file="res://assets/sounds/Enemy hurt.wav"
+dest_files=["res://.godot/imported/Enemy hurt.wav-7ea3192ac2224910043b6f0be682e6c0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
